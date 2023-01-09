@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
       left: 10,
       flexDirection: "row",
     },
+    navIcon: {
+      color: '#386641'
+    },
     navItem: {
       alignItems: "center",
       padding:10,

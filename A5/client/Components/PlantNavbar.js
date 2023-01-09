@@ -2,7 +2,7 @@ import { StyleSheet, Text, View} from 'react-native';
 import {Link} from 'react-router-native';
 import {Box, HStack, Pressable, Center, Container} from 'native-base';
 import { useState } from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons' 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 function PlantNavbar(){
@@ -15,7 +15,7 @@ function PlantNavbar(){
             
               <Link to="/forum" style={styles.navItem}>
                 <Center>
-                  <Icon name='forum' size={25}></Icon>
+                  <Icon name='forum' color='#386641' size={25}></Icon>
                   <Text>Forum</Text>
                 </Center>
               </Link>
@@ -25,7 +25,7 @@ function PlantNavbar(){
             <Center>
               <Link to="/suggestions"  style={styles.navItem}>
               <Center>
-              <Icon name='lightbulb-on' size={30}></Icon>
+              <Icon name='lightbulb-on' color='#386641' size={30}></Icon>
               <Text>Suggestions</Text>
               </Center>
               </Link>
@@ -36,7 +36,7 @@ function PlantNavbar(){
             
             <Link to="/recognize" style={styles.navItem}>
               <Center>
-                  <Icon name='camera' size={25}></Icon>
+                  <Icon name='camera' color='#386641' size={25}></Icon>
                   <Text>Recognize</Text>
               </Center>
               </Link>
