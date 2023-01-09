@@ -3,16 +3,16 @@ import {Link} from 'react-router-native';
 import {Center} from 'native-base';
 import {Text} from 'react-native';
 
-function AddToPlants(){
+function SendFeedback(){
     return(
         <Link to="/">
             <Center>
-                <Icon name='add-circle-outline' size={30}></Icon>
-                <Text>Add to my Plant</Text>
+                <Icon name='add-circle-outline' size={28}></Icon>
+                <Text>Send Feedback</Text>
             </Center>
         </Link>
     );
 }
 
 
-export default AddToPlants;
+export default SendFeedback;

@@ -7,7 +7,7 @@ function Back(){
     const navigate = useNavigate();
     return(
         <Center>
-            <Icon onPress={()=>navigate(-1)} name='md-arrow-back-outline' size={30}></Icon>
+            <Icon onPress={()=>navigate(-1)} name='md-arrow-back-outline' size={28}></Icon>
         </Center>
        
     );

@@ -1,8 +1,23 @@
-import { StyleSheet, Text, View, Button} from 'react-native';
-import {Box, HStack, Pressable, Center} from 'native-base';
-import Home from './Buttons/home';
-import AddToPlants from './Buttons/AddToPlants';
-import Back from './Buttons/back';
+import {Button, ScrollView} from 'react-native';
+import {Box} from 'native-base';
+import Home from './Buttons/General/home';
+import AddToPlants from './Buttons/MyPlants/addToPlants';
+import Back from './Buttons/General/back';
+import NewPostButton from './Buttons/Forum/newPost';
+import ReplyButton from './Buttons/Forum/replyButton';
+import RateButton from './Buttons/General/rateButton';
+import AddPlant from './Buttons/MyPlants/addNew';
+import GoToPreview from './Buttons/Forum/goToPreview';
+import AddPost from './Buttons/Forum/addPost';
+import SendFeedback from './Buttons/General/sendFeedback';
+import MyPlantsButton from './Buttons/MyPlants/myPlantsButton';
+import UndoButton from './Buttons/General/undoButton';
+import GoAhead from './Buttons/Recognize/goahead';
+import ChooseAnother from './Buttons/Recognize/chooseAnother';
+import FromGallery from './Buttons/Recognize/fromGallery';
+import AddButton from './Buttons/General/addButton';
+import StayHereButton from './Buttons/Forum/stayHere';
+import DiscardButton from './Buttons/Forum/discardPost';
 
 function Test(){
     const blabla = async () => {
@@ -27,11 +42,29 @@ function Test(){
 
     return (
         <Box>
-            <Text>Recognize</Text>
-            <Button onPress={()=>blabla()} title="VAI"></Button>
-            <Home/>
-            <AddToPlants></AddToPlants>
-            <Back/>
+            <ScrollView>
+              <Button onPress={()=>blabla()} title="VAI"></Button>
+              <Home/>
+              <AddToPlants></AddToPlants>
+              <Back/>
+              <NewPostButton/>
+              <ReplyButton type={1}/>
+              <ReplyButton type={0}/>
+              <RateButton/>
+              <AddPlant/>
+              <GoToPreview/>
+              <AddPost/>
+              <SendFeedback/>
+              <MyPlantsButton/>
+              <UndoButton/>
+              <GoAhead/>
+              <ChooseAnother type={1}/>
+              <ChooseAnother type={0}/>
+              <FromGallery/>
+              <AddButton/>
+              <DiscardButton/>
+              <StayHereButton/>
+            </ScrollView>
         </Box>
     );
 

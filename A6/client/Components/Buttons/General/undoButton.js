@@ -1,18 +1,18 @@
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {Link} from 'react-router-native';
 import {Center} from 'native-base';
 import {Text} from 'react-native';
 
-function Home(){
+function UndoButton(){
     return(
         <Link to="/">
             <Center>
-                <Icon name='home' size={30}></Icon>
-                <Text>Home</Text>
+                <Icon name='undo' size={28}></Icon>
+                <Text>Undo</Text>
             </Center>
         </Link>
     );
 }
 
 
-export default Home;
+export default UndoButton;
