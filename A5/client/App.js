@@ -4,7 +4,7 @@ import PlantNavbar from './Components/PlantNavbar';
 import TitleBar from './Components/TitleBar';
 import HMP from './Components/HMP';
 import MyPlants from './Components/MyPlants';
-import { NativeBaseProvider, Container } from 'native-base';
+import { NativeBaseProvider, Container, Center } from 'native-base';
 import Recognize from './Components/Recognize';
 
 function App(){
@@ -12,9 +12,9 @@ function App(){
     <NativeBaseProvider>
       <NativeRouter>
         <Routes>
-            <Route exact path="/" element={<Container><TitleBar name='Homepage'/><HMP/><PlantNavbar/></Container>} />
-            <Route path="/recognize" element={<Recognize/>}/>
-            <Route path="/myplants" element={<Container><TitleBar name='My Plants'/><MyPlants/><PlantNavbar/></Container>}/>
+            <Route exact path="/" element={<Center><TitleBar name='Homepage'/><HMP/><PlantNavbar/></Center>} />
+            <Route path="/recognize" element={<Center><TitleBar name='Recognize' previous='/'/><Recognize/><PlantNavbar/></Center>}/>
+            <Route path="/myplants" element={<Center><TitleBar name='My Plants' previous='/'/><MyPlants/><PlantNavbar/></Center>}/>
         </Routes>
       
       </NativeRouter>

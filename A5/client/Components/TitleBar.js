@@ -8,9 +8,9 @@ function TitleBar(props){
 
     return(
         <Box top='10' alignSelf="center">
-            <Pressable top='10' py="3" flex={1}>
+            <Pressable py="3" flex={1}>
                 <Text style={styles.titleText}>
-                    {props.name !== 'Homepage' && <Icon name='arrow-left' size={50}/>}
+                    {props.name !== 'Homepage' && <Pressable><Link to={props.previous}><Icon name='arrow-left' size={50}/></Link></Pressable>}
                     {props.name}</Text>
             </Pressable>
         </Box>

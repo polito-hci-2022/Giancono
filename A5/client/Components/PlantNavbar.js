@@ -9,7 +9,7 @@ function PlantNavbar(){
 
     return(
       <Box flex={1} borderRadius='lg' backgroundColor='#F2E8CF' top='750'  width="100%" maxW="300px" alignSelf="center">
-        <HStack borderRadius='lg' alignItems="center" shadow={6}>
+        <HStack borderRadius='lg' bg="gray" alignItems="center" shadow={6}>
           <Pressable top='5' cursor="pointer" py="3" flex={1}>
             <Center>
             
