@@ -2,7 +2,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Link} from 'react-router-native';
 import {Center} from 'native-base';
 import {Text} from 'react-native';
-import styles from '../../styles';
+import styles from '../../General/styles';
 
 function RateButton(){
     return(
