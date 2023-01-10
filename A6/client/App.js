@@ -13,7 +13,7 @@ function App(){
         <Routes>
             <Route exact path="/" element={<Homepage/>} />
             <Route path="/test" element={<Test/>}/>
-            <Route path="/myplants" element={<Center><TitleBar name='My Plants'/><MyPlants/><PlantNavbar/></Center>}/>
+            <Route path="/myplants" element={<Center><MyPlants/><PlantNavbar/></Center>}/>
         </Routes>
       </NativeRouter>
     </NativeBaseProvider>

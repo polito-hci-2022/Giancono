@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 function HMP(){
 
     return(
+      <Center>
       <Box flex={1} backgroundColor='#A7C957' borderRadius='80' top='100' width="100%" maxW="300px" alignSelf="center">
         <HStack borderRadius='80' bg="gray" alignItems="center" shadow={6}>
           <Pressable top='5' cursor="pointer" py="3" flex={1}>
@@ -43,7 +44,7 @@ function HMP(){
             </Center>
           </Pressable>
         </HStack>
-    </Box>
+    </Box></Center>
             
  
     );

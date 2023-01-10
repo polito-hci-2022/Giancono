@@ -10,12 +10,12 @@ function Homepage(){
 
     return(
      
-      <Container alignSelf='center'>
+      <Center>
         <TitleBar name='Plant Hug'/>
         <HMP/>
         <TrendingBox/>
         <PlantNavbar/>
-      </Container>
+      </Center>
       
 
     );
