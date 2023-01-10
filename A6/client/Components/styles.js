@@ -17,6 +17,14 @@ const styles = StyleSheet.create({
     container: {
       p:"12",
       rounded:"lg",
+    },
+    titleText: {
+      fontSize: 40,
+      fontWeight: "bold",
+    },
+    multilineText:{
+      flexWrap: 'wrap',
+      flexDirection: 'row',
     }
   });
 

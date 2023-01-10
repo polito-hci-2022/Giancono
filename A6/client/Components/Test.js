@@ -18,6 +18,8 @@ import FromGallery from './Buttons/Recognize/fromGallery';
 import AddButton from './Buttons/General/addButton';
 import StayHereButton from './Buttons/Forum/stayHere';
 import DiscardButton from './Buttons/Forum/discardPost';
+import HMP from './HMP';
+import TrendingBox from './trending';
 
 function Test(){
     const blabla = async () => {
@@ -64,6 +66,8 @@ function Test(){
               <AddButton/>
               <DiscardButton/>
               <StayHereButton/>
+              <HMP/>
+              <TrendingBox/>
             </ScrollView>
         </Box>
     );
