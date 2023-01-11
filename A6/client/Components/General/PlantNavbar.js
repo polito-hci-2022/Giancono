@@ -11,7 +11,7 @@ function PlantNavbar(){
 
     return(
 
-        <Box  flex={1} borderRadius='lg' safeAreaTop top='200'  width="100%" maxW="300px" alignSelf="center">
+        <Box  flex={1} borderRadius='lg' safeAreaTop top='15%'  width="100%" maxW="300px" alignSelf="center">
           <HStack safeAreaBottom shadow={6} borderRadius='lg' bg="#F2E8CF" alignItems="center" >
             <Pressable cursor="pointer" py="3" flex={1}>
               <Center>

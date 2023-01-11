@@ -7,6 +7,7 @@ import Homepage from './Components/General/Homepage';
 import { ImageBackground } from 'react-native';
 import BGImage from './assets/pl.jpg';
 
+let userplants = [1,2,3]
 
 function App(){
   return (
@@ -17,7 +18,7 @@ function App(){
           
             <Route exact path="/" element={<Homepage/>}/>
             <Route path="/test" element={<Test/>}/>
-            <Route path="/myplants" element={<Center><MyPlants/><PlantNavbar/></Center>}/>
+            <Route path="/myplants" element={<Center><MyPlants userplants={userplants}/><PlantNavbar/></Center>}/>
          
         </Routes>
         <PlantNavbar/>

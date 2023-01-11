@@ -1,50 +1,28 @@
+import {Link, Box, VStack, Text, Container, Center} from 'native-base';
+import { Pressable } from 'react-native';
 
-import {Container} from 'native-base';
-import { DataTable } from 'react-native-paper';
 import TitleBar from '../General/TitleBar';
-import {Box, HStack, Pressable, Center, Text} from 'native-base';
-import ForumButton from '../Buttons/Forum/forumButton';
-import RecognizeButton from '../Buttons/Recognize/recognizeButton';
-import SuggestionsButton from '../Buttons/Suggestions/suggestionsButton';
 
-function MyPlants(props) {
-  
+const getUP = async() => {
+  const userplantss = await API.getUserPlants()
+  .catch((err) => window.alert('Error while getting riddles'));
+  setRiddles(riddles);
+};
+
+function MyPlants(props){
+
     return(
-        <Center>
+      <VStack>
         <TitleBar name='My Plants'/>
-        <Box flex={1} top='100'  width="100%">
-        <DataTable striped>
-            <DataTable.Header>
-                <DataTable.Title><Text>Photo</Text></DataTable.Title>
-                <DataTable.Title><Text>Name</Text></DataTable.Title>
-                <DataTable.Title><Text>Alert</Text></DataTable.Title>
-        </DataTable.Header>
-        props.userplants.map(<PlantRow></PlantRow>)
-        </DataTable>
-        </Box>
-        </Center>
+        {props.userplants.map((a)=><Center>
+        <Box top={20} backgroundColor='#A7C957' width='80' height='50' borderRadius='70'>
+          <Container><Text top='3' left='20'>{a}</Text></Container>
+        </Box><Box height='10'></Box></Center>)}
+      </VStack>
     );
 }
 
-function PlantRow(props) {
-    return <Container></Container>
-}
+function PlantBox(props){}
 
-
-  function RiddleRow(props) {
-    
-    return(
-      <Container>
-      </Container>
-    );
-  }
-  
-  function RiddleData(props) {
-  
-    return(
-      <Container>
-      </Container>
-    );
-  }
 
 export default MyPlants;

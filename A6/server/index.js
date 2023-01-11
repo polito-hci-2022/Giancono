@@ -35,7 +35,7 @@ app.use(cors(corsOptions));
 
 
 /*** APIs ***/
-// GET /api/addPlant/
+// POST /api/addPlant/
 app.post('/api/addPlant', async(req, res) => {
     let x;
     try{
@@ -45,6 +45,16 @@ app.post('/api/addPlant', async(req, res) => {
     }
     return res.status(201).json({});
 });
+
+app.get('/api/getUP', async(request, response) => {
+    let x;
+    try{
+        x = await daoDB.getUserPlants();
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(201).json({});
+  });
 
 
 // activate the server
