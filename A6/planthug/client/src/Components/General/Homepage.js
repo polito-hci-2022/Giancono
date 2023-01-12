@@ -11,6 +11,7 @@ function Homepage(){
         <PlantNavbar/>
         <HMP/>
         <InfoBox/>
+        
     </div>
 
     );
