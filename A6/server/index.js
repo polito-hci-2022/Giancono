@@ -26,7 +26,7 @@ const daoDB = new dao(db.db);
 
 // CORS
 const corsOptions = {
-  origin: 'http://192.168.227.65:19000',
+  origin: 'http://localhost:19006',
   credentials : true,
 };
 app.use(cors(corsOptions));
@@ -55,6 +55,13 @@ app.get('/api/getUP', async(request, response) => {
     }
     return res.status(201).json({});
   });
+
+app.get('/api/getUP', (request, response) => {
+    daoDB.getUserPlants()
+    .then(plants => response.json(plants))
+    .catch(() => response.status(500).end());
+});
+  
 
 
 // activate the server

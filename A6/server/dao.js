@@ -25,7 +25,7 @@ getUserPlants = () => {
       if(err)
         reject(err);
       else {
-        const answer = rows.map(row => {return {"idPlant": row.idPlant, "photo": row.photo, "watered": row.watered, "repotted": row.repotted, "phertilized": row.phertilized}});
+        const answer = rows.map(row => {return {'idPlant': row.idPlant, 'photo': row.photo, 'watered': row.watered, 'repotted': row.repotted, 'phertilized': row.phertilized}});
         resolve(answer);
       }
     });
