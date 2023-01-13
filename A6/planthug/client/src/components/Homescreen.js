@@ -15,7 +15,7 @@ import {
 
 function Homescreen(props) {
         return (<>
-        <MyNavbar/><Container>
+        <Container>
                 <MDBCard background = 'success' className='text-white mb-3'>
                 <MDBCardBody>
                 <MDBCardTitle>My plants</MDBCardTitle>
