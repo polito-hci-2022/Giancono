@@ -3,7 +3,7 @@ import { useState } from 'react';
 import React from 'react';
 import PlantNavbar from './General/PlantNavbar';
 import Back from './Buttons/backButton';
-import {LightbulbFill} from 'react-bootstrap-icons';
+import {Lightbulb} from 'react-bootstrap-icons';
 import PlantSuggestionCard from './General/PlantSuggestionCard';
 
 function Suggestions(){
@@ -16,7 +16,7 @@ function Suggestions(){
                     <Back />
                 </Col>
                 <Col xs={10} style={{textAlign:'center'}}>
-                    <h1>Suggestions&nbsp;<LightbulbFill /></h1>
+                    <h1>Suggestions&nbsp;<Lightbulb /></h1>
                 </Col>
                 <Col />
             </Row>
