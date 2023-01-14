@@ -6,7 +6,7 @@ function MyPlantsButton(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/a')}>
+                <h6 onClick={()=>navigate('/myplants')}>
                 <Flower3 size={28} color='black'/>
                 <br></br>My Plants
                 </h6>

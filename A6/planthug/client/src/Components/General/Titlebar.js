@@ -1,15 +1,14 @@
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Navbar } from 'react-bootstrap';
 import Back from '../Buttons/backButton';
 
 
 
 function TitleBar(props){
 
-    return(
-        <div>
-            {props.name !== 'Plant Hug' && <h1><Back/>{props.name}</h1>}
-        </div>
-    );
+    return(<><Navbar>
+        <Navbar.Brand><Back/></Navbar.Brand>
+        <Col xs={10} style={{textAlign:'center'}}><h1>{props.name}</h1></Col></Navbar>
+    </>);
 }
 
 

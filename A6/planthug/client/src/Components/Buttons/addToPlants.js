@@ -6,9 +6,9 @@ function AddToPlants(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/a')}>
+                <h6 onClick={()=>navigate('/added')}>
                 <PlusCircle size={28} color='black'/>
-                <br></br>Add to my Plants
+                <br></br>Add plant
                 </h6>
             </div>
     );

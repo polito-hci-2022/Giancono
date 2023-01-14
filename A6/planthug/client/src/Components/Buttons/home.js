@@ -6,7 +6,7 @@ function Home(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/a')}>
+                <h6 onClick={()=>navigate('/')}>
                 <House size={28} color='black'/>
                 <br></br>Home
                 </h6>

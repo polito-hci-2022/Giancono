@@ -6,6 +6,9 @@ import InfoBox from './info';
 import {GearFill} from 'react-bootstrap-icons';
 import PlantNavbar from './PlantNavbar';
 import TitleBar from './Titlebar';
+import ForumButton from '../Buttons/forumButton';
+import SuggestionsButton from '../Buttons/suggestionsButton';
+import RecognizeButton from '../Buttons/recognizeButton';
 
 
 
@@ -55,7 +58,7 @@ function Homepage(){
             <br></br>
             <br></br>
             <InfoBox/>
-            <PlantNavbar/>
+            <PlantNavbar i1={<ForumButton/>} i2={<SuggestionsButton/>} i3={<RecognizeButton/>}/>
         </Container>
         
     );

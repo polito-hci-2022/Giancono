@@ -15,13 +15,13 @@ function PlantNavbar(props) {
               <Container style={{justifyContent:'center'}}>
                 <Row >
                   <Col xs>
-                  <ForumButton/>
+                  {props.i1}
                   </Col>
                   <Col xs>
-                  <SuggestionsButton/>
+                  {props.i2}
                   </Col>
                   <Col xs>
-                  <RecognizeButton/>
+                  {props.i3}
                   </Col>
                 </Row>
               </Container>
