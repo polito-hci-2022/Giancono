@@ -2,38 +2,60 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import React from 'react';
 import PlantNavbar from './General/PlantNavbar';
-import Back from './Buttons/backButton';
 import {LightbulbFill} from 'react-bootstrap-icons';
 import PlantSuggestionCard from './General/PlantSuggestionCard';
+import TitleBar from './General/Titlebar';
 
-function Suggestions(){
+function Suggestions(props){
     const [prioritize, setPrioritize] = useState('Water needs');
+    const plants = [
+        {
+            name: 'Pachira aquatica',
+            id: 1,
+            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
+        },
+        {
+            name: 'Pachira aquatica',
+            id: 2,
+            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
+        },
+        {
+            name: 'Pachira aquatica',
+            id: 3,
+            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
+        },
+        {
+            name: 'Pachira aquatica',
+            id: 4,
+            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
+        },
+        {
+            name: 'Pachira aquatica',
+            id: 5,
+            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
+        }
+    ]
 
     return(
         <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
             <Row className='w-100 d-flex justify-content-between'>
-                <Col xs={1} style={{textAlign:'left'}}>
-                    <Back />
-                </Col>
-                <Col xs={10} style={{textAlign:'center'}}>
-                    <h1>Suggestions&nbsp;<LightbulbFill /></h1>
-                </Col>
-                <Col />
+                <TitleBar name='Suggestions' icon={<LightbulbFill />} />
             </Row>
             <Row>
                 <span className='text-center'>
-                    Based on our algorithm, we think these plants may be perfect for you!
+                    {prioritize === 'Water needs' && 'Based on our algorithm, we think these plants may be perfect for you!'}
+                    {prioritize === 'Costs' && 'Based on our algorithm, you may like these plants that are a bargain in most shops!'}
+                    {prioritize === 'Light needs' && 'Based on our algorithm, these plants generally need a similiar amount of light than yours!'}
                 </span>
             </Row>
             <Row className='w-100 overflow-auto'>
                 <Container className='d-flex flex-row flex-nowrap'>
-                <PlantSuggestionCard path="https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg" plantName='Pachira aquatica' id={1} />
-                <PlantSuggestionCard path="https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg" plantName='Pachira aquatica' id={1} />
+                    {plants.map(p => <PlantSuggestionCard key={p.id} name={p.name} path={p.path} />)}
                 </Container>
             </Row>
             <Row>
                 <span className='text-center'>
-                    Based on: {prioritize}
+                    <span className='fw-bold'>Based on:</span><span>&nbsp;{prioritize}</span>
                 </span>
                 <br/>
                 <span className='text-center'>Prioritize</span>
