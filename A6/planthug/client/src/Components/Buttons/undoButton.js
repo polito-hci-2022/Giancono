@@ -1,4 +1,4 @@
-import {Undo} from 'react-bootstrap-icons';
+import {ArrowCounterclockwise} from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 
 function UndoButton(){
@@ -7,7 +7,7 @@ function UndoButton(){
 
             <div style={{textAlign:'center'}}>
                 <h6 onClick={()=>navigate('/suggestions')}>
-                <Undo size={28} color='black'/>
+                <ArrowCounterclockwise size={28} color='black'/>
                 <br></br>Undo
                 </h6>
             </div>
