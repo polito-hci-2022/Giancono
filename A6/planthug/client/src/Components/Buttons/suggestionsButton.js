@@ -1,4 +1,4 @@
-import {LightbulbFill} from 'react-bootstrap-icons';
+import {Lightbulb} from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 
 function SuggestionsButton(){
@@ -7,7 +7,7 @@ function SuggestionsButton(){
 
             <div style={{textAlign:'center'}}>
                 <h6 onClick={()=>navigate('/suggestions')}>
-                <LightbulbFill size={28} color='black'/>
+                <Lightbulb size={28} color='black'/>
                 <br></br>Suggestions
                 </h6>
             </div>
