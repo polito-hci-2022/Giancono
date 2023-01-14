@@ -2,6 +2,10 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Homepage from './Components/General/Homepage';
 import Test from './Components/Test';
+import Forum from './Components/General/Forum';
+import HelpMyPlant from './Components/General/HelpMyPlant';
+import NewPost from './Components/General/NewPost';
+
 
 let up=[{
   "plantId": "1",
@@ -18,6 +22,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Homepage/>}/>
         <Route path='/test' element={<Test/>}/>
+        <Route path='/forum' element={<Forum/>}/>
+        <Route path='/helpmyplant' element={<HelpMyPlant/>}/>
+        <Route path='/newpost' element={<NewPost/>}/>
+
+
       </Routes>
     </BrowserRouter>
   );

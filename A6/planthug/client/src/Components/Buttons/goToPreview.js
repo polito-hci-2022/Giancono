@@ -6,7 +6,7 @@ function GoToPreview(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/a')}>
+                <h6>
                 <FileEarmarkBreak size={28} color='black'/>
                 <br></br>Go to Preview
                 </h6>
