@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import React from 'react';
 import PlantNavbar from './General/PlantNavbar';
@@ -6,8 +6,17 @@ import {LightbulbFill} from 'react-bootstrap-icons';
 import PlantSuggestionCard from './General/PlantSuggestionCard';
 import TitleBar from './General/Titlebar';
 
+function MyButton(props){
+    return(
+        <Button className='px-1' style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
+        onClick={() => props.setPrioritize(props.btnName)} disabled={props.prioritize === props.btnName ? true : false}>
+                {props.btnName}
+        </Button>
+    )
+}
+
 function Suggestions(props){
-    const [prioritize, setPrioritize] = useState('Water needs');
+    const [prioritize, setPrioritize] = useState('Overall');
     const plants = [
         {
             name: 'Pachira aquatica',
@@ -43,7 +52,8 @@ function Suggestions(props){
             </Row>
             <Row>
                 <span className='text-center'>
-                    {prioritize === 'Water needs' && 'Based on our algorithm, we think these plants may be perfect for you!'}
+                    {prioritize === 'Overall' && 'Based on our algorithm, we think these plants may be perfect for you!'}
+                    {prioritize === 'Water needs' && 'Based on our algorithm, we suggest you these plant with similiar water needs than yours!'}
                     {prioritize === 'Costs' && 'Based on our algorithm, you may like these plants that are a bargain in most shops!'}
                     {prioritize === 'Light needs' && 'Based on our algorithm, these plants generally need a similiar amount of light than yours!'}
                 </span>
@@ -60,18 +70,10 @@ function Suggestions(props){
                 <br/>
                 <span className='text-center'>Prioritize</span>
                 <div className='d-flex flex-row justify-content-evenly'>
-                    <Button style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
-                    onClick={() => setPrioritize('Water needs')} disabled={prioritize === 'Water needs' ? true : false}>
-                        Water needs
-                    </Button>
-                    <Button style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
-                    onClick={() => setPrioritize('Costs')} disabled={prioritize === 'Costs' ? true : false}>
-                        Costs
-                    </Button>
-                    <Button style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
-                    onClick={() => setPrioritize('Light needs')} disabled={prioritize === 'Light needs' ? true : false}>
-                        Light needs
-                    </Button>
+                    <MyButton btnName='Overall' prioritize={prioritize} setPrioritize={setPrioritize} />
+                    <MyButton btnName='Water needs' prioritize={prioritize} setPrioritize={setPrioritize} />
+                    <MyButton btnName='Costs' prioritize={prioritize} setPrioritize={setPrioritize} />
+                    <MyButton btnName='Light needs' prioritize={prioritize} setPrioritize={setPrioritize} />
                 </div>
             </Row>
             <Row>
