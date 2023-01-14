@@ -60,15 +60,15 @@ function Suggestions(props){
                 <br/>
                 <span className='text-center'>Prioritize</span>
                 <div className='d-flex flex-row justify-content-evenly'>
-                    <Button style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
+                    <Button style={{backgroundColor: '#A7C957', color: 'black', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
                     onClick={() => setPrioritize('Water needs')} disabled={prioritize === 'Water needs' ? true : false}>
                         Water needs
                     </Button>
-                    <Button style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
+                    <Button style={{backgroundColor: '#A7C957', color: 'black', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
                     onClick={() => setPrioritize('Costs')} disabled={prioritize === 'Costs' ? true : false}>
                         Costs
                     </Button>
-                    <Button style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
+                    <Button style={{backgroundColor: '#A7C957', color: 'black', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
                     onClick={() => setPrioritize('Light needs')} disabled={prioritize === 'Light needs' ? true : false}>
                         Light needs
                     </Button>

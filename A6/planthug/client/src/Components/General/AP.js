@@ -17,13 +17,18 @@ import Home from '../Buttons/home';
 import AddPlant from '../Buttons/addNew';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import MyPlants from './MyPlants';
+import MyPlantsButton from '../Buttons/myPlantsButton';
 
 let pi;
 
 function AP(props) {
-        return (<Container>
+        return (<><Container>
         <TitleBar name='Add Plant'></TitleBar>
-        </Container>);
+        </Container>
+        
+        <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/>
+        </>);
 
 }
 
