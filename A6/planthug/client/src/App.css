@@ -19,3 +19,6 @@
   padding-right: 10%;
 }
 
+body, #root {
+  height: 100vh;
+}

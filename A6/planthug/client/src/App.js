@@ -1,6 +1,6 @@
-
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Homepage from './Components/General/Homepage';
+import Suggestions from './Components/Suggestions';
 import Test from './Components/Test';
 
 let up=[{
@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Homepage/>}/>
         <Route path='/test' element={<Test/>}/>
+        <Route path='/suggestions' element={<Suggestions/>}/>
       </Routes>
     </BrowserRouter>
   );
