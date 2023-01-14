@@ -6,7 +6,7 @@ function UndoButton(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/suggestions')}>
+                <h6 onClick={()=>navigate('/undone')}>
                 <ArrowCounterclockwise size={28} color='black'/>
                 <br></br>Undo
                 </h6>

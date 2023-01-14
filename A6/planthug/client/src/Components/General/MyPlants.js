@@ -57,7 +57,7 @@ const navigate = useNavigate();
         {props.plant.repotted === 0 && <MDBCardText>Time to repot!</MDBCardText>}
         {props.plant.fertilized === 0 && <MDBCardText>Use some fertilizer!</MDBCardText>}
         <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{pi=props.plant; navigate('/plantinfo')}} className="border-0">
-                <i className='bi bi-info-circle-fill'></i></Button> See more about this plant</MDBCardText>
+                <i style={{color:'black'}} className='bi bi-info-circle-fill'></i></Button> See more about this plant</MDBCardText>
 
                 </MDBCardBody>
                 </MDBCard>      
@@ -78,8 +78,8 @@ function PlantInfo(){
                     <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-droplet'></i> 7 times a week</Button>
                     <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-sun'></i> Full sunlight</Button>
                     <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> Tropical plants fertilizer</Button>
-                    {!dsc && <Button className="border-0" style={{backgroundColor:'#A7C957'}} onClick={()=>setDsc(true)}>Show description</Button>}
-                    {dsc && <Button className="border-0" style={{backgroundColor:'#A7C957'}} onClick={()=>setDsc(false)}>Hide description</Button>}
+                    {!dsc && <Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(true)}>Show description</Button>}
+                    {dsc && <Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(false)}>Hide description</Button>}
                     {dsc && <MDBCardText className='text-light'>
                       {pi.description}
                     </MDBCardText>}
