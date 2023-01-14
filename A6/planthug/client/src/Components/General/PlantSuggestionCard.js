@@ -9,9 +9,9 @@ function PlantSuggestionCard(props){
             <Card.Img style={{width: '100%', height: '66%', overflow: 'hidden', objectFit: 'cover'}} variant="top" src={props.path} />
             <Card.Title className="text-center mt-1">{props.name}</Card.Title>
             <Card.Body className="d-flex flex-row justify-content-between">
-                <Card.Text><StarFill style={{color: "#386641"}} /></Card.Text>
+                <Card.Link disabled><StarFill style={{color: "#386641"}} /></Card.Link>
                 <Card.Link href="#"><Button style={{color: 'black', backgroundColor: '#A7C957', borderWidth: 0, boxShadow: 'none', outline: 'none'}}>See more</Button></Card.Link>
-                <Card.Link href="#"><StarFill style={{color: "yellow"}} /></Card.Link>
+                <Card.Link className="mx-0"><StarFill style={{color: "yellow"}} /></Card.Link>
             </Card.Body>
         </Card></>
     )
