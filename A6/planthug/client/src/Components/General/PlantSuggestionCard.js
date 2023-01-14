@@ -13,8 +13,7 @@ function PlantSuggestionCard(props){
                 <Card.Link href="#"><Button style={{color: 'black', backgroundColor: '#A7C957', borderWidth: 0, boxShadow: 'none', outline: 'none'}}>See more</Button></Card.Link>
                 <Card.Link href="#"><StarFill style={{color: "yellow"}} /></Card.Link>
             </Card.Body>
-        </Card>
-        <PlantNavbar i2={<Home/>}/></>
+        </Card></>
     )
 }
 

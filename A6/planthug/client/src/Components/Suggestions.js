@@ -2,13 +2,14 @@ import { Container, Row, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import React from 'react';
 import PlantNavbar from './General/PlantNavbar';
-import {LightbulbFill} from 'react-bootstrap-icons';
+import {Lightbulb} from 'react-bootstrap-icons';
 import PlantSuggestionCard from './General/PlantSuggestionCard';
 import TitleBar from './General/Titlebar';
+import Home from './Buttons/home';
 
 function MyButton(props){
     return(
-        <Button className='px-1' style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
+        <Button className='px-1' style={{backgroundColor: '#A7C957', color:'black', borderWidth: 0, boxShadow: 'none', outline: 'none'}}
         onClick={() => props.setPrioritize(props.btnName)} disabled={props.prioritize === props.btnName ? true : false}>
                 {props.btnName}
         </Button>
@@ -45,11 +46,11 @@ function Suggestions(props){
         }
     ]
 
-    return(
+    return(<>
+        <Container>
+                <TitleBar name='Suggestions' icon={<Lightbulb />} />
+            </Container>
         <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
-            <Row className='w-100 d-flex justify-content-between'>
-                <TitleBar name='Suggestions' icon={<LightbulbFill />} />
-            </Row>
             <Row>
                 <span className='text-center'>
                     {prioritize === 'Overall' && 'Based on our algorithm, we think these plants may be perfect for you!'}
@@ -64,22 +65,19 @@ function Suggestions(props){
                 </Container>
             </Row>
             <Row>
-                <span className='text-center'>
-                    <span className='fw-bold'>Based on:</span><span>&nbsp;{prioritize}</span>
-                </span>
                 <br/>
-                <span className='text-center'>Prioritize</span>
-                <div className='d-flex flex-row justify-content-evenly'>
+                <Container className='text-center py-2'>Tap to <b>prioritize</b> a specific aspect:
+                </Container><div className='d-flex flex-row justify-content-evenly'>
                     <MyButton btnName='Overall' prioritize={prioritize} setPrioritize={setPrioritize} />
                     <MyButton btnName='Water needs' prioritize={prioritize} setPrioritize={setPrioritize} />
                     <MyButton btnName='Costs' prioritize={prioritize} setPrioritize={setPrioritize} />
                     <MyButton btnName='Light needs' prioritize={prioritize} setPrioritize={setPrioritize} />
                 </div>
-            </Row>
+            </Row><br/>
             <Row>
-                <PlantNavbar/>
+                <PlantNavbar i2={<Home/>}/>
             </Row>
-        </Container>
+        </Container></>
         
     );
 }
