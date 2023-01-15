@@ -1,12 +1,14 @@
 import {Image} from 'react-bootstrap-icons';
-import { useNavigate } from 'react-router-dom';
 
-function FromGallery(){
-    const navigate = useNavigate();
+function FromGallery(props){
+    function upload(){
+        document.getElementById("selectImage").click()
+    }
+
     return(
-
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/a')}>
+                <h6 onClick={()=>upload()}>
+                <input id='selectImage' hidden type="file" onChange={(event)=>props.handleChange(event)} />
                 <Image size={28} color='black'/>
                 <br></br>From Gallery
                 </h6>

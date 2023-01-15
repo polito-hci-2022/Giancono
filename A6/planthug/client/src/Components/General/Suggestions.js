@@ -1,11 +1,11 @@
 import { Container, Row, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import React from 'react';
-import PlantNavbar from './General/PlantNavbar';
+import PlantNavbar from './PlantNavbar';
 import {Lightbulb} from 'react-bootstrap-icons';
-import PlantSuggestionCard from './General/PlantSuggestionCard';
-import TitleBar from './General/Titlebar';
-import Home from './Buttons/home';
+import PlantCard from './PlantCard';
+import TitleBar from './Titlebar';
+import Home from '../Buttons/home';
 
 function MyButton(props){
     return(
@@ -48,8 +48,8 @@ function Suggestions(props){
 
     return(<>
         <Container>
-                <TitleBar name='Suggestions' icon={<Lightbulb />} />
-            </Container>
+            <TitleBar name='Suggestions' icon={<Lightbulb />} />
+        </Container>
         <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
             <Row>
                 <span className='text-center'>
@@ -61,7 +61,7 @@ function Suggestions(props){
             </Row>
             <Row className='w-100 overflow-auto'>
                 <Container className='d-flex flex-row flex-nowrap'>
-                    {plants.map(p => <PlantSuggestionCard key={p.id} name={p.name} path={p.path} />)}
+                    {plants.map(p => <PlantCard key={p.id} name={p.name} path={p.path} typeOfRating='suggestion' />)}
                 </Container>
             </Row>
             <Row>

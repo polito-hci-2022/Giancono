@@ -3,10 +3,6 @@ import { Navbar, Row, Col, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-import ForumButton from '../Buttons/forumButton';
-import SuggestionsButton from '../Buttons/suggestionsButton';
-import RecognizeButton from '../Buttons/recognizeButton';
-
 function PlantNavbar(props) {
         return (
           <>

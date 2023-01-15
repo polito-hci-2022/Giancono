@@ -1,12 +1,14 @@
 import {XCircleFill} from 'react-bootstrap-icons';
-import { useNavigate } from 'react-router-dom';
 
-function ChooseAnother(){
-    const navigate = useNavigate();
+function ChooseAnother(props){
+    function upload(){
+        document.getElementById("selectImage").click()
+    }
+
     return(
-
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/a')}>
+                <h6 onClick={()=>upload()}>
+                <input id='selectImage' hidden type="file" onChange={(event)=>props.handleChange(event)} />
                 <XCircleFill size={28} color='black'/>
                 <br></br>No, choose another
                 </h6>

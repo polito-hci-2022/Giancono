@@ -1,13 +1,14 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Homepage from './Components/General/Homepage';
-import Suggestions from './Components/Suggestions';
+import Suggestions from './Components/General/Suggestions';
 import Test from './Components/Test';
 import Forum from './Components/General/Forum';
 import HelpMyPlant from './Components/General/HelpMyPlant';
 import NewPost from './Components/General/NewPost';
 import MyPlants from './Components/General/MyPlants';
+import Recognize from './Components/General/Recognize';
+import RecognizedPlant from './Components/General/RecognizedPlant';
 import AP from './Components/General/AP';
-
 
 let up=[{
   "plantId": "1",
@@ -33,7 +34,8 @@ function App() {
         <Route path='/plantinfo' element={<MyPlants pi={true}/>}/>
         <Route path='/addplant' element={<AP/>}/>
         <Route path='/added' element={<MyPlants add={true}/>}/>
-
+        <Route path='/recognize' element={<Recognize/>}/>
+        <Route path='/recognize/plant' element={<RecognizedPlant/>}/>
       </Routes>
     </BrowserRouter>
   );

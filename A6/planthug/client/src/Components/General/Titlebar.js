@@ -1,4 +1,4 @@
-import { Row, Col, Navbar } from 'react-bootstrap';
+import { Col, Navbar } from 'react-bootstrap';
 import Back from '../Buttons/backButton';
 
 

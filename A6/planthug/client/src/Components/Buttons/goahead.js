@@ -6,7 +6,7 @@ function GoAhead(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/a')}>
+                <h6 onClick={()=>navigate('/recognize/plant')}>
                 <Check2Circle size={28} color='black'/>
                 <br></br>Go ahead
                 </h6>
