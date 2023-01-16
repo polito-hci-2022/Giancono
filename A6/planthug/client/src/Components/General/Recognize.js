@@ -1,5 +1,5 @@
 import { CameraFill, CircleFill } from "react-bootstrap-icons";
-import { Container, Row, Button } from 'react-bootstrap';
+import { Container, Row, Button, Navbar } from 'react-bootstrap';
 import PlantNavbar from './PlantNavbar';
 import TitleBar from './Titlebar';
 import Home from '../Buttons/home';
@@ -79,10 +79,11 @@ function Recognize(){
                     <TitleBar name='Recognize' icon={<CameraFill />} />
                 </Container>
                 <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
-                    <Row className="w-75">
+                    <Row className="w-85" style={{height: 0}}>
                         <span className='text-center'>
-                            Shoot a photo and we will <b>try</b> to guess wich plant it is
-                        </span>
+                            Shoot a photo and we will <b>try</b> to guess wich plant it is.
+                        </span><Navbar/>
+                        <p style={{backgroundColor: '#e6e6e6'}}><i className="bi bi-exclamation-triangle-fill"/>    Try to be steady and clean your camera. Else, results may be impacted</p>
                     </Row>
                     <Row className="d-flex flex-column align-items-center">
                         <div className="overflow-hidden rounded-2 p-0" style={{border: '2px solid #386641'}}>
@@ -95,7 +96,7 @@ function Recognize(){
                             </Button>
                         </span>
                     </Row>
-                    <Row>
+                 <Row>
                         <PlantNavbar i2={<Home/>} i3={<FromGallery handleChange={handleChange}/>}/>
                     </Row>
                 </Container>
