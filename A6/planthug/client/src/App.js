@@ -9,6 +9,9 @@ import MyPlants from './Components/General/MyPlants';
 import Recognize from './Components/General/Recognize';
 import RecognizedPlant from './Components/General/RecognizedPlant';
 import AP from './Components/General/AP';
+import Feedback from './Components/Feedback/Feedback';
+import FeedbackSent from './Components/Feedback/Sent';
+import ForumPosted from './Components/Forum/Posted';
 
 let up=[{
   "plantId": "1",
@@ -36,6 +39,9 @@ function App() {
         <Route path='/added' element={<MyPlants add={true}/>}/>
         <Route path='/recognize' element={<Recognize/>}/>
         <Route path='/recognize/plant' element={<RecognizedPlant/>}/>
+        <Route path='/feedback' element={<Feedback/>}/>
+        <Route path='/feedback/sent' element={<FeedbackSent/>}/>
+        <Route path='/forum/posted' element={<ForumPosted/>}/>
       </Routes>
     </BrowserRouter>
   );

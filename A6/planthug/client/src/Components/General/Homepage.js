@@ -1,46 +1,14 @@
-import { Container, Offcanvas, Row, Col} from 'react-bootstrap';
-import { useState } from 'react';
+import { Container} from 'react-bootstrap';
 import React from 'react';
 import HMP from './HMP';
 import InfoBox from './info';
-import {GearFill} from 'react-bootstrap-icons';
 import PlantNavbar from './PlantNavbar';
-import TitleBar from './Titlebar';
 import ForumButton from '../Buttons/forumButton';
 import SuggestionsButton from '../Buttons/suggestionsButton';
 import RecognizeButton from '../Buttons/recognizeButton';
 
-
-
-const SettingsPopup = () => {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    return(
-
-    <>   
-        <Row>
-            <Col xs={1} style={{textAlign:'left'}}>
-                <GearFill onClick={handleShow}size={25}/>
-            </Col>
-            <Col xs={10} style={{textAlign:'center'}}>
-                <h1>Plant Hug</h1>
-            </Col>
-        </Row>
-        <Offcanvas show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
-        </Offcanvas.Body>
-      </Offcanvas>
-    </>
-);}
-    
-    
+import SettingsPopup from './Settings';
+import TitleBar from './Titlebar';
 
 function Homepage(){
 
@@ -49,7 +17,8 @@ function Homepage(){
             <br></br>
         
             <SettingsPopup/>
-
+            <TitleBar name='Plant Hug'/>
+        
 
             <div style={{textAlign:'center'}}>
             </div>
