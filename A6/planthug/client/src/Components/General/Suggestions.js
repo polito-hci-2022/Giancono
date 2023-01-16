@@ -3,7 +3,7 @@ import { useState } from 'react';
 import React from 'react';
 import PlantNavbar from './PlantNavbar';
 import {Lightbulb} from 'react-bootstrap-icons';
-import PlantCard from './PlantCard';
+import PlantCard from '../Plants/PlantCard';
 import TitleBar from './Titlebar';
 import Home from '../Buttons/home';
 

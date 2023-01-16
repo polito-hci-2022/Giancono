@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Navbar } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { CameraFill } from "react-bootstrap-icons";
 import TitleBar from './Titlebar';
-import PlantCard from "./PlantCard";
+import PlantCard from "../Plants/PlantCard";
 import PlantNavbar from './PlantNavbar';
 import Home from '../Buttons/home';
 
@@ -102,7 +102,7 @@ function RecognizedPlant(){
                 </Row>
                 <Row></Row>
                 <Row></Row>
-            </Container>}
+            </Container>}<Navbar/><Navbar/>
         </>
     );
 }

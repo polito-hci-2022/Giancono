@@ -1,6 +1,6 @@
 import { Button, Card, Modal } from "react-bootstrap";
 import { Star, StarFill } from "react-bootstrap-icons";
-import PlantNavbar from "./PlantNavbar";
+import PlantNavbar from "../General/PlantNavbar";
 import Home from "../Buttons/home";
 import React, { useState } from 'react';
 
