@@ -76,7 +76,7 @@ function App() {
         <Route path='/newpost' element={<NewPost/>}/>
         <Route path='/myplants' element={<MyPlants userPlants={up}/>}></Route>
         <Route path='/plantinfo' element={<MyPlants pi={true}/>}/>
-        <Route path='/addplant' element={<AP/>}/>
+        <Route path='/addplant' element={<AP plants={p}/>}/>
         <Route path='/added' element={<MyPlants add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
         <Route path='/recognize' element={<Recognize/>}/>
@@ -85,6 +85,7 @@ function App() {
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>
         <Route path='/forum/posted' element={<ForumPosted/>}/>
         <Route path='/forum/post' element={<Post/>}/>
+        <Route path='/cat' element={<AP plants={p} cat={1}/>}/>
       </Routes>
     </BrowserRouter>
   );

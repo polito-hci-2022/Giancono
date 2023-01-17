@@ -138,7 +138,7 @@ function HelpMyPlant() {
        
       </div>
       <br></br>
-      
+    <Navbar/><Navbar/><Navbar/><Navbar/>
       
       <Navbar position='absolute' fixed="bottom" style={{backgroundColor:'#F2E8CF'}}>
               <Container style={{justifyContent:'center'}}>

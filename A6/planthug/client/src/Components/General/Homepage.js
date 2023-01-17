@@ -1,4 +1,4 @@
-import { Container} from 'react-bootstrap';
+import { Container, Navbar} from 'react-bootstrap';
 import React from 'react';
 import HMP from './HMP';
 import InfoBox from './info';
@@ -15,9 +15,9 @@ function Homepage(){
     return(
         <Container>
             <br></br>
-        
+            <Navbar>
             <SettingsPopup/>
-            <TitleBar name='Plant Hug'/>
+            <TitleBar name='Plant Hug'/></Navbar>
         
 
             <div style={{textAlign:'center'}}>

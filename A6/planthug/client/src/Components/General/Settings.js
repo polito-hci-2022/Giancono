@@ -15,7 +15,7 @@ const SettingsPopup = () => {
     <>   
         <Row>
             <Col xs={1} style={{textAlign:'left'}}>
-                <GearFill onClick={handleShow}size={25}/>
+                <GearFill onClick={handleShow} size={25}/>
             </Col>
             <Col xs={10} style={{textAlign:'center'}}>
             </Col>

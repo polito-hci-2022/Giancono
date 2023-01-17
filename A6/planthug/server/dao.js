@@ -46,7 +46,7 @@ getPlants = (user) => {
         reject(err);
       }
       else {
-        const answer = rows.map(row => {return {'id': row.id, 'scientificname': row.scientificname, 'description': row.description, 'photo': row.photo, 'waterNeed': row.waterNeed, 'sunNeed': row.sunNeed, 'humidityNeed': row.humidityNeed, 'soilNeed': row.soilNeed, 'vaseNeed': row.vaseNeed, 'fertilizerNeed': row.fertilizerNeed, 'diseases': row.diseases, 'pests': row.pests, 'category': row.category}});
+        const answer = rows.map(row => {return {'id': row.id, 'name': row.scientificName, 'description': row.description, 'photo': row.photo, 'waterNeed': row.waterNeed, 'sunNeed': row.sunNeed, 'humidityNeed': row.humidityNeed, 'soilNeed': row.soilNeed, 'vaseNeed': row.vaseNeed, 'fertilizerNeed': row.fertilizerNeed, 'diseases': row.diseases, 'pests': row.pests, 'category': row.category}});
         resolve(answer);
       }
     });

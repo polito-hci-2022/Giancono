@@ -31,7 +31,7 @@ function MyPlants(props) {
         if (props.del) return (<Deleted name={pi.name}/>)
         if (!props.pi)
         return (<>
-        <TitleBar name='My Plants'></TitleBar>
+        <Container><TitleBar name='My Plants' arrow={true}></TitleBar></Container>
         {props.userPlants.map((plant) =><PlantCard plant={plant}></PlantCard>)}
         <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <PlantNavbar i1={<Home/>} i3={<AddPlant new={1}/>}/></>
@@ -41,11 +41,10 @@ function MyPlants(props) {
 
 function PlantCard(props) {
 const navigate = useNavigate();
-console.log(props.plant);
     return(
         <Container>
                 <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
-                <MDBCardImage src='https://redgoosespice.com/wp-content/uploads/AllspiceWhole.jpg' position='top' alt='...' />
+                <MDBCardImage src={props.plant.photo} position='top' alt='...' />
                 <MDBCardBody>
                 <MDBCardTitle>{props.plant.name}</MDBCardTitle>
                 <MDBCardText>Tap to perform an action:<div></div></MDBCardText>
@@ -75,7 +74,7 @@ function PlantInfo(){
         
         const[dsc,setDsc] = useState(false); 
 
-        return (<><Container><TitleBar name='Plant Info'></TitleBar></Container><Container>
+        return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
                 <MDBCard style={{backgroundColor:'#386641'}}>
                   <MDBCardImage src='https://redgoosespice.com/wp-content/uploads/AllspiceWhole.jpg' position='top' alt='...' />
                   <MDBCardBody>
