@@ -26,6 +26,10 @@ import { AlignStart, Justify } from 'react-bootstrap-icons';
 let pi;
 
 function MyPlants(props) {
+
+        console.log("My Plants");
+        console.log(props.userPlants);
+
         if (props.add) return (<Added name={pi.name}/>);
         if (props.del) return (<Deleted name={pi.name}/>)
         if (!props.pi)

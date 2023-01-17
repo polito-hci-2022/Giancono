@@ -15,30 +15,35 @@ import Feedback from './Components/Feedback/Feedback';
 import FeedbackSent from './Components/Feedback/Sent';
 import ForumPosted from './Components/Forum/Posted';
 import Post from './Components/Forum/Post';
+import { useState, useEffect } from 'react';
 
-
-
-let up=[{
-  "plantId": "1",
-  "name": "Allspice",
-  "customName": "Giorgia",
-  "watered": 1,
-  "repotted": 0,
-  "fertilized": 1,
-  "description": 'Allspice, also known as Jamaica pepper, myrtle pepper, pimenta, or pimento, is the dried unripe berry of Pimenta dioica, a midcanopy tree native to the Greater Antilles, southern Mexico, and Central America, now cultivated in many warm parts of the world'
-},
-{
-  "plantId": "1",
-  "name": "Allspice",
-  "customName": "Giorgia",
-  "watered": 1,
-  "repotted": 0,
-  "fertilized": 1,
-  "description": 'Allspice, also known as Jamaica pepper, myrtle pepper, pimenta, or pimento, is the dried unripe berry of Pimenta dioica, a midcanopy tree native to the Greater Antilles, southern Mexico, and Central America, now cultivated in many warm parts of the world'
-}]
+const APIURL = 'http://localhost:3001/api';
 
 function App() {
- 
+
+  const[up, setUP] = useState();
+  const getUPlants = async () =>{
+    const url = APIURL + `/getUP/1`;
+    try{
+        const res = await fetch(url);
+        if(res.ok){
+            const plants = await res.json();
+            plants.sort((c1, c2)=>{return c1.Name > c2.Name});
+            setUP(plants);
+            return plants;
+        } else {
+            const text = await res.text();
+            throw new TypeError(text);
+        }
+      }catch(ex){
+        throw ex;
+      }
+    
+  }
+
+  useEffect(() => {
+    getUPlants();
+  }, []);
 
   return (
     <BrowserRouter>
