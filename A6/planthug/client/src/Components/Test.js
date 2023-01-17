@@ -1,55 +1,32 @@
-import AddButton from "./Buttons/addButton";
-import AddPlant from "./Buttons/addNew";
-import AddPost from "./Buttons/addPost";
-import AddToPlants from "./Buttons/addToPlants";
-import Back from "./Buttons/backButton";
-import ChooseAnother from "./Buttons/chooseAnother";
-import DiscardButton from "./Buttons/discardPost";
-import ForumButton from "./Buttons/forumButton";
-import FromGallery from "./Buttons/fromGallery";
-import GoAhead from "./Buttons/goahead";
-import GoToPreview from "./Buttons/goToPreview";
-import Home from "./Buttons/home";
-import MyPlantsButton from "./Buttons/myPlantsButton";
-import NewPostButton from "./Buttons/newPost";
-import RateButton from "./Buttons/rateButton";
-import RecognizeButton from "./Buttons/recognizeButton";
-import ReplyButton from "./Buttons/replyButton";
-import SendFeedback from "./Buttons/sendFeedback";
-import StayHereButton from "./Buttons/stayHere";
-import SuggestionsButton from "./Buttons/suggestionsButton";
+import {Button} from 'react-bootstrap'
+
+const APIURL = 'http://localhost:3001/api'
+
+const getUPlants = async (student) =>{
+    const url = APIURL + `/getUP/${student}`;
+    try{
+        const res = await fetch(url);
+        if(res.ok){
+            const plants = await res.json();
+            plants.sort((c1, c2)=>{return c1.Name > c2.Name})
+            console.log(plants)
+            return plants;
+        } else {
+            const text = await res.text();
+            throw new TypeError(text);
+        }
+      }catch(ex){
+        throw ex;
+      }
+    
+}
 
 
 function Test(){
-
     return(
      <div style={{textAlign:'center'}}>
-        <AddButton/>
-        <AddPlant/>   
-        <AddPost/>     
-        <AddToPlants></AddToPlants>
-        <Back></Back>
-        <ChooseAnother></ChooseAnother>
-        <DiscardButton></DiscardButton>
-        <ForumButton></ForumButton>
-        <FromGallery></FromGallery>
-<GoAhead></GoAhead>
-<GoToPreview></GoToPreview>
-<Home></Home>
-<MyPlantsButton></MyPlantsButton>
-<NewPostButton></NewPostButton>
-<RateButton></RateButton>
-<RecognizeButton></RecognizeButton>
-<ReplyButton></ReplyButton>
-<SendFeedback></SendFeedback>
-<StayHereButton></StayHereButton>
-<SuggestionsButton></SuggestionsButton>
-
-
-
-
-
-
+        <br></br>
+        <Button onClick={()=>getUPlants(1)}>testami</Button>
     </div>
 
     );
