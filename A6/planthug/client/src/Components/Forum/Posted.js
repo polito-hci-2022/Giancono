@@ -10,7 +10,7 @@ function ForumPosted(){
     useEffect(()=>{
         const timer = setTimeout(()=>{
             navigate('/forum')
-        }, 1000);
+        }, 3000);
         return () => clearTimeout(timer);
     })
 

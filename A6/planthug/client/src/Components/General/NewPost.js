@@ -17,47 +17,57 @@ import {
   Card,
   Navbar,
   InputGroup,
+  Alert,
 } from "react-bootstrap";
 import ForumButton from "../Buttons/forumButton";
+import TitleBar from '../General/Titlebar';
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBCardSubTitle,
+} from 'mdb-react-ui-kit';
+
 
 function NewPost() {
-  const [preview, setPreview] = useState(1);
-  const [title, setTitle] = useState("LE SARDE");
-  const [category, setCategory] = useState("pesci");
-  const [body, setBody] = useState("le sarde salate");
+  const [preview, setPreview] = useState(0);
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [body, setBody] = useState("");
+
 
   if (!preview) {
     return (
       <Container>
         <br></br>
-        <Row>
-          <Col xs={1} style={{ textAlign: "left" }}>
-            <ReplyFill size={28} color="black" />
-          </Col>
-          <Col xs={10} style={{ textAlign: "center" }}>
-            <h1>Create a post</h1>
-          </Col>
-        </Row>
+        <TitleBar name='New post' arrow={true}></TitleBar>
+        {preview ===1 && title==="" ? <Row><Alert onOpen={() => {}}dismissible>{"Fill in all the required inputs"}</Alert></Row> : <></>} 
         <br></br>
-        <br></br> <br></br>
+        <br></br>
         <h4>Post title:</h4>
-        <Form className="d-flex">
-          <Form.Control placeholder="Type here" className="me-2" />
+        <Form className="d-flex" onChange={event => setTitle(event.target.value)}>
+          <Form.Control placeholder={title} className="me-2" />
         </Form>
         <br></br>
         <h4>Category:</h4>
-        <Form className="d-flex">
-          <Form.Control placeholder="Type here" className="me-2" />
-        </Form>
+        <Form.Select size="md" onChange={event => setCategory(event.target.value)}>
+          <option>Help my plant</option>
+          <option>Plant's reviews</option>
+          <option>Accessories for your plant</option>
+          <option>Others</option>
+        </Form.Select>
         <br></br>
         <h4>Post body:</h4>
-        <InputGroup>
+        <InputGroup onChange={event => setBody(event.target.value)}>
           <Form.Control
-            placeholder="Type here your post"
+            placeholder={body}
             as="textarea"
             aria-label="With textarea"
           />
         </InputGroup>
+        
         <Navbar
           position="absolute"
           fixed="bottom"
@@ -65,9 +75,7 @@ function NewPost() {
         >
           <Container style={{ justifyContent: "center" }}>
             <Row>
-              <Col xs>
-                <ForumButton />
-              </Col>
+              
               <Col xs>
                 <HomeButton />
               </Col>
@@ -84,35 +92,29 @@ function NewPost() {
         </Navbar>
       </Container>
     );
-  } else {
+  }else{
     return (
       <Container>
+        <TitleBar name='Preview' ></TitleBar>
         <br></br>
-        <Row>
-          <Col xs={1} style={{ textAlign: "left" }}>
-            <ReplyFill size={28} color="black" />
-          </Col>
-          <Col xs={10} style={{ textAlign: "center" }}>
-            <h1>Preview</h1>
-          </Col>
-        </Row>
         <br></br>
-        <br></br> <br></br>
         <h4>Do you want to post this?</h4>
-        <Container class="rounded" style={{ backgroundColor: "#A7C957" }}>
-          <h4 style={{ textAlign: "center" }}>{title}</h4>
-          <Search />
-          {category}
-          <br></br>
-          <Container style={{ backgroundColor: "#A7C957" }}>
-            <h7>{body}</h7>
-          </Container>
-        </Container>
+        <br></br>
+
+          <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+            <MDBCardBody>
+              <MDBCardTitle>{title}</MDBCardTitle>
+              <MDBCardText><div>Category: {category}</div></MDBCardText>
+
+                <MDBCardText style={{backgroundColor:'white'}} className='text-black mb-3 rounded'><div>{body}</div></MDBCardText>
+            </MDBCardBody>
+          </MDBCard> 
+
+
         <Navbar
           position="absolute"
           fixed="bottom"
-          style={{ backgroundColor: "#F2E8CF" }}
-        >
+          style={{ backgroundColor: "#F2E8CF" }}>
           <Container style={{ justifyContent: "center" }}>
             <Row>
               <Col xs>

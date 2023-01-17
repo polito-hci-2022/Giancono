@@ -6,7 +6,7 @@ function AddPost(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/a')}>
+                <h6 onClick={()=>navigate('/forum/posted')}>
                 <PlusCircle size={28} color='black'/>
                 <br></br>Post it!
                 </h6>

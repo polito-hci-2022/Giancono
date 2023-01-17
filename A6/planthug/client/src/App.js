@@ -12,6 +12,8 @@ import AP from './Components/Plants/AP';
 import Feedback from './Components/Feedback/Feedback';
 import FeedbackSent from './Components/Feedback/Sent';
 import ForumPosted from './Components/Forum/Posted';
+import Post from './Components/Forum/Post';
+
 
 let up=[{
   "plantId": "1",
@@ -52,6 +54,7 @@ function App() {
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>
         <Route path='/forum/posted' element={<ForumPosted/>}/>
+        <Route path='/forum/post' element={<Post/>}/>
       </Routes>
     </BrowserRouter>
   );

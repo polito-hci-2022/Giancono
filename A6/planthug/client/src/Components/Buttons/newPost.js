@@ -6,9 +6,9 @@ function NewPostButton(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/a')}>
+                <h6 onClick={()=>navigate('/newpost')}>
                 <PlusCircle size={28} color='black'/>
-                <br></br>New Post
+                <br></br>New⠀post
                 </h6>
             </div>
     );

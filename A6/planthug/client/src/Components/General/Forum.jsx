@@ -4,6 +4,7 @@ import React from 'react';
 import InfoBox from './info';
 import { GearFill, StarFill, QuestionCircleFill, Search, ReplyFill, CartPlusFill } from 'react-bootstrap-icons';
 import { Container, Offcanvas, Row, Col, Button, Form } from 'react-bootstrap'
+import TitleBar from '../General/Titlebar';
 
 
 function Forum() {
@@ -11,14 +12,7 @@ function Forum() {
     return (
         <Container>
             <br></br>
-            <Row>
-                <Col xs={1} style={{ textAlign: 'left' }}>
-                    <ReplyFill size={28} color="black" />
-                </Col>
-                <Col xs={10} style={{ textAlign: 'center' }}>
-                    <h1>Forum</h1>
-                </Col>
-            </Row>
+            <TitleBar name='Forum'></TitleBar>
             <br></br>
             <br></br>
             <br></br>
@@ -39,27 +33,26 @@ function Forum() {
                     <h4>Topics:</h4>
 
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#6A994E' }} class="rounded-pill" href="/helpmyplant">
-                            <GearFill class="text-dark"/>
-                            <a class="text-dark">Help my plan</a></Button>
+                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" href="/helpmyplant">
+                            <GearFill/>⠀Help my plant</Button>
                     </Row>
                     <br></br>
 
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#6A994E' }} class="rounded-pill" ><StarFill></StarFill>
-                            Reviews</Button>
+                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" ><StarFill></StarFill>
+                        ⠀Plant's reviews</Button>
                     </Row>
                     <br></br>
 
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#6A994E' }} class="rounded-pill" >                        <CartPlusFill></CartPlusFill>
-                            Accessories</Button>
+                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" >                        <CartPlusFill></CartPlusFill>
+                        ⠀Accessories for your plant</Button>
                     </Row>
                     <br></br>
 
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#6A994E' }} class="rounded-pill" ><QuestionCircleFill></QuestionCircleFill>
-                            Others</Button>
+                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" ><QuestionCircleFill></QuestionCircleFill>
+                        ⠀Others</Button>
                     </Row>
 
 

@@ -14,67 +14,140 @@ import {
   Card,
   Navbar,
 } from "react-bootstrap";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBCardSubTitle,
+} from 'mdb-react-ui-kit';
+import TitleBar from '../General/Titlebar';
+
 import ForumButton from "../Buttons/forumButton";
+import { Navigate } from "react-router-dom";
 
 function HelpMyPlant() {
+
+  const [posts, setPosts] = useState({});
+  const [post, setPost] = useState({});
+
+
   return (
     <Container>
       <br></br>
-            <Row>
-                <Col xs={1} style={{ textAlign: 'left' }}>
-                    <ReplyFill size={28} color="black" />
-                </Col>
-                <Col xs={10} style={{ textAlign: 'center' }}>
-                    <h3>Forum > Help my plant</h3>
-                </Col>
-            </Row>
-            <br></br>
-            <br></br>
-            <br></br>
-
-      <div style={{ textAlign: "center" }}>
-        <Container>
-          <Form className="d-flex">
-            <Form.Control
+      <TitleBar name='Forum > Help my plant'></TitleBar>
+      <Container>
+        <Form className="d-flex">
+          <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">
-              <Search />
-            </Button>
-          </Form>
-          <br></br>
-          <br></br>
+              aria-label="Search"/>
+          <Button variant="outline-success">
+            <Search />
+          </Button>
+        </Form>
+      <br></br>
+      <br></br>
+      </Container>
+        <div style={{ textAlign: "center" }}>
+      <Container>
+                <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+                  <MDBCardBody>
+                  <MDBCardTitle>Why is my echinocactus grusonii going limp?</MDBCardTitle>
+                  <MDBCardText><div>Posted by kevin</div></MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
+                    See post</Button> </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>      
         </Container>
+        <Container>
+                <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+                  <MDBCardBody>
+                  <MDBCardTitle>Why is my echinocactus grusonii going limp?</MDBCardTitle>
+                  <MDBCardText><div>Posted by kevin</div></MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
+                    See post</Button> </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>      
+        </Container>
+        <Container>
+                <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+                  <MDBCardBody>
+                  <MDBCardTitle>Why is my echinocactus grusonii going limp?</MDBCardTitle>
+                  <MDBCardText><div>Posted by kevin</div></MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
+                    See post</Button> </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>      
+        </Container>
+        <Container>
+                <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+                  <MDBCardBody>
+                  <MDBCardTitle>Why is my echinocactus grusonii going limp?</MDBCardTitle>
+                  <MDBCardText><div>Posted by kevin</div></MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
+                    See post</Button> </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>      
+        </Container>
+        <Container>
+                <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+                  <MDBCardBody>
+                  <MDBCardTitle>Why is my echinocactus grusonii going limp?</MDBCardTitle>
+                  <MDBCardText><div>Posted by kevin</div></MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
+                    See post</Button> </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>      
+        </Container>
+        <Container>
+                <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+                  <MDBCardBody>
+                  <MDBCardTitle>Why is my echinocactus grusonii going limp?</MDBCardTitle>
+                  <MDBCardText><div>Posted by kevin</div></MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
+                    See post</Button> </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>      
+        </Container>
+        <Container>
+                <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+                  <MDBCardBody>
+                  <MDBCardTitle>Why is my echinocactus grusonii going limp?</MDBCardTitle>
+                  <MDBCardText><div>Posted by kevin</div></MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
+                    See post</Button> </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>      
+        </Container>
+        <Container>
+                <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+                  <MDBCardBody>
+                  <MDBCardTitle>Why is my echinocactus grusonii going limp?</MDBCardTitle>
+                  <MDBCardText><div>Posted by kevin</div></MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
+                    See post</Button> </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>      
+        </Container>
+
+
+
+       
       </div>
       <br></br>
-      <Card style={{ width: "18rem" }} >
-        <Card.Body>
-          <Card.Title>Post title</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">Username</Card.Subtitle>
-
-          
-            <ReplyFill size={28} color="black" />
-            number#
-          
-        </Card.Body>
-      </Card>
+      
       
       <Navbar position='absolute' fixed="bottom" style={{backgroundColor:'#F2E8CF'}}>
               <Container style={{justifyContent:'center'}}>
                 <Row >
                   <Col xs>
-                  <ForumButton/>
-                  </Col>
-                  <Col xs>
                   <HomeButton/>
-
                   </Col>
                   <Col xs>
                   <NewPostButton/>
-
                   </Col>
                 </Row>
               </Container>
