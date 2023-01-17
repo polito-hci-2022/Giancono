@@ -55,7 +55,18 @@ app.get('/api/getUP/:user', async(req, res) => {
         return res.status(500).json({err:'generic error'})
     }
     return res.status(200).json(x);
-  });
+});
+
+app.get('/api/getP', async(req, res) => {
+    let x;
+    
+    try{
+        x = await daoDB.getPlants();
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(200).json(x);
+});
 
 
 // activate the server

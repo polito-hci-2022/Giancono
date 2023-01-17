@@ -27,9 +27,6 @@ let pi;
 
 function MyPlants(props) {
 
-        console.log("My Plants");
-        console.log(props.userPlants);
-
         if (props.add) return (<Added name={pi.name}/>);
         if (props.del) return (<Deleted name={pi.name}/>)
         if (!props.pi)
@@ -44,6 +41,7 @@ function MyPlants(props) {
 
 function PlantCard(props) {
 const navigate = useNavigate();
+console.log(props.plant);
     return(
         <Container>
                 <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>

@@ -22,6 +22,8 @@ const APIURL = 'http://localhost:3001/api';
 function App() {
 
   const[up, setUP] = useState();
+  const[p, setP] = useState();
+
   const getUPlants = async () =>{
     const url = APIURL + `/getUP/1`;
     try{
@@ -37,12 +39,30 @@ function App() {
         }
       }catch(ex){
         throw ex;
+      } 
+  }
+
+  const getPlants = async () => {
+    const url = APIURL + `/getP`;
+    try{
+        const res = await fetch(url);
+        if(res.ok){
+            const plants = await res.json();
+            plants.sort((c1, c2)=>{return c1.Name > c2.Name});
+            setP(plants);
+            return plants;
+        } else {
+            const text = await res.text();
+            throw new TypeError(text);
+        }
+      }catch(ex){
+        throw ex;
       }
-    
   }
 
   useEffect(() => {
     getUPlants();
+    getPlants();
   }, []);
 
   return (
