@@ -60,9 +60,9 @@ const navigate = useNavigate();
         {props.plant.watered === 0 && <MDBCardText>Water this plant!</MDBCardText>}
         {props.plant.repotted === 0 && <MDBCardText>Time to repot!</MDBCardText>}
         {props.plant.fertilized === 0 && <MDBCardText>Use some fertilizer!</MDBCardText>}
-        <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{pi=props.plant; navigate('/plantinfo')}} className="border-0">
-                <i className='bi bi-info-circle-fill'></i></Button> See more about this plant</MDBCardText>
-
+        <MDBCardText>
+        <Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{pi=props.plant; navigate('/plantinfo')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button>
+        </MDBCardText>
                 </MDBCardBody>
                 </MDBCard>      
         </Container>
