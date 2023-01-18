@@ -31,7 +31,7 @@ function MyPlants(props) {
         if (props.del) return (<Deleted name={pi.name}/>)
         if (!props.pi)
         return (<>
-        <Container><TitleBar name='My Plants' arrow={true}></TitleBar></Container>
+        <Container><TitleBar arrow={true} name='My Plants' arrow={true}></TitleBar></Container>
         {props.userPlants.map((plant) =><PlantCard plant={plant}></PlantCard>)}
         <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <PlantNavbar i1={<Home/>} i3={<AddPlant new={1}/>}/></>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import React from "react";
-import NewPostButton from '../Buttons/newPost';
 import HomeButton from '../Buttons/home';
 import {
   Container,
@@ -11,6 +10,7 @@ import {
   Form,
   Card,
   Navbar,
+  InputGroup,
 } from "react-bootstrap";
 import {
   MDBCard,
@@ -22,96 +22,85 @@ import {
 } from 'mdb-react-ui-kit';
 import TitleBar from '../General/Titlebar';
 import ReplyButton from '../Buttons/replyButton'
-import ForumButton from "../Buttons/forumButton";
 import { Navigate } from "react-router-dom";
 
 function Post(props) {
 
-  const [post, setPost] = useState({});
   const [reply, setReply] = useState(0);
+  const [body, setBody] = useState("");
+  const [post, setPost] = useState({});
 
-  if(reply===0){
+  post.replies=[{author: "marco", body:"sono marco"},{author: "marzamemi", body:"sono marzamemi"}]
+
+ 
     return (
       <Container>
         <br></br>
         <TitleBar name='Forum > Post ID'></TitleBar>
         <br></br>
         <br></br>
-
-        <div style={{ textAlign: "center" }}>
-        <Container>
-                  <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
-                    <MDBCardBody>
-                    <MDBCardTitle>{post.title}</MDBCardTitle>
-                    <MDBCardText><b>posted by: </b><div>{post.author}</div></MDBCardText>
-                    <MDBCardText><b>category: </b><div>{post.category}</div></MDBCardText>
-                    <MDBCardText><div>{post.body}</div></MDBCardText>
-                    <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
-                      Reply to {post.author}</Button> </MDBCardText>
-                    </MDBCardBody>
-                  </MDBCard>      
-          </Container>
+        <div>
           <Container>
-                  <MDBCard style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>
-                    <MDBCardBody>
-                    <MDBCardText><b>Marco: </b><div >{post.body}</div></MDBCardText>
-                    <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
-                      Reply to {post.author}</Button> </MDBCardText>
-                    </MDBCardBody>
-                  </MDBCard>      
+            <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+              <MDBCardBody>
+              <MDBCardTitle >{post.title}</MDBCardTitle>
+              <MDBCardText><b>posted by: {post.author}</b><div>{post.author}</div></MDBCardText>
+              <MDBCardText><b>category: {post.category}</b><div>{post.category}</div></MDBCardText>
+              <MDBCardText><div>{post.body}</div></MDBCardText>
+              <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{setReply(1)}} className="border-0">Reply to {post.author}</Button> </MDBCardText>
+              </MDBCardBody>
+            </MDBCard>      
           </Container>
-          <Container>
-                  <MDBCard style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>
-                    <MDBCardBody>
-                    <MDBCardText><b>Franco: </b><div>{post.body}</div></MDBCardText>
-                    <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
-                      Reply to {post.author}</Button> </MDBCardText>
-                    </MDBCardBody>
-                  </MDBCard>      
-          </Container>
-          <Container>
-                  <MDBCard style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>
-                    <MDBCardBody>
-                    <MDBCardText><b>Matteo: </b><div >{post.body}</div></MDBCardText>
-                    <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
-                      Reply to {post.author}</Button> </MDBCardText>
-                    </MDBCardBody>
-                  </MDBCard>      
-          </Container>
-          <Container>
-                  <MDBCard style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>
-                    <MDBCardBody>
-                    <MDBCardText><b>Piero: </b><div>{post.body}</div></MDBCardText>
-                    <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{Navigate('/post')}} className="border-0">
-                      Reply to {post.author}</Button> </MDBCardText>
-                    </MDBCardBody>
-                  </MDBCard>      
-          </Container>
-
-         
         </div>
         <br></br>
-        
+        {post.replies.length===0 
+          ? 
+          <Container>no replies to this post :(</Container> 
+          :
+          post.replies.map((reply)=>{
+            return (
+
+              <Container overflow-y="scroll">
+                <MDBCard style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>
+                  <MDBCardBody>
+                  <MDBCardText><b>{reply.author}:</b><div >{reply.body}</div></MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{setReply(1)}} className="border-0">Reply to {post.author}</Button> 
+                  </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>      
+              </Container>
+            )
+          })          
+        }
+        {
+          reply===1 
+          ? <InputGroup onChange={event => setBody(event.target.value)}>
+          <Form.Control
+            placeholder="type here"
+            as="textarea"
+            aria-label="With textarea"
+          />
+        </InputGroup> : 2
+        }
+
         
         <Navbar position='absolute' fixed="bottom" style={{backgroundColor:'#F2E8CF'}}>
-                <Container style={{justifyContent:'center'}}>
-                  <Row >
-                    <Col xs>
-                    <HomeButton/>
-                    </Col>
-                    <Col xs>
-                    <ReplyButton/>
-                    </Col>
-                  </Row>
-                </Container>
-              </Navbar>
+          <Container style={{justifyContent:'center'}}>
+            <Row >
+              <Col xs>
+                <HomeButton/>
+              </Col>
+              <Col xs>
+                <ReplyButton/>
+              </Col>
+            </Row>
+          </Container>
+        </Navbar>
+
+
       </Container>
     );
-  }else{
-
-    
-
-  }
+  
   
 }
 

@@ -36,10 +36,10 @@ app.use(cors(corsOptions));
 
 /*** APIs ***/
 // POST /api/addPlant/
-app.post('/api/addPlant/:user', async(req, res) => {
+app.post('/api/addPlant', async(req, res) => {
     let x;
     try{
-        x = await daoDB.connectPlantUser();
+        x = await daoDB.addPlantUser(req.body.user, req.body.plant);
     }catch(err){
         return res.status(500).json({err:'generic error'})
     }
@@ -68,6 +68,28 @@ app.get('/api/getP', async(req, res) => {
     return res.status(200).json(x);
 });
 
+app.get('/api/getThreads', async(req, res) => {
+    let x;
+    
+    try{
+        x = await daoDB.getThreads();
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(200).json(x);
+});
+
+
+app.get('/api/getThreads/:category', async(req, res) => {
+    let x;
+    
+    try{
+        x = await daoDB.getThreadsCategory(req.params.category);
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(200).json(x);
+});
 
 // activate the server
 app.listen(port, () => {

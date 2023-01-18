@@ -15,10 +15,11 @@ function Homepage(){
     return(
         <Container>
             <br></br>
-            <Navbar>
-            <SettingsPopup/>
-            <TitleBar name='Plant Hug'/></Navbar>
-        
+
+            <div style={{textAlign:'center'}}>
+                <SettingsPopup/>
+                <h1>Plant Hug</h1>
+            </div>
 
             <div style={{textAlign:'center'}}>
             </div>

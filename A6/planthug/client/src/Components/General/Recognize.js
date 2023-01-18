@@ -76,7 +76,7 @@ function Recognize(){
         <>
             <div className={'h-100 ' + (taken === 0 ? 'd-block' : 'd-none')}>
                 <Container>
-                    <TitleBar name='Recognize' icon={<CameraFill />} />
+                    <TitleBar arrow={true} name='Recognize' icon={<CameraFill />} />
                 </Container>
                 <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
                     <Row className="w-85" style={{height: 0}}>

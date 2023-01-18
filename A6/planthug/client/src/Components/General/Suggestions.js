@@ -48,7 +48,7 @@ function Suggestions(props){
 
     return(<>
         <Container>
-            <TitleBar name='Suggestions' icon={<Lightbulb />} />
+            <TitleBar arrow={true} name='Suggestions' icon={<Lightbulb />} />
         </Container>
         <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
             <Row>
