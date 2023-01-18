@@ -1,5 +1,5 @@
 import '../../App.css';
-import { Container, Navbar, Button, Nav, Table} from 'react-bootstrap';
+import { Container, Navbar, Button, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react';
@@ -9,26 +9,25 @@ import {
   MDBCardTitle,
   MDBCardText,
   MDBCardImage,
-  MDBCardSubTitle,
 } from 'mdb-react-ui-kit';
 import TitleBar from '../General/Titlebar';
 import PlantNavbar from '../General/PlantNavbar';
 import Home from '../Buttons/home';
-import AddPlant from '../Buttons/addNew';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import MyPlants from './MyPlants';
 import MyPlantsButton from '../Buttons/myPlantsButton';
 import SuggestionsButton from '../Buttons/suggestionsButton';
 import RecognizeButton from '../Buttons/recognizeButton';
+import AddToPlants from '../Buttons/addToPlants';
 
-let p, cat;
+let p, cat, pinfo;
 
 function AP(props) {
   const navigate = useNavigate();
   if (props.cat) {
     return <PlantCategory cat={cat} p={p}/>
   }
+  if (props.pi) {return <PlantInfo/>}
   else {
         return (<><Container>
         <TitleBar name='New Plant' arrow={true}/>
@@ -81,14 +80,41 @@ function PlantCategory(props) {
 }
 
 function PlantCard(props) {
-  console.log(props.plant);
+  let navigate = useNavigate();
   return(<>
   <Container>
   <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'><MDBCardImage src={props.plant.photo}/>
-    <MDBCardBody><MDBCardTitle>{props.plant.name}</MDBCardTitle>
-    <Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button></MDBCardBody>
+    <MDBCardBody><MDBCardTitle>{props.plant.name}</MDBCardTitle><Row>
+    <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{pinfo=props.plant; navigate('/plantinfo1')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button></Col>
+    <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }}><i style={{color:'black'}} className='bi bi-plus-circle-fill'/>  Add plant</Button></Col>
+    </Row></MDBCardBody>
   </MDBCard><Navbar/></Container>
   </>);
 }
+
+function PlantInfo(){
+        
+  const[dsc,setDsc] = useState(false); 
+  console.log(pinfo);
+
+  return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
+          <MDBCard style={{backgroundColor:'#386641'}}>
+            <MDBCardImage src={pinfo.photo} position='top' alt='...' />
+            <MDBCardBody>
+              <MDBCardTitle className='text-light'>{pinfo.name}</MDBCardTitle>
+              <Row><Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-droplet'></i> {pinfo.waterNeed}</Button>
+              <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-sun'></i> {pinfo.sunNeed}</Button>
+              <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> {pinfo.fertilizerNeed}</Button></Row>
+              {!dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(true)}>Show description</Button></Row>}
+              {dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(false)}>Hide description</Button></Row>}
+              {dsc && <MDBCardText className='text-light'>
+                {pinfo.description}
+              </MDBCardText>}
+            </MDBCardBody>
+          </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
+          <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1}/>}/>
+          </>);
+}
+
 
 export default AP;

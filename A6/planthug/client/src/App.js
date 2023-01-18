@@ -76,6 +76,7 @@ function App() {
         <Route path='/newpost' element={<NewPost/>}/>
         <Route path='/myplants' element={<MyPlants userPlants={up}/>}></Route>
         <Route path='/plantinfo' element={<MyPlants pi={true}/>}/>
+        <Route path='/plantinfo1' element={<AP pi={true}/>}/>
         <Route path='/addplant' element={<AP plants={p}/>}/>
         <Route path='/added' element={<MyPlants add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
