@@ -91,6 +91,18 @@ app.get('/api/getThreads/:category', async(req, res) => {
     return res.status(200).json(x);
 });
 
+app.post('/api/createThread/:user', async(req, res) => {
+    let x;
+    try{
+        x = await daoDB.createThread(req.param.user, req.body.title, req.body.category, req.body.body);
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(201).json({});
+});
+
+
+
 // activate the server
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);

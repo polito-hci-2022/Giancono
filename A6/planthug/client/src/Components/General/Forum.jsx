@@ -5,9 +5,11 @@ import InfoBox from './info';
 import { GearFill, StarFill, QuestionCircleFill, Search, ReplyFill, CartPlusFill } from 'react-bootstrap-icons';
 import { Container, Offcanvas, Row, Col, Button, Form } from 'react-bootstrap'
 import TitleBar from '../General/Titlebar';
+import { useNavigate } from 'react-router-dom';
 
 
 function Forum() {
+    const navigate = useNavigate();
 
     return (
         <Container>
@@ -33,7 +35,7 @@ function Forum() {
                     <h4>Topics:</h4>
 
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" href="/helpmyplant">
+                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" onClick={()=>{navigate("/helpmyplant")}}>
                             <GearFill/>⠀Help my plant</Button>
                     </Row>
                     <br></br>

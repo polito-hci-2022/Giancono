@@ -88,6 +88,20 @@ getThreadsCategory = (category) => {
   });
 }
 
+createThread(user, title, category, body){
+  return new Promise((resolve, reject)=>{
+    const sql = 'INSERT INTO forum(title, category, body, idUser) VALUES(?, ?, ?, ?)';;
+    this.db.run(sql, [title, category, body, user], function (err) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  })
+}
+
 }
 
 module.exports = dao;

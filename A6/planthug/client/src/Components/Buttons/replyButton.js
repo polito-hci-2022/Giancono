@@ -5,8 +5,8 @@ function ReplyButton(){
     const navigate = useNavigate();
     return(
 
-            <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/recognize')}>
+            <div style={{textAlign:'center'}} >
+                <h6 >
                 <ReplyFill size={28} color='black'/>
                 <br></br>Reply
                 </h6>
