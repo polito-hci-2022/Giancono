@@ -2,9 +2,9 @@ import PlantNavbar from './ForumNavbar';
 import { useState } from 'react';
 import React from 'react';
 import InfoBox from './info';
-import { GearFill, StarFill, QuestionCircleFill, Search, ReplyFill, CartPlusFill } from 'react-bootstrap-icons';
+import { GearFill, StarFill, QuestionCircleFill, Search, ReplyFill, CartPlusFill} from 'react-bootstrap-icons';
 import { Container, Offcanvas, Row, Col, Button, Form } from 'react-bootstrap'
-import TitleBar from '../General/Titlebar';
+import TitleBar from './Titlebar';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -21,19 +21,10 @@ function Forum() {
 
 
                 <Container>
-                    <Form className="d-flex">
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success"><Search /></Button>
-                    </Form>
-                    <br></br>
+                    
                     <br></br>
                     <h4>Topics:</h4>
-
+                    <br></br>
                     <Row>
                         <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" onClick={()=>{navigate("/helpmyplant")}}>
                             <GearFill/>⠀Help my plant</Button>

@@ -22,7 +22,7 @@ import {
 } from 'mdb-react-ui-kit';
 import TitleBar from '../General/Titlebar';
 import ReplyButton from '../Buttons/replyButton'
-import { ReplyFill } from "react-bootstrap-icons";
+import { ReplyFill , XCircleFill } from "react-bootstrap-icons";
 
 function Post(props) {
 
@@ -31,8 +31,7 @@ function Post(props) {
   const [post, setPost] = useState({author: "kevinuccio", title:"la marratazzu", category:"le pacchere", body:"mi son strappato i peli del culo"});
   const [authorReply, setAuthorReply] = useState("");
 
-  post.replies=[{author: "marco", body:"sono marco"},{author: "marzamemi", body:"sono marzamemi"}]
-  
+  post.replies=[{author:"franco", body:"mamma le pacchere"}]
   
     return (
       <Container>
@@ -50,9 +49,16 @@ function Post(props) {
             </MDBCard>      
           </Container>
         </div>
-        {post.replies.length===0 
+        {(post.replies.length===0 && reply===0)
           ? 
-          <Container>no replies to this post :(</Container> 
+          <Container>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <h4 style={{textAlign:'center'}}>no replies to this post :(</h4></Container> 
           :
           post.replies.map((reply)=>{
             return (
@@ -69,14 +75,18 @@ function Post(props) {
           })          
         }
         {
-          reply===1  
+          reply===1
           ? 
+          
           <Container position='absolute' style={{position: "sticky"}} >
             <InputGroup  onChange={event => setBody(event.target.value)}>
               <Form.Control
-              placeholder="type here"
+              placeholder={`@${authorReply}`}
               as="textarea"
-              aria-label="With textarea"/>
+              aria-label="With textarea"
+              //value={`@${authorReply}`}
+              />
+              
             </InputGroup>
           </Container> : <></>
         }
@@ -86,14 +96,22 @@ function Post(props) {
               <Col xs>
                 <HomeButton/>
               </Col> 
-              <Col xs>
+              {reply===0 ? <Col xs>
                 <div style={{textAlign:'center'}} onClick={()=>{setReply(1)}} >
                   <h6 >
                   <ReplyFill size={28} color='black'/>
                   <br></br>Reply
                   </h6>
                 </div>
-              </Col>
+              </Col> : <Col xs>
+                <div style={{textAlign:'center'}} onClick={()=>{setReply(0); setAuthorReply("")}} >
+                  <h6 >
+                  <XCircleFill size={28} color='black'/>
+                  <br></br>cancel⠀reply
+                  </h6>
+                </div>
+              </Col>}
+              
             </Row>
           </Container>
         </Navbar>

@@ -23,6 +23,8 @@ function App() {
 
   const[up, setUP] = useState();
   const[p, setP] = useState();
+  const[posts, setPosts] = useState();
+
 
   const getUPlants = async () =>{
     const url = APIURL + `/getUP/1`;
@@ -60,9 +62,27 @@ function App() {
       }
   }
 
+  const getPosts = async () => {
+    const url = APIURL + `/api/getThreads/:helpmyplants`;
+    try{
+        const res = await fetch(url);
+        if(res.ok){
+            const posts = await res.json();
+            setPosts(posts);
+            return posts;
+        } else {
+            const text = await res.text();
+            throw new TypeError(text);
+        }
+      }catch(ex){
+        throw ex;
+      }
+  }
+
   useEffect(() => {
     getUPlants();
     getPlants();
+    getPosts();
   }, []);
 
   return (
@@ -72,7 +92,7 @@ function App() {
         <Route path='/test' element={<Test/>}/>
         <Route path='/suggestions' element={<Suggestions/>}/>
         <Route path='/forum' element={<Forum/>}/>
-        <Route path='/helpmyplant' element={<HelpMyPlant/>}/>
+        <Route path='/helpmyplant' element={<HelpMyPlant/>} posts={posts}/>
         <Route path='/newpost' element={<NewPost/>}/>
         <Route path='/myplants' element={<MyPlants userPlants={up}/>}></Route>
         <Route path='/plantinfo' element={<MyPlants pi={true}/>}/>
