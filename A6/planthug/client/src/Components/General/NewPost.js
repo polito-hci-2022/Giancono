@@ -29,13 +29,24 @@ import {
   MDBCardImage,
   MDBCardSubTitle,
 } from 'mdb-react-ui-kit';
+import {PlusCircle} from 'react-bootstrap-icons';
+import { Navigate, useNavigate } from "react-router-dom";
 
-
-function NewPost() {
+function NewPost(props) {
   const [preview, setPreview] = useState(0);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [body, setBody] = useState("");
+  const [author, setAuthor] = useState("Franchino");
+
+  const navigate = useNavigate();
+
+
+  const handleSubmit = (event) => {
+    const post = { body, author, title, category };
+    props.handleAddPost(post);
+    navigate('/forum/posted')
+  };
 
 
   if (!preview) {
@@ -43,7 +54,7 @@ function NewPost() {
       <Container>
         <br></br>
         <TitleBar name='New post' arrow={true}></TitleBar>
-        {preview ===1 && title==="" ? <Row><Alert onOpen={() => {}}dismissible>{"Fill in all the required inputs"}</Alert></Row> : <></>} 
+        {preview ===1 && title==="" ? <Row><Alert dismissible>{"Fill in all the required inputs"}</Alert></Row> : <></>} 
         <br></br>
         <br></br>
         <h4>Post title:</h4>
@@ -75,7 +86,6 @@ function NewPost() {
         >
           <Container style={{ justifyContent: "center" }}>
             <Row>
-              
               <Col xs>
                 <HomeButton />
               </Col>
@@ -94,7 +104,9 @@ function NewPost() {
     );
   }else{
     return (
+
       <Container>
+        {preview}
         <TitleBar name='Preview' ></TitleBar>
         <br></br>
         <br></br>
@@ -126,7 +138,13 @@ function NewPost() {
                 <HomeButton />
               </Col>
               <Col xs>
-                <AddPost />
+                
+              <div style={{textAlign:'center'}}>
+                <h6 onClick={()=>{handleSubmit(); }}>
+                <PlusCircle size={28} color='black'/>
+                <br></br>Post it
+                </h6>
+            </div>
               </Col>
             </Row>
           </Container>

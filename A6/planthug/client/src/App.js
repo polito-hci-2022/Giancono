@@ -63,12 +63,40 @@ function App() {
   }
 
   const getPosts = async () => {
-    const url = APIURL + `/api/getThreads/:helpmyplants`;
+    const url = APIURL + `/getthreads`;
     try{
-        const res = await fetch(url);
+        const res = await fetch(url,{
+          method: "GET"}
+          );
         if(res.ok){
             const posts = await res.json();
             setPosts(posts);
+            console.log(posts)
+            return posts;
+        } else {
+            const text = await res.text();
+
+            throw new TypeError(text);
+        }
+      }catch(ex){
+        throw ex;
+      }
+      
+  }
+  
+  const handleAddPost = async (post) => {
+    const url = APIURL + '/createthread';
+    console.log(post)
+    try{
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({title: post.title, category:post.category, author:post.author, body:post.body}),}
+          );
+        if(res.ok){
+            const posts = await res.json();
             return posts;
         } else {
             const text = await res.text();
@@ -78,7 +106,6 @@ function App() {
         throw ex;
       }
   }
-
   useEffect(() => {
     getUPlants();
     getPlants();
@@ -92,8 +119,8 @@ function App() {
         <Route path='/test' element={<Test/>}/>
         <Route path='/suggestions' element={<Suggestions/>}/>
         <Route path='/forum' element={<Forum/>}/>
-        <Route path='/helpmyplant' element={<HelpMyPlant/>} posts={posts}/>
-        <Route path='/newpost' element={<NewPost/>}/>
+        <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
+        <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
         <Route path='/myplants' element={<MyPlants userPlants={up}/>}></Route>
         <Route path='/plantinfo' element={<MyPlants pi={true}/>}/>
         <Route path='/plantinfo1' element={<AP pi={true}/>}/>

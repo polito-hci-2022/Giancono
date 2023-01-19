@@ -64,7 +64,7 @@ getThreads = () => {
         reject(err);
       }
       else {
-        const threads = rows.map(row => {return {'id': row.idThread, 'category': row.category, 'body': row.body, 'replies': row.replies, 'userId': row.idUser}});
+        const threads = rows.map(row => {return {'title':row.title, 'id': row.id, 'category': row.category, 'body': row.body, 'replies': row.replies, 'author': row.userId}});
         resolve(threads);
       }
     });
@@ -81,7 +81,7 @@ getThreadsCategory = (category) => {
         reject(err);
       }
       else {
-        const threads = rows.map(row => {return {'id': row.idThread, 'body': row.body, 'replies': row.replies, 'userId': row.idUser}});
+        const threads = rows.map(row => {return {'id': row.idThread, 'body': row.body, 'replies': row.replies, 'userId': row.idUser, 'title': row.title}});
         resolve(threads);
       }
     });
@@ -90,7 +90,7 @@ getThreadsCategory = (category) => {
 
 createThread(user, title, category, body){
   return new Promise((resolve, reject)=>{
-    const sql = 'INSERT INTO forum(title, category, body, idUser) VALUES(?, ?, ?, ?)';;
+    const sql = 'INSERT INTO forum(title, category, body, userId, replies) VALUES(?, ?, ?, ?, "[]")';
     this.db.run(sql, [title, category, body, user], function (err) {
       if (err) {
         console.log(err);

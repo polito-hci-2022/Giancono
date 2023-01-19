@@ -80,21 +80,23 @@ app.get('/api/getThreads', async(req, res) => {
 });
 
 
-app.get('/api/getThreads/:category', async(req, res) => {
+app.get(`/getThreads`, async(req, res) => {
     let x;
     
     try{
-        x = await daoDB.getThreadsCategory(req.params.category);
+        x = await daoDB.getThreads();
     }catch(err){
         return res.status(500).json({err:'generic error'})
     }
     return res.status(200).json(x);
 });
 
-app.post('/api/createThread/:user', async(req, res) => {
+app.post(`/api/createthread`, async(req, res) => {
     let x;
+    console.log(req.body)
+
     try{
-        x = await daoDB.createThread(req.param.user, req.body.title, req.body.category, req.body.body);
+        x = await daoDB.createThread(req.body.author, req.body.title, req.body.category, req.body.body);
     }catch(err){
         return res.status(500).json({err:'generic error'})
     }

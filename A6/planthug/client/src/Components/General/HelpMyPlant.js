@@ -1,5 +1,5 @@
 import PlantNavbar from "./ForumNavbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { GearFill, Search, ReplyFill } from "react-bootstrap-icons";
 import NewPostButton from '../Buttons/newPost';
@@ -27,11 +27,14 @@ import TitleBar from '../General/Titlebar';
 import ForumButton from "../Buttons/forumButton";
 import { useNavigate } from "react-router-dom";
 
-function HelpMyPlant() {
-  const navigate = useNavigate();
-  const [posts, setPosts] = useState({});
-  const [post, setPost] = useState({});
+function HelpMyPlant(props) {
 
+  const navigate = useNavigate();
+  const [post, setPost] = useState();
+
+  useEffect(() => {
+    props.getPosts();
+  }, []);
 
   return (
     <Container>
@@ -55,16 +58,23 @@ function HelpMyPlant() {
       </Container>
         <div style={{ textAlign: "center" }}> 
 
-      <Container>
-                <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
-                  <MDBCardBody>
-                  <MDBCardTitle>Why is my echinocactus grusonii going limp?</MDBCardTitle>
-                  <MDBCardText><div>Posted by kevin</div></MDBCardText>
-                  <Button style={{backgroundColor:'#A7C957'}} onClick={()=>{navigate('/forum/post')}} className="border-0">
-                    See post</Button>
-                  </MDBCardBody>
-                </MDBCard>      
-        </Container>
+       
+      {props.posts.map((element)=>{
+        return (
+          <Container>
+                  <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
+                    <MDBCardBody>
+                    <MDBCardTitle>{element.title}</MDBCardTitle>
+                    <MDBCardText><div>Posted by {element.author}</div></MDBCardText>
+                    <Button style={{backgroundColor:'#A7C957'}} onClick={()=>{navigate('/forum/post')}} className="border-0">
+                      See post</Button>
+                    </MDBCardBody>
+                  </MDBCard>      
+          </Container>  
+        )
+      })}
+
+      
         
 
 
