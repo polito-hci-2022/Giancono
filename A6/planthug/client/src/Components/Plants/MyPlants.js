@@ -41,6 +41,14 @@ function MyPlants(props) {
 
 function PlantCard(props) {
 const navigate = useNavigate();
+const [count,setCount] = useState();
+
+useEffect(() => {
+        props.getPID(props.plant.idPlant);
+        setTimeout(() => {
+          setCount((count) => count + 1);
+        }, 20000);
+      }, [count]);
 
     return(
         <Container>
