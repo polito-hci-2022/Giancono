@@ -107,7 +107,7 @@ function Post(props) {
                 <div style={{textAlign:'center'}} onClick={()=>{setReply(0); setAuthorReply("")}} >
                   <h6 >
                   <XCircleFill size={28} color='black'/>
-                  <br></br>cancel⠀reply
+                  <br></br>Cancel reply
                   </h6>
                 </div>
               </Col>}

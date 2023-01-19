@@ -98,13 +98,20 @@ function PlantInfo(){
   console.log(pinfo);
 
   return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
+                    <Navbar/>
           <MDBCard style={{backgroundColor:'#386641'}}>
             <MDBCardImage src={pinfo.photo} position='top' alt='...' />
             <MDBCardBody>
               <MDBCardTitle className='text-light'>{pinfo.name}</MDBCardTitle>
-              <Row><Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-droplet'></i> {pinfo.waterNeed}</Button>
-              <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-sun'></i> {pinfo.sunNeed}</Button>
-              <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> {pinfo.fertilizerNeed}</Button></Row>
+              <MDBCardText style={{color:'#A7C957'}}>BASIC NEEDS:</MDBCardText>
+                    <Row>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-droplet'></i> {pinfo.waterNeed}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-sun'></i> {pinfo.sunNeed}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> {pinfo.fertilizerNeed}</Button>
+                    <MDBCardText style={{color:'#A7C957'}}>BE WARY OF:</MDBCardText>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-bug'></i> {pinfo.pests}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-activity'></i> {pinfo.pests}</Button>
+                    </Row>
               {!dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(true)}>Show description</Button></Row>}
               {dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(false)}>Hide description</Button></Row>}
               {dsc && <MDBCardText className='text-light'>

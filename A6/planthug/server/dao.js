@@ -6,7 +6,7 @@ constructor(db) {
       
 addPlantUser(user, plant){
     return new Promise((resolve, reject)=>{
-      const sql = 'INSERT INTO userPlant(idPlant, watered, repotted, phertilized, idUser) VALUES(?, 0, 0, 0, ?)';;
+      const sql = 'INSERT INTO userPlant(idPlant, photo, watered, repotted, fertilized, idUser) VALUES(?, ?, 0, 0, 0, 1)';;
       this.db.run(sql, [plant, user], function (err) {
         if (err) {
           console.log(err);
@@ -40,6 +40,23 @@ getPlants = (user) => {
   return new Promise((resolve, reject) => {
     const sql = 'SELECT * FROM plant';
     this.db.all(sql, [user], (err, rows) => {
+      if(err)
+      {
+        console.log(err);
+        reject(err);
+      }
+      else {
+        const answer = rows.map(row => {return {'id': row.id, 'name': row.scientificName, 'description': row.description, 'photo': row.photo, 'waterNeed': row.waterNeed, 'sunNeed': row.sunNeed, 'humidityNeed': row.humidityNeed, 'soilNeed': row.soilNeed, 'vaseNeed': row.vaseNeed, 'fertilizerNeed': row.fertilizerNeed, 'diseases': row.diseases, 'pests': row.pests, 'category': row.category}});
+        resolve(answer);
+      }
+    });
+  });
+}
+
+getPlantID = (id) => {
+  return new Promise((resolve, reject) => {
+    const sql = 'SELECT * FROM plant WHERE id = ?';
+    this.db.all(sql, [id], (err, rows) => {
       if(err)
       {
         console.log(err);

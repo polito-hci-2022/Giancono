@@ -68,6 +68,17 @@ app.get('/api/getP', async(req, res) => {
     return res.status(200).json(x);
 });
 
+app.get('/api/getPN/:id', async(req, res) => {
+    let x;
+    
+    try{
+        x = await daoDB.getPlantID(req.params.id);
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(200).json(x);
+});
+
 app.get('/api/getThreads', async(req, res) => {
     let x;
     

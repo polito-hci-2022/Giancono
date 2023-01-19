@@ -31,16 +31,17 @@ function MyPlants(props) {
         if (props.del) return (<Deleted name={pi.name}/>)
         if (!props.pi)
         return (<>
-        <Container><TitleBar arrow={true} name='My Plants' arrow={true}></TitleBar></Container>
-        {props.userPlants.map((plant) =><PlantCard plant={plant}></PlantCard>)}
+        <Container><TitleBar arrow={true} name='My Plants'></TitleBar></Container>
+        {props.userPlants.map((plant) =><PlantCard plant={plant} getPID={props.getPID}></PlantCard>)}
         <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <PlantNavbar i1={<Home/>} i3={<AddPlant new={1}/>}/></>
         );
-        else return (<PlantInfo/>);
+        else return (<PlantInfo pid={props.pid}/>);
 }
 
 function PlantCard(props) {
 const navigate = useNavigate();
+
     return(
         <Container>
                 <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
@@ -61,7 +62,7 @@ const navigate = useNavigate();
         {props.plant.repotted === 0 && <MDBCardText>Time to repot!</MDBCardText>}
         {props.plant.fertilized === 0 && <MDBCardText>Use some fertilizer!</MDBCardText>}
         <MDBCardText>
-        <Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{pi=props.plant; navigate('/plantinfo')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button>
+        <Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{props.getPID(props.plant.idPlant); navigate('/plantinfo')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button>
         </MDBCardText>
                 </MDBCardBody>
                 </MDBCard>      
@@ -70,25 +71,31 @@ const navigate = useNavigate();
         );
 }
 
-function PlantInfo(){
+function PlantInfo(props){
         
         const[dsc,setDsc] = useState(false); 
-
+      
         return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
                 <MDBCard style={{backgroundColor:'#386641'}}>
-                  <MDBCardImage src='https://redgoosespice.com/wp-content/uploads/AllspiceWhole.jpg' position='top' alt='...' />
+                  <MDBCardImage src={props.pid[0].photo} position='top' alt='...' />
                   <MDBCardBody>
-                    <MDBCardTitle className='text-light'>{pi.name}</MDBCardTitle>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-droplet'></i> 7 times a week</Button>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-sun'></i> Full sunlight</Button>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> Tropical plants fertilizer</Button>
-                    {!dsc && <Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(true)}>Show description</Button>}
-                    {dsc && <Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(false)}>Hide description</Button>}
+                    <MDBCardTitle className='text-light'>{props.pid[0].name}</MDBCardTitle>
+                    <MDBCardText style={{color:'#A7C957'}}>BASIC NEEDS:</MDBCardText>
+                    <Row>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-droplet'></i> {props.pid[0].waterNeed}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-sun'></i> {props.pid[0].sunNeed}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> {props.pid[0].fertilizerNeed}</Button>
+                    <MDBCardText style={{color:'#A7C957'}}>BE WARY OF:</MDBCardText>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-bug'></i> {props.pid[0].pests}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-activity'></i> {props.pid[0].pests}</Button>
+                    </Row>
+                    {!dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(true)}>Show description</Button></Row>}
+                    {dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(false)}>Hide description</Button></Row>}
                     {dsc && <MDBCardText className='text-light'>
-                      {pi.description}
+                      {props.pid[0].description}
                     </MDBCardText>}
                   </MDBCardBody>
-                </MDBCard></Container>
+                </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
                 <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1}/>}/>
                 </>);
 }

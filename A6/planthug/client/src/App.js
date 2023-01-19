@@ -24,6 +24,7 @@ function App() {
   const[up, setUP] = useState();
   const[p, setP] = useState();
   const[posts, setPosts] = useState();
+  const[pid, setPID] = useState();
 
 
   const getUPlants = async () =>{
@@ -62,6 +63,23 @@ function App() {
       }
   }
 
+  const getPID = async (id) => {
+    const url = APIURL + `/getPN/` + id;
+    try{
+        const res = await fetch(url);
+        if(res.ok){
+            const plant = await res.json();
+            setPID(plant);
+            return plant;
+        } else {
+            const text = await res.text();
+            throw new TypeError(text);
+        }
+      }catch(ex){
+        throw ex;
+      }
+  }
+
   const getPosts = async () => {
     const url = APIURL + `/getthreads`;
     try{
@@ -71,7 +89,7 @@ function App() {
         if(res.ok){
             const posts = await res.json();
             setPosts(posts);
-            console.log(posts)
+            //console.log(posts)
             return posts;
         } else {
             const text = await res.text();
@@ -86,7 +104,7 @@ function App() {
   
   const handleAddPost = async (post) => {
     const url = APIURL + '/createthread';
-    console.log(post)
+    //console.log(post)
     try{
         const res = await fetch(url, {
           method: "POST",
@@ -121,8 +139,8 @@ function App() {
         <Route path='/forum' element={<Forum/>}/>
         <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
-        <Route path='/myplants' element={<MyPlants userPlants={up}/>}></Route>
-        <Route path='/plantinfo' element={<MyPlants pi={true}/>}/>
+        <Route path='/myplants' element={<MyPlants userPlants={up} getPID={getPID}/>}></Route>
+        <Route path='/plantinfo' element={<MyPlants pi={true} pid={pid}/>}/> 
         <Route path='/plantinfo1' element={<AP pi={true}/>}/>
         <Route path='/addplant' element={<AP plants={p}/>}/>
         <Route path='/added' element={<MyPlants add={true}/>}/>
