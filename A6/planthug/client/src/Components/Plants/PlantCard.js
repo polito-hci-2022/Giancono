@@ -19,14 +19,16 @@ function PlantCard(props){
     const handleShow = () => setShow(true);
 
     return(<>
-        <Card className="flex-shrink-0 mx-2 px-0" style={{width: '18rem', height: '18rem', borderBlockColor: '#386641', backgroundColor: '#386641', color: 'white'}}>
-            <Card.Img style={{width: '100%', height: '66%', overflow: 'hidden', objectFit: 'cover'}} variant="top" src={props.path} />
-            <Card.Title className="text-center mt-1">{props.name}</Card.Title>
-            <Card.Body className={"d-flex flex-row " + (props.typeOfRating !== null ? 'justify-content-between' : 'justify-content-center')}>
+        <Card className="flex-shrink-0 mx-2 px-0" style={{width: '10rem', height: '10rem', borderBlockColor: '#386641', backgroundColor: '#386641', color: 'white'}}>
+            <Card.Img style={{width: '100%', height: '65%', overflow: 'hidden', objectFit: 'cover'}} variant="top" src={props.path} />
+            <div style={{height: '35%'}}>
+            <Card.Title className="text-center mt-1 mb-1 py-0" style={{fontSize: '1rem'}}>{props.name}</Card.Title>
+            <Card.Body className={"d-flex flex-row my-0 px-1 py-0 " + (props.typeOfRating !== null ? 'justify-content-between' : 'justify-content-center')}>
                 {props.typeOfRating !== null && <Card.Link disabled><StarFill style={{color: "#386641"}} /></Card.Link>}
-                <Card.Link href="#"><Button style={{color: 'black', backgroundColor: '#A7C957', borderWidth: 0, boxShadow: 'none', outline: 'none'}}>See more</Button></Card.Link>
+                <Card.Link href="#" className="mx-0"><Button className="p-1" style={{color: 'black', backgroundColor: '#A7C957', borderWidth: 0, boxShadow: 'none', outline: 'none', fontSize: '0.75rem'}}>See more</Button></Card.Link>
                 {props.typeOfRating !== null && <Card.Link className="mx-0" onClick={handleShow}><StarFill style={{color: "yellow"}} /></Card.Link>}
             </Card.Body>
+            </div>
         </Card>
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton style={{backgroundColor: '#A7C957'}}>
