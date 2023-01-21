@@ -1,11 +1,13 @@
 import { Container, Row, Button } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import PlantNavbar from './PlantNavbar';
 import {Lightbulb} from 'react-bootstrap-icons';
 import PlantCard from '../Plants/PlantCard';
 import TitleBar from './Titlebar';
 import Home from '../Buttons/home';
+
+const APIURL = 'http://localhost:3001/api';
 
 function MyButton(props){
     return(
@@ -18,33 +20,56 @@ function MyButton(props){
 
 function Suggestions(props){
     const [prioritize, setPrioritize] = useState('Overall');
-    const plants = [
-        {
-            name: 'Pachira aquatica',
-            id: 1,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-        },
-        {
-            name: 'Pachira aquatica',
-            id: 2,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-        },
-        {
-            name: 'Pachira aquatica',
-            id: 3,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-        },
-        {
-            name: 'Pachira aquatica',
-            id: 4,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-        },
-        {
-            name: 'Pachira aquatica',
-            id: 5,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
+    const [p, setP] = useState([])
+    const overall = [0, 2, 4];
+    const water = [1, 2, 5, 7, 8];
+    const cost = [0, 3, 8, 4];
+    const light = [6, 8, 2, 5];
+    let d = new Date();
+    let rand = d.getSeconds()%2;
+    let plants;
+
+    const getPlants = async () => {
+        const url = APIURL + `/getP`;
+        try{
+            const res = await fetch(url);
+            if(res.ok){
+                const plants = await res.json();
+                plants.sort((c1, c2)=>{return c1.Name > c2.Name});
+                setP(plants);
+                return plants;
+            } else {
+                const text = await res.text();
+                throw new TypeError(text);
+            }
+        }catch(ex){
+            throw ex;
         }
-    ]
+    }
+
+    useEffect(() => {
+        getPlants();
+    }, []);
+
+    useEffect(() => {
+        d = new Date();
+        rand = d.getSeconds()%2;
+    }, [prioritize]);
+
+    switch(prioritize){
+        case 'Overall':
+            plants = p.filter((p, idx) => overall.includes(idx - rand));
+            break;
+        case 'Water needs':
+            plants = p.filter((p, idx) => water.includes(idx - rand));
+            break;
+        case 'Costs':
+            plants = p.filter((p, idx) => cost.includes(idx - rand));
+            break;
+        case 'Light needs':
+            plants = p.filter((p, idx) => light.includes(idx - rand));
+            break;
+    }
 
     return(<>
         <Container>
@@ -61,7 +86,7 @@ function Suggestions(props){
             </Row>
             <Row className='w-100 overflow-auto'>
                 <Container className='d-flex flex-row flex-nowrap'>
-                    {plants.map(p => <PlantCard key={p.id} name={p.name} path={p.path} typeOfRating='suggestion' />)}
+                    {plants.map(p => <PlantCard key={p.id} plant={p} name={p.name} path={p.photo} typeOfRating='suggestion' setPID={props.setPID} />)}
                 </Container>
             </Row>
             <Row>

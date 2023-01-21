@@ -6,7 +6,7 @@ function RecognizeButton(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/recognize')}>
+                <h6 onClick={()=>navigate('/recognize', { replace: true })}>
                 <Camera size={28} color='black'/>
                 <br></br>Recognize
                 </h6>
