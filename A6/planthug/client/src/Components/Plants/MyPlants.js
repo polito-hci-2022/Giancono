@@ -26,6 +26,10 @@ import { AlignStart, Justify } from 'react-bootstrap-icons';
 let pi;
 
 function MyPlants(props) {
+        useEffect(() => {
+                props.getUP();
+        }, []);
+
 
         if (props.del) return (<Deleted name={pi.name}/>)
         if (!props.pi)

@@ -163,7 +163,7 @@ function App() {
         <Route path='/forum' element={<Forum/>}/>
         <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
-        <Route path='/myplants' element={<MyPlants userPlants={up} getPID={getPID}/>}></Route>
+        <Route path='/myplants' element={<MyPlants getUP={getUPlants} userPlants={up} getPID={getPID}/>}></Route>
         <Route path='/plantinfo' element={<MyPlants pi={true} pid={pid}/>}/> 
         <Route path='/plantinfo1' element={<AP pi={true} addP={addP}/>}/>
         <Route path='/addplant' element={<AP plants={p}/>}/>
