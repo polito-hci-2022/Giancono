@@ -119,6 +119,39 @@ createThread(user, title, category, body){
   })
 }
 
+
+addReply(replies, id){
+  return new Promise((resolve, reject)=>{
+    const sql = 'UPDATE forum  SET replies = ? WHERE id = ?';
+    this.db.run(sql, [replies, id], function (err) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  })
+}
+
+
+getReplies = (id) => {
+  return new Promise((resolve, reject) => {
+    const sql = 'SELECT replies FROM forum WHERE id = ?';
+    this.db.all(sql, [id], (err, row) => {
+      if(err)
+      {
+        console.log(err);
+        reject(err);
+      }
+      else {
+        console.log(row)
+        resolve(row);
+      }
+    });
+  });
+}
+
 }
 
 module.exports = dao;

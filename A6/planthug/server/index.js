@@ -104,7 +104,7 @@ app.get(`/getThreads`, async(req, res) => {
 
 app.post(`/api/createthread`, async(req, res) => {
     let x;
-    console.log(req.body)
+
 
     try{
         x = await daoDB.createThread(req.body.author, req.body.title, req.body.category, req.body.body);
@@ -112,6 +112,30 @@ app.post(`/api/createthread`, async(req, res) => {
         return res.status(500).json({err:'generic error'})
     }
     return res.status(201).json({});
+});
+
+app.post(`/api/addReply`, async(req, res) => {
+    let x;
+
+
+    try{
+        x = await daoDB.addReply(JSON.stringify(req.body.replies), req.body.id)
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(201).json({});
+});
+
+
+app.get(`/api/getReplies/:id`, async(req, res) => {
+    let x;
+    
+    try{
+        x = await daoDB.getReplies(req.params.id);
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(200).json(x);
 });
 
 
