@@ -135,7 +135,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Homepage/>}/>
         <Route path='/test' element={<Test/>}/>
-        <Route path='/suggestions' element={<Suggestions/>}/>
+        <Route path='/suggestions' element={<Suggestions setPID={setPID}/>}/>
         <Route path='/forum' element={<Forum/>}/>
         <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
@@ -146,7 +146,7 @@ function App() {
         <Route path='/added' element={<MyPlants add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
         <Route path='/recognize' element={<Recognize/>}/>
-        <Route path='/recognize/plant' element={<RecognizedPlant/>}/>
+        <Route path='/recognize/plant' element={<RecognizedPlant setPID={setPID}/>}/>
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>
         <Route path='/forum/posted' element={<ForumPosted/>}/>

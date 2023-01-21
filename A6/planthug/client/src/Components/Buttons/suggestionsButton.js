@@ -6,7 +6,7 @@ function SuggestionsButton(){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>navigate('/suggestions')}>
+                <h6 onClick={()=>navigate('/suggestions', { replace: true })}>
                 <Lightbulb size={28} color='black'/>
                 <br></br>Suggestions
                 </h6>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Navbar } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { CameraFill } from "react-bootstrap-icons";
 import TitleBar from './Titlebar';
@@ -7,52 +7,53 @@ import PlantCard from "../Plants/PlantCard";
 import PlantNavbar from './PlantNavbar';
 import Home from '../Buttons/home';
 
-function RecognizedPlant(){
+const APIURL = 'http://localhost:3001/api';
+
+function RecognizedPlant(props){
     const [recognized, setRecognized] = useState(false);
+    const[p, setP] = useState([]);
+    
+    const right = 5;
+    const possible = [1, 6, 3, 7, 2];
+    
+    let d = new Date();
+    let rand = d.getSeconds()%2;
 
-    const rightPlant = {
-        name: 'Pachira aquatica',
-        id: 6,
-        path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-    };
-
-    const possiblePlants = [
-        {
-            name: 'Pachira aquatica',
-            id: 1,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-        },
-        {
-            name: 'Pachira aquatica',
-            id: 2,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-        },
-        {
-            name: 'Pachira aquatica',
-            id: 3,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-        },
-        {
-            name: 'Pachira aquatica',
-            id: 4,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-        },
-        {
-            name: 'Pachira aquatica',
-            id: 5,
-            path: 'https://fioristaspagnoli.it/wp-content/uploads/2021/05/Pachira-aquatica-1.jpg'
-        }
-    ];
+    const getPlants = async () => {
+        const url = APIURL + `/getP`;
+        try{
+            const res = await fetch(url);
+            if(res.ok){
+                const plants = await res.json();
+                plants.sort((c1, c2)=>{return c1.Name > c2.Name});
+                setP(plants);
+                return plants;
+            } else {
+                const text = await res.text();
+                throw new TypeError(text);
+            }
+          }catch(ex){
+            throw ex;
+          }
+      }
 
     useEffect(() => {
         setTimeout(() => setRecognized(true), 2000);
     }, [])
 
+    useEffect(() => {
+        getPlants();
+    }, []);
+
+
+    const rightPlant = p[right + rand];
+    const possiblePlants = p.filter((p, idx) => possible.includes(idx - rand));
+
     return(
         <>
             {recognized ? <>
                 <Container>
-                    <TitleBar name='Recognize' icon={<CameraFill />} />
+                    <TitleBar name='Recognize' icon={<CameraFill />} arrow={false} />
                 </Container>
                 <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
                 <Row className="w-75">
@@ -61,7 +62,7 @@ function RecognizedPlant(){
                     </span>
                 </Row>
                 <Row>
-                    <PlantCard name={rightPlant.name} path={rightPlant.path} typeOfRating='recognition' />
+                    <PlantCard plant={rightPlant} name={rightPlant.name} path={rightPlant.photo} typeOfRating='recognition' setPID={props.setPID} />
                 </Row>
                 <Row className="w-75">
                     <span className='text-center'>
@@ -75,7 +76,7 @@ function RecognizedPlant(){
                 </Row>
                 <Row className='w-100 overflow-auto'>
                     <Container className='d-flex flex-row flex-nowrap'>
-                        {possiblePlants.map(p => <PlantCard key={p.id} name={p.name} path={p.path} typeOfRating={null} />)}
+                        {possiblePlants.map(p => <PlantCard key={p.id} plant={p} name={p.name} path={p.photo} typeOfRating={null} setPID={props.setPID} />)}
                     </Container>
                 </Row>
                 <Row>
@@ -102,7 +103,7 @@ function RecognizedPlant(){
                 </Row>
                 <Row></Row>
                 <Row></Row>
-            </Container>}<Navbar/><Navbar/>
+            </Container>}
         </>
     );
 }

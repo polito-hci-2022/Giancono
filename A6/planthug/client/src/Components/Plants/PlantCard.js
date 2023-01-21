@@ -3,6 +3,7 @@ import { Star, StarFill } from "react-bootstrap-icons";
 import PlantNavbar from "../General/PlantNavbar";
 import Home from "../Buttons/home";
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function PlantCard(props){
     const [show, setShow] = useState(false);
@@ -17,6 +18,7 @@ function PlantCard(props){
         setShow(false);
     }
     const handleShow = () => setShow(true);
+    const navigate = useNavigate();
 
     return(<>
         <Card className="flex-shrink-0 mx-2 px-0" style={{width: '10rem', height: '10rem', borderBlockColor: '#386641', backgroundColor: '#386641', color: 'white'}}>
@@ -25,7 +27,10 @@ function PlantCard(props){
             <Card.Title className="text-center mt-1 mb-1 py-0" style={{fontSize: '1rem'}}>{props.name}</Card.Title>
             <Card.Body className={"d-flex flex-row my-0 px-1 py-0 " + (props.typeOfRating !== null ? 'justify-content-between' : 'justify-content-center')}>
                 {props.typeOfRating !== null && <Card.Link disabled><StarFill style={{color: "#386641"}} /></Card.Link>}
-                <Card.Link href="#" className="mx-0"><Button className="p-1" style={{color: 'black', backgroundColor: '#A7C957', borderWidth: 0, boxShadow: 'none', outline: 'none', fontSize: '0.75rem'}}>See more</Button></Card.Link>
+                <Card.Link className="mx-0"><Button onClick={() => {
+                    props.setPID([props.plant]);
+                    navigate('/plantinfo', { replace: true });
+                }} className="p-1" style={{color: 'black', backgroundColor: '#A7C957', borderWidth: 0, boxShadow: 'none', outline: 'none', fontSize: '0.75rem'}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>&nbsp;See more</Button></Card.Link>
                 {props.typeOfRating !== null && <Card.Link className="mx-0" onClick={handleShow}><StarFill style={{color: "yellow"}} /></Card.Link>}
             </Card.Body>
             </div>
