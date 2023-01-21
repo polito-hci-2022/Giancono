@@ -27,7 +27,6 @@ let pi;
 
 function MyPlants(props) {
 
-        if (props.add) return (<Added name={pi.name}/>);
         if (props.del) return (<Deleted name={pi.name}/>)
         if (!props.pi)
         return (<>
@@ -95,7 +94,7 @@ function PlantInfo(props){
                     <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> {props.pid[0].fertilizerNeed}</Button>
                     <MDBCardText style={{color:'#A7C957'}}>BE WARY OF:</MDBCardText>
                     <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-bug'></i> {props.pid[0].pests}</Button>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-activity'></i> {props.pid[0].pests}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-activity'></i> {props.pid[0].diseases}</Button>
                     </Row>
                     {!dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(true)}>Show description</Button></Row>}
                     {dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(false)}>Hide description</Button></Row>}
@@ -104,27 +103,28 @@ function PlantInfo(props){
                     </MDBCardText>}
                   </MDBCardBody>
                 </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
-                <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1}/>}/>
+                <PlantNavbar i1={<Home/>} i3={<Delete plant={props.pid[0]}/>}/>
                 </>);
 }
 
-function Added(props) {
-        return(<><Navbar/><Navbar/>
-        <Container style={{textAlign:'center'}}><h1>Added!</h1></Container>
-        <Container><MDBCard>
-        <MDBCardImage src='https://redgoosespice.com/wp-content/uploads/AllspiceWhole.jpg' position='top' alt='...' />
-        <MDBCardText>{props.name} was added to My Plants :)</MDBCardText>
-        </MDBCard></Container>          
-        <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton/>}/>
-        </>);
+function Delete(props) {
+        const navigate = useNavigate();
+        return(
+        <div style={{textAlign:'center'}}>
+                <h6 onClick={()=>{pi=props.plant; navigate('/undone')}}>
+                <i style={{color:'black', fontSize:28}} className='bi bi-dash-circle'/>
+                <br></br>Delete plant
+                </h6>
+            </div>
+        );
 }
 
 function Deleted(props) {
         return(<><Navbar/><Navbar/>
         <Container style={{textAlign:'center'}}><h1>Deleted!</h1></Container>
         <Container><MDBCard>
-        <MDBCardImage src='https://redgoosespice.com/wp-content/uploads/AllspiceWhole.jpg' position='top' alt='...' />
-        <MDBCardText>{props.name} is no longer in My Plants :(</MDBCardText>
+        <MDBCardImage src={pi.photo} position='top' alt='...' />
+        <MDBCardText>{pi.name} is no longer in My Plants :(</MDBCardText>
         </MDBCard></Container>          
         <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/>
         </>);

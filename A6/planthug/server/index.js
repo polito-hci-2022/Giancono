@@ -39,7 +39,7 @@ app.use(cors(corsOptions));
 app.post('/api/addPlant', async(req, res) => {
     let x;
     try{
-        x = await daoDB.addPlantUser(req.body.user, req.body.plant);
+        x = await daoDB.addPlantUser(req.body.id, req.body.photo);
     }catch(err){
         return res.status(500).json({err:'generic error'})
     }
