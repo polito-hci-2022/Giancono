@@ -80,6 +80,28 @@ function App() {
       }
   }
 
+  const addP = async (id,photo) => {
+    const url = APIURL + '/addPlant';
+    try{
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({id: id, photo: photo})}
+          );
+        if(res.ok){
+            const plant = await res.json();
+            return plant;
+        } else {
+            const text = await res.text();
+            throw new TypeError(text);
+        }
+      }catch(ex){
+        throw ex;
+      }
+  }
+
   const getPosts = async () => {
     const url = APIURL + `/getthreads`;
     try{
@@ -89,7 +111,7 @@ function App() {
         if(res.ok){
             const posts = await res.json();
             setPosts(posts);
-            //console.log(posts)
+            console.log(posts)
             return posts;
         } else {
             const text = await res.text();
@@ -104,7 +126,7 @@ function App() {
   
   const handleAddPost = async (post) => {
     const url = APIURL + '/createthread';
-    //console.log(post)
+    console.log(post)
     try{
         const res = await fetch(url, {
           method: "POST",
@@ -141,9 +163,9 @@ function App() {
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
         <Route path='/myplants' element={<MyPlants userPlants={up} getPID={getPID}/>}></Route>
         <Route path='/plantinfo' element={<MyPlants pi={true} pid={pid}/>}/> 
-        <Route path='/plantinfo1' element={<AP pi={true}/>}/>
+        <Route path='/plantinfo1' element={<AP pi={true} addP={addP}/>}/>
         <Route path='/addplant' element={<AP plants={p}/>}/>
-        <Route path='/added' element={<MyPlants add={true}/>}/>
+        <Route path='/added' element={<AP add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
         <Route path='/recognize' element={<Recognize/>}/>
         <Route path='/recognize/plant' element={<RecognizedPlant setPID={setPID}/>}/>
@@ -151,7 +173,7 @@ function App() {
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>
         <Route path='/forum/posted' element={<ForumPosted/>}/>
         <Route path='/forum/post' element={<Post/>}/>
-        <Route path='/cat' element={<AP plants={p} cat={1}/>}/>
+        <Route path='/cat' element={<AP addP={addP} plants={p} cat={1}/>}/>
       </Routes>
     </BrowserRouter>
   );

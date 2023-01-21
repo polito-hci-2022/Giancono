@@ -19,15 +19,18 @@ import MyPlantsButton from '../Buttons/myPlantsButton';
 import SuggestionsButton from '../Buttons/suggestionsButton';
 import RecognizeButton from '../Buttons/recognizeButton';
 import AddToPlants from '../Buttons/addToPlants';
+import UndoButton from '../Buttons/undoButton';
 
 let p, cat, pinfo;
 
 function AP(props) {
   const navigate = useNavigate();
+
+  if (props.add) return (<Added name={pinfo.name}/>);
   if (props.cat) {
-    return <PlantCategory cat={cat} p={p}/>
+    return <PlantCategory cat={cat} addP={props.addP} p={p}/>
   }
-  if (props.pi) {return <PlantInfo/>}
+  if (props.pi) {return <PlantInfo id={pinfo.id} photo={pinfo.photo} addP={props.addP}/>}
   else {
         return (<><Container>
         <TitleBar name='New Plant' arrow={true}/>
@@ -73,7 +76,7 @@ function AP(props) {
 function PlantCategory(props) {
   return (<>
     <Container><TitleBar name={props.cat} arrow={true}/></Container>
-    {props.p.filter(plant => plant.category === cat).map((plant) =><PlantCard plant={plant}/>)}
+    {props.p.filter(plant => plant.category === cat).map((plant) =><PlantCard addP={props.addP} plant={plant}/>)}
     <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
     <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/></>
   );
@@ -86,16 +89,15 @@ function PlantCard(props) {
   <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'><MDBCardImage src={props.plant.photo}/>
     <MDBCardBody><MDBCardTitle>{props.plant.name}</MDBCardTitle><Row>
     <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{pinfo=props.plant; navigate('/plantinfo1')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button></Col>
-    <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }}><i style={{color:'black'}} className='bi bi-plus-circle-fill'/>  Add plant</Button></Col>
+    <Col><Button onClick={() => {pinfo=props.plant; props.addP(props.plant.id, props.plant.photo); navigate('/added')}} className="border-0 text-black" style={{backgroundColor:'#A7C957' }}><i style={{color:'black'}} className='bi bi-plus-circle-fill'/>  Add plant</Button></Col>
     </Row></MDBCardBody>
   </MDBCard><Navbar/></Container>
   </>);
 }
 
-function PlantInfo(){
+function PlantInfo(props){
         
   const[dsc,setDsc] = useState(false); 
-  console.log(pinfo);
 
   return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
                     <Navbar/>
@@ -110,7 +112,7 @@ function PlantInfo(){
                     <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> {pinfo.fertilizerNeed}</Button>
                     <MDBCardText style={{color:'#A7C957'}}>BE WARY OF:</MDBCardText>
                     <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-bug'></i> {pinfo.pests}</Button>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-activity'></i> {pinfo.pests}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-activity'></i> {pinfo.diseases}</Button>
                     </Row>
               {!dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(true)}>Show description</Button></Row>}
               {dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(false)}>Hide description</Button></Row>}
@@ -119,9 +121,19 @@ function PlantInfo(){
               </MDBCardText>}
             </MDBCardBody>
           </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
-          <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1}/>}/>
+          <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1} id={props.id} photo={props.photo} addP={props.addP}/>}/>
           </>);
 }
 
+function Added(props) {
+  return(<><Navbar/><Navbar/>
+  <Container style={{textAlign:'center'}}><h1>Added!</h1></Container>
+  <Container><MDBCard>
+  <MDBCardImage src={pinfo.photo} position='top' alt='...' />
+  <MDBCardText>{props.name} was added to My Plants :)</MDBCardText>
+  </MDBCard></Container>          
+  <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton/>}/>
+  </>);
+}
 
 export default AP;

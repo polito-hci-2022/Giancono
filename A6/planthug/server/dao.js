@@ -4,10 +4,10 @@ constructor(db) {
       }
 
       
-addPlantUser(user, plant){
+addPlantUser(id,photo){
     return new Promise((resolve, reject)=>{
       const sql = 'INSERT INTO userPlant(idPlant, photo, watered, repotted, fertilized, idUser) VALUES(?, ?, 0, 0, 0, 1)';;
-      this.db.run(sql, [plant, user], function (err) {
+      this.db.run(sql, [id, photo], function (err) {
         if (err) {
           console.log(err);
           reject(err);
