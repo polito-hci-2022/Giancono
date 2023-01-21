@@ -25,6 +25,7 @@ function App() {
   const[p, setP] = useState();
   const[posts, setPosts] = useState();
   const[pid, setPID] = useState();
+  const[upid, setUPID] = useState(); // per capire se una pianta è già in My Plants
 
 
   const getUPlants = async () =>{
@@ -79,6 +80,39 @@ function App() {
         throw ex;
       }
   }
+
+  const getUPID = async (id) => {
+    const url = APIURL + `/getUPN/` + id;
+    try{
+        const res = await fetch(url);
+        if(res.ok){
+            const plant = await res.json();
+            setUPID(plant);
+            return plant;
+        } else {
+            const text = await res.text();
+            throw new TypeError(text);
+        }
+      }catch(ex){
+        throw ex;
+      }
+  }
+
+  const deletePID = async (id) => {
+    const url = APIURL + `/deletePN/` + id;
+    try {
+      const res = await fetch(url, { method: 'DELETE' });
+      if (res.ok) {
+          const text = await res.text();
+          return text;
+      } else {
+          const text = await res.text();
+          throw new TypeError(text);
+      }
+    } catch (ex) {
+      throw ex;
+    }
+  }  
 
   const addP = async (id,photo) => {
     const url = APIURL + '/addPlant';
@@ -163,10 +197,10 @@ function App() {
         <Route path='/forum' element={<Forum/>}/>
         <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
-        <Route path='/myplants' element={<MyPlants getUP={getUPlants} userPlants={up} getPID={getPID}/>}></Route>
-        <Route path='/plantinfo' element={<MyPlants pi={true} pid={pid}/>}/> 
-        <Route path='/plantinfo1' element={<AP pi={true} addP={addP}/>}/>
-        <Route path='/addplant' element={<AP plants={p}/>}/>
+        <Route path='/myplants' element={<MyPlants getUP={getUPlants} userPlants={up} pid={pid} getPID={getPID}/>}></Route>
+        <Route path='/plantinfo' element={<MyPlants pi={true} pid={pid} deletePID={deletePID}/>}/> 
+        <Route path='/plantinfo1' element={<AP pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
+        <Route path='/addplant' element={<AP plants={p} getUPID={getUPID} upid={upid}/>}/>
         <Route path='/added' element={<AP add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
         <Route path='/recognize' element={<Recognize/>}/>
@@ -175,7 +209,7 @@ function App() {
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>
         <Route path='/forum/posted' element={<ForumPosted/>}/>
         <Route path='/forum/post/:id' element={<Post post={posts}/>}/>
-        <Route path='/cat' element={<AP addP={addP} plants={p} cat={1}/>}/>
+        <Route path='/cat' element={<AP getUPID={getUPID} upid={upid} addP={addP} plants={p} cat={1}/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -28,9 +28,10 @@ function AP(props) {
 
   if (props.add) return (<Added name={pinfo.name}/>);
   if (props.cat) {
-    return <PlantCategory cat={cat} addP={props.addP} p={p}/>
+    return <PlantCategory cat={cat} addP={props.addP} upid={props.upid} getUPID={props.getUPID} p={p}/>
   }
-  if (props.pi) {return <PlantInfo id={pinfo.id} photo={pinfo.photo} addP={props.addP}/>}
+  if (props.pi) {
+    return <PlantInfo upid={props.upid} getUPID={props.getUPID} deletePID={props.deletePID} id={pinfo.id} photo={pinfo.photo} addP={props.addP}/>}
   else {
         return (<><Container>
         <TitleBar name='New Plant' arrow={true}/>
@@ -76,7 +77,7 @@ function AP(props) {
 function PlantCategory(props) {
   return (<>
     <Container><TitleBar name={props.cat} arrow={true}/></Container>
-    {props.p.filter(plant => plant.category === cat).map((plant) =><PlantCard addP={props.addP} plant={plant}/>)}
+    {props.p.filter(plant => plant.category === cat).map((plant) =><PlantCard addP={props.addP} upid={props.upid} getUPID={props.getUPID} plant={plant}/>)}
     <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
     <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/></>
   );
@@ -84,11 +85,12 @@ function PlantCategory(props) {
 
 function PlantCard(props) {
   let navigate = useNavigate();
+
   return(<>
   <Container>
   <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'><MDBCardImage src={props.plant.photo}/>
     <MDBCardBody><MDBCardTitle>{props.plant.name}</MDBCardTitle><Row>
-    <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{pinfo=props.plant; navigate('/plantinfo1')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button></Col>
+    <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{pinfo=props.plant; props.getUPID(pinfo.id); navigate('/plantinfo1')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button></Col>
     <Col><Button onClick={() => {pinfo=props.plant; props.addP(props.plant.id, props.plant.photo); navigate('/added')}} className="border-0 text-black" style={{backgroundColor:'#A7C957' }}><i style={{color:'black'}} className='bi bi-plus-circle-fill'/>  Add plant</Button></Col>
     </Row></MDBCardBody>
   </MDBCard><Navbar/></Container>
@@ -97,8 +99,8 @@ function PlantCard(props) {
 
 function PlantInfo(props){
         
-  const[dsc,setDsc] = useState(false); 
-
+  const[dsc,setDsc] = useState(false); console.log(props.upid);
+  
   return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
                     <Navbar/>
           <MDBCard style={{backgroundColor:'#386641'}}>
@@ -121,7 +123,8 @@ function PlantInfo(props){
               </MDBCardText>}
             </MDBCardBody>
           </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
-          <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1} id={props.id} photo={props.photo} addP={props.addP}/>}/>
+          {props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1} id={props.id} photo={props.photo} addP={props.addP}/>}/>}
+          {props.upid && props.upid.length !== 0 && <PlantNavbar i1={<Home/>} i3={<Delete deletePID={props.deletePID} plant={pinfo}/>} />}
           </>);
 }
 
@@ -134,6 +137,18 @@ function Added(props) {
   </MDBCard></Container>          
   <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton/>}/>
   </>);
+}
+
+function Delete(props) {
+  const navigate = useNavigate();
+  return(
+  <div style={{textAlign:'center'}}>
+          <h6 onClick={()=>{p=props.plant; props.deletePID(props.plant.id); navigate('/undone1')}}>
+          <i style={{color:'black', fontSize:28}} className='bi bi-dash-circle'/>
+          <br></br>Delete plant
+          </h6>
+      </div>
+  );
 }
 
 export default AP;

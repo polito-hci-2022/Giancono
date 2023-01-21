@@ -70,6 +70,37 @@ getPlantID = (id) => {
   });
 }
 
+getUPlantID = (id) => {
+  return new Promise((resolve, reject) => {
+    const sql = 'SELECT * FROM userPlant WHERE idPlant = ?';
+    this.db.all(sql, [id], (err, rows) => {
+      if(err)
+      {
+        console.log(err);
+        reject(err);
+      }
+      else {
+        const answer = rows.map(row => {return {'idPlant': row.idPlant, 'photo': row.photo, 'watered': row.watered, 'repotted': row.repotted, 'fertilized': row.fertilized}});
+        resolve(answer);
+      }
+    });
+  });
+}
+
+deleteUserPlant = (id) => {
+  return new Promise((resolve, reject) => {
+    const sql = 'DELETE FROM userPlant WHERE idPlant = ?';
+    this.db.run(sql, [id], (err) => {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
 
 getThreads = () => {
   return new Promise((resolve, reject) => {

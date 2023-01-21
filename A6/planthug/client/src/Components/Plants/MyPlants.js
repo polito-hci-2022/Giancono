@@ -35,11 +35,11 @@ function MyPlants(props) {
         if (!props.pi)
         return (<>
         <Container><TitleBar arrow={true} name='My Plants'></TitleBar></Container>
-        {props.userPlants.map((plant) =><PlantCard plant={plant} getPID={props.getPID}></PlantCard>)}
+        {props.userPlants.map((plant) =><PlantCard pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
         <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <PlantNavbar i1={<Home/>} i3={<AddPlant new={1}/>}/></>
         );
-        else return (<PlantInfo pid={props.pid}/>);
+        else return (<PlantInfo pid={props.pid} deletePID={props.deletePID}/>);
 }
 
 function PlantCard(props) {
@@ -107,7 +107,7 @@ function PlantInfo(props){
                     </MDBCardText>}
                   </MDBCardBody>
                 </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
-                <PlantNavbar i1={<Home/>} i3={<Delete plant={props.pid[0]}/>}/>
+                <PlantNavbar i1={<Home/>} i3={<Delete deletePID={props.deletePID} plant={props.pid[0]}/>}/>
                 </>);
 }
 
@@ -115,7 +115,7 @@ function Delete(props) {
         const navigate = useNavigate();
         return(
         <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>{pi=props.plant; navigate('/undone')}}>
+                <h6 onClick={()=>{pi=props.plant; props.deletePID(props.plant.id); navigate('/undone')}}>
                 <i style={{color:'black', fontSize:28}} className='bi bi-dash-circle'/>
                 <br></br>Delete plant
                 </h6>

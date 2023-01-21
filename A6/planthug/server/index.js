@@ -79,6 +79,26 @@ app.get('/api/getPN/:id', async(req, res) => {
     return res.status(200).json(x);
 });
 
+app.get('/api/getUPN/:id', async(req, res) => {
+    let x;
+    
+    try{
+        x = await daoDB.getUPlantID(req.params.id);
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(200).json(x);
+});
+
+app.delete('/api/deletePN/:id', async (req, res) => {
+    try {
+        await daoDB.deleteUserPlant(req.params.id);
+    } catch (err) {
+        return res.status(500).json({err: 'generic error'});
+    }
+    return res.status(200).json({ message: 'Plant deleted successfully' });
+});
+
 app.get('/api/getThreads', async(req, res) => {
     let x;
     
