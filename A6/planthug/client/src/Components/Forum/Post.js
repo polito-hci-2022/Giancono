@@ -33,7 +33,6 @@ function Post(props) {
 
   const [reply, setReply] = useState(0);
   const [body, setBody] = useState("");
-  //const [posts, setPosts] = useState();
   const [post, setPost] = useState({});
   const [authorReply, setAuthorReply] = useState("");
   const [replies, setReplies] = useState([])
@@ -54,9 +53,11 @@ function Post(props) {
       const r = await getReplies(id)
       //
       
-      if(!(r[0].replies.length===0)){
-        console.log(replies)
-      } else {
+    
+      const x = r[0].replies
+      if(r[0].replies != '[]'){
+        setReplies(JSON.parse(x))
+      } else { 
         setReplies([])
   
       }
@@ -72,11 +73,11 @@ function Post(props) {
 
   const handleAddReply = async (author)=>{
     try{
-      let r = []
-      r.push({body:replies.body, author:replies.author})
-      const new_replies = [...r, {body: body, author: author}]
-      
-      await addReplies(new_replies, id)
+
+      //const r = [...replies]
+      replies.push({body: body, author: author})
+  
+      await addReplies(replies, id)
       }catch(err){
       console.log(err)
     }
@@ -87,6 +88,7 @@ function Post(props) {
 
       handleGetPosts();
       handlegetReplies();
+      
     }, [props])
   
     return (

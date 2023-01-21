@@ -110,8 +110,7 @@ function App() {
           );
         if(res.ok){
             const posts = await res.json();
-            setPosts(posts);
-            console.log(posts)
+            setPosts(posts)
             return posts;
         } else {
             const text = await res.text();
@@ -146,6 +145,9 @@ function App() {
         throw ex;
       }
   }
+
+
+  
   useEffect(() => {
     getUPlants();
     getPlants();
@@ -172,7 +174,7 @@ function App() {
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>
         <Route path='/forum/posted' element={<ForumPosted/>}/>
-        <Route path='/forum/post' element={<Post/>}/>
+        <Route path='/forum/post/:id' element={<Post post={posts}/>}/>
         <Route path='/cat' element={<AP addP={addP} plants={p} cat={1}/>}/>
       </Routes>
     </BrowserRouter>
