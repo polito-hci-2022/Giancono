@@ -27,7 +27,7 @@ let pi;
 
 function MyPlants(props) {
         useEffect(() => {
-                props.getUP();
+                if (props.getUP) props.getUP();
         }, []);
 
 

@@ -86,7 +86,7 @@ function Suggestions(props){
             </Row>
             <Row className='w-100 overflow-auto'>
                 <Container className='d-flex flex-row flex-nowrap'>
-                    {plants.map(p => <PlantCard key={p.id} plant={p} name={p.name} path={p.photo} typeOfRating='suggestion' setPID={props.setPID} />)}
+                    {plants.map(p => <PlantCard getUPID={props.getUPID} key={p.id} plant={p} name={p.name} path={p.photo} typeOfRating='suggestion' setPID={props.setPID} />)}
                 </Container>
             </Row>
             <Row>

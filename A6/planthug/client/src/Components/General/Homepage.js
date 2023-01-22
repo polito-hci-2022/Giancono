@@ -10,21 +10,20 @@ import RecognizeButton from '../Buttons/recognizeButton';
 import SettingsPopup from './Settings';
 import TitleBar from './Titlebar';
 
-function Homepage(){
+function Homepage(props){
 
     return(
         <Container>
             <br></br>
 
             <div style={{textAlign:'center'}}>
-                <SettingsPopup/>
-                <h1>Plant Hug</h1>
+                <TitleBar name="Plant Hug" arrow={false} icon={<SettingsPopup/>}/>
             </div>
 
             <div style={{textAlign:'center'}}>
             </div>
             <br></br>
-            <HMP/>
+            <HMP up={props.up}/>
             <br></br>
             <br></br>
             <InfoBox/>

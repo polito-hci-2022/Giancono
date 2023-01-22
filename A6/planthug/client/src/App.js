@@ -16,6 +16,7 @@ import FeedbackSent from './Components/Feedback/Sent';
 import ForumPosted from './Components/Forum/Posted';
 import Post from './Components/Forum/Post';
 import { useState, useEffect } from 'react';
+import PlantCard from './Components/Plants/PlantCard';
 
 const APIURL = 'http://localhost:3001/api';
 
@@ -191,15 +192,16 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Homepage/>}/>
+        <Route path='/' element={<Homepage up={up}/>}/>
         <Route path='/test' element={<Test/>}/>
-        <Route path='/suggestions' element={<Suggestions setPID={setPID}/>}/>
+        <Route path='/suggestions' element={<Suggestions getUPID={getUPID} setPID={setPID}/>}/>
         <Route path='/forum' element={<Forum/>}/>
         <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
         <Route path='/myplants' element={<MyPlants getUP={getUPlants} userPlants={up} pid={pid} getPID={getPID}/>}></Route>
         <Route path='/plantinfo' element={<MyPlants pi={true} pid={pid} deletePID={deletePID}/>}/> 
         <Route path='/plantinfo1' element={<AP pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
+        <Route path='/plantinfo2' element={<PlantCard pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
         <Route path='/addplant' element={<AP plants={p} getUPID={getUPID} upid={upid}/>}/>
         <Route path='/added' element={<AP add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>

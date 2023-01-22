@@ -13,7 +13,6 @@ function Forum() {
 
     return (
         <Container>
-            <br></br>
             <TitleBar name='Forum' arrow={true} ></TitleBar>
             <br></br>
             <br></br>

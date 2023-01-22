@@ -49,7 +49,6 @@ function HelpMyPlant(props) {
 
   return (
     <Container>
-      <br></br>
       <TitleBar name='Forum > Help my plant' arrow={true}></TitleBar>
       <Container>
         <Form className="d-flex">

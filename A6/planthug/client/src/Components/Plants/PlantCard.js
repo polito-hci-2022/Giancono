@@ -1,9 +1,20 @@
-import { Button, Card, Modal } from "react-bootstrap";
+import { Button, Card, Navbar, Modal, Container, Row } from "react-bootstrap";
 import { Star, StarFill } from "react-bootstrap-icons";
 import PlantNavbar from "../General/PlantNavbar";
 import Home from "../Buttons/home";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import {
+    MDBCard,
+    MDBCardBody,
+    MDBCardTitle,
+    MDBCardText,
+    MDBCardImage,
+  } from 'mdb-react-ui-kit';
+import TitleBar from "../General/Titlebar";
+import AddToPlants from "../Buttons/addToPlants";
+
+let pinfo, p;
 
 function PlantCard(props){
     const [show, setShow] = useState(false);
@@ -20,7 +31,8 @@ function PlantCard(props){
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
 
-    return(<>
+    if (!props.pi)
+     return(<>
         <Card className="flex-shrink-0 mx-2 px-0" style={{width: '10rem', height: '10rem', borderBlockColor: '#386641', backgroundColor: '#386641', color: 'white'}}>
             <Card.Img style={{width: '100%', height: '65%', overflow: 'hidden', objectFit: 'cover'}} variant="top" src={props.path} />
             <div style={{height: '35%'}}>
@@ -28,8 +40,7 @@ function PlantCard(props){
             <Card.Body className={"d-flex flex-row my-0 px-1 py-0 " + (props.typeOfRating !== null ? 'justify-content-between' : 'justify-content-center')}>
                 {props.typeOfRating !== null && <Card.Link disabled><StarFill style={{color: "#386641"}} /></Card.Link>}
                 <Card.Link className="mx-0"><Button onClick={() => {
-                    props.setPID([props.plant]);
-                    navigate('/plantinfo', { replace: true });
+                    pinfo=props.plant; props.getUPID(pinfo.id); navigate('/plantinfo2');
                 }} className="p-1" style={{color: 'black', backgroundColor: '#A7C957', borderWidth: 0, boxShadow: 'none', outline: 'none', fontSize: '0.75rem'}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>&nbsp;See more</Button></Card.Link>
                 {props.typeOfRating !== null && <Card.Link className="mx-0" onClick={handleShow}><StarFill style={{color: "yellow"}} /></Card.Link>}
             </Card.Body>
@@ -60,6 +71,52 @@ function PlantCard(props){
         </Modal>
         <PlantNavbar i2={<Home/>}/></>
     )
+    else return (<PlantInfo upid={props.upid} getUPID={props.getUPID} deletePID={props.deletePID} id={pinfo.id} photo={pinfo.photo} addP={props.addP}/>);
 }
+
+function PlantInfo(props){
+        
+    const[dsc,setDsc] = useState(false); console.log(props.upid);
+    
+    return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
+                      <Navbar/>
+            <MDBCard style={{backgroundColor:'#386641'}}>
+              <MDBCardImage src={pinfo.photo} position='top' alt='...' />
+              <MDBCardBody>
+                <MDBCardTitle className='text-light'>{pinfo.name}</MDBCardTitle>
+                <MDBCardText style={{color:'#A7C957'}}>BASIC NEEDS:</MDBCardText>
+                      <Row>
+                      <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-droplet'></i> {pinfo.waterNeed}</Button>
+                      <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-sun'></i> {pinfo.sunNeed}</Button>
+                      <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> {pinfo.fertilizerNeed}</Button>
+                      <MDBCardText style={{color:'#A7C957'}}>BE WARY OF:</MDBCardText>
+                      <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-bug'></i> {pinfo.pests}</Button>
+                      <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-activity'></i> {pinfo.diseases}</Button>
+                      </Row>
+                {!dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(true)}>Show description</Button></Row>}
+                {dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(false)}>Hide description</Button></Row>}
+                {dsc && <MDBCardText className='text-light'>
+                  {pinfo.description}
+                </MDBCardText>}
+              </MDBCardBody>
+            </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
+            {props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1} id={props.id} photo={props.photo} addP={props.addP}/>}/>}
+            {props.upid && props.upid.length !== 0 && <PlantNavbar i1={<Home/>} i3={<Delete deletePID={props.deletePID} plant={pinfo}/>} />}
+            </>);
+  }
+
+  function Delete(props) {
+    const navigate = useNavigate();
+    return(
+    <div style={{textAlign:'center'}}>
+            <h6 onClick={()=>{p=props.plant; props.deletePID(props.plant.id); navigate('/undone1')}}>
+            <i style={{color:'black', fontSize:28}} className='bi bi-dash-circle'/>
+            <br></br>Delete plant
+            </h6>
+        </div>
+    );
+  }
+  
+  
 
 export default PlantCard;
