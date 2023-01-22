@@ -62,7 +62,7 @@ function RecognizedPlant(props){
                     </span>
                 </Row>
                 <Row>
-                    <PlantCard plant={rightPlant} name={rightPlant.name} path={rightPlant.photo} typeOfRating='recognition' setPID={props.setPID} />
+                    <PlantCard getUPID={props.getUPID} plant={rightPlant} name={rightPlant.name} path={rightPlant.photo} typeOfRating='recognition' setPID={props.setPID} />
                 </Row>
                 <Row className="w-75">
                     <span className='text-center'>
@@ -76,7 +76,7 @@ function RecognizedPlant(props){
                 </Row>
                 <Row className='w-100 overflow-auto'>
                     <Container className='d-flex flex-row flex-nowrap'>
-                        {possiblePlants.map(p => <PlantCard key={p.id} plant={p} name={p.name} path={p.photo} typeOfRating={null} setPID={props.setPID} />)}
+                        {possiblePlants.map(p => <PlantCard getUPID={props.getUPID} key={p.id} plant={p} name={p.name} path={p.photo} typeOfRating={null} setPID={props.setPID} />)}
                     </Container>
                 </Row>
                 <Row>

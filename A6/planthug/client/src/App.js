@@ -206,7 +206,7 @@ function App() {
         <Route path='/added' element={<AP add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
         <Route path='/recognize' element={<Recognize/>}/>
-        <Route path='/recognize/plant' element={<RecognizedPlant setPID={setPID}/>}/>
+        <Route path='/recognize/plant' element={<RecognizedPlant getUPID={getUPID} upid={upid} setPID={setPID}/>}/>
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>
         <Route path='/forum/posted' element={<ForumPosted/>}/>
