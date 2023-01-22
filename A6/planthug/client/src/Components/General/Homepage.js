@@ -22,7 +22,6 @@ function Homepage(props){
 
             <div style={{textAlign:'center'}}>
             </div>
-            <br></br>
             <HMP up={props.up}/>
             <br></br>
             <br></br>

@@ -93,9 +93,8 @@ function Post(props) {
   
     return (
       <Container>
-        <br></br>
-        <TitleBar name={`${post.title}`} arrow={true}/>
-        <br></br>
+        <Container>
+        <TitleBar name={`${post.title}`} arrow={true}/></Container>
         <div>
           <Container>
             <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
@@ -118,7 +117,7 @@ function Post(props) {
           <br></br>
           <br></br>
           <br></br>
-          <h4 style={{textAlign:'center'}}>no replies to this post :(</h4></Container> 
+          <h4 style={{textAlign:'center'}}>No replies to this post :(</h4></Container> 
           :
           replies.map((reply)=>{
             return (
@@ -148,15 +147,17 @@ function Post(props) {
               />
               
             </InputGroup>
+            <Navbar/>
             <Button onClick={()=>{handleAddReply("marco")}}variant="danger">Send reply</Button>
           </Container> : <></>
-        }
+        }<Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <Navbar position='absolute' fixed="bottom" style={{backgroundColor:'#F2E8CF'}}>
           <Container style={{justifyContent:'center'}}>
             <Row >
               <Col xs>
                 <HomeButton/>
               </Col> 
+              <Col/> 
               {reply===0 ? <Col xs>
                 <div style={{textAlign:'center'}} onClick={()=>{setReply(1)}} >
                   <h6 >

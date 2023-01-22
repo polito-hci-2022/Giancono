@@ -25,25 +25,25 @@ function Forum() {
                     <h4>Topics:</h4>
                     <br></br>
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" onClick={()=>{navigate("/helpmyplant")}}>
+                        <Button size="lg" style={{ backgroundColor: '#386641' }} className="rounded-pill border-0" onClick={()=>{navigate("/helpmyplant")}}>
                             <GearFill/>⠀Help my plant</Button>
                     </Row>
                     <br></br>
 
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" ><StarFill></StarFill>
+                        <Button size="lg" style={{ backgroundColor: '#386641' }} className="rounded-pill border-0" ><StarFill></StarFill>
                         ⠀Plant's reviews</Button>
                     </Row>
                     <br></br>
 
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" >                        <CartPlusFill></CartPlusFill>
+                        <Button size="lg" style={{ backgroundColor: '#386641' }} className="rounded-pill border-0" >                        <CartPlusFill></CartPlusFill>
                         ⠀Accessories for your plant</Button>
                     </Row>
                     <br></br>
 
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#386641' }} class="rounded-pill" ><QuestionCircleFill></QuestionCircleFill>
+                        <Button size="lg" style={{ backgroundColor: '#386641' }} className="rounded-pill border-0" ><QuestionCircleFill></QuestionCircleFill>
                         ⠀Others</Button>
                     </Row>
 
