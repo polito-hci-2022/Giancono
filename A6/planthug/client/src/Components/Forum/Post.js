@@ -101,7 +101,7 @@ function Post(props) {
               <MDBCardBody>
               <MDBCardText><b>{post.author}:</b></MDBCardText>
               <MDBCardText><div>{post.body}</div></MDBCardText>
-              <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{setReply(1); setAuthorReply(post.author)}} className="border-0">Reply</Button> </MDBCardText>
+              <MDBCardText><Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setAuthorReply(post.author)}} className="border-0">Reply</Button> </MDBCardText>
               </MDBCardBody>
             </MDBCard>      
           </Container>
@@ -126,7 +126,7 @@ function Post(props) {
                 <MDBCard style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>
                   <MDBCardBody>
                   <MDBCardText><b>{reply.author}:</b><div >{reply.body}</div></MDBCardText>
-                  <MDBCardText><Button style={{backgroundColor:'#A7C957'}} onClick={()=>{setReply(1); setAuthorReply(reply.author); setBody(reply.author)}} className="border-0">Reply</Button> </MDBCardText>
+                  <MDBCardText><Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setAuthorReply(reply.author); setBody(reply.author)}} className="border-0">Reply</Button> </MDBCardText>
                   </MDBCardBody>
                 </MDBCard>      
               </Container>

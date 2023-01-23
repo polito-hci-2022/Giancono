@@ -76,7 +76,7 @@ function HelpMyPlant(props) {
                     <MDBCardBody>
                     <MDBCardTitle>{element.title}</MDBCardTitle>
                     <MDBCardText><div>Posted by {element.author}</div></MDBCardText>
-                    <Button style={{backgroundColor:'#A7C957'}} onClick={()=>{navigate(`/forum/post/${element.id}`)}} className="border-0">
+                    <Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{navigate(`/forum/post/${element.id}`)}} className="border-0">
                       See post</Button>
                     </MDBCardBody>
                   </MDBCard>      

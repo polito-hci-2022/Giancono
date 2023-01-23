@@ -26,6 +26,8 @@ import { AlignStart, Justify } from 'react-bootstrap-icons';
 let pi;
 
 function MyPlants(props) {
+        const [count,setCount] = useState();
+        
         useEffect(() => {
                 if (props.getUP) props.getUP();
         }, []);
@@ -124,6 +126,7 @@ function Delete(props) {
 }
 
 function Deleted(props) {
+
         return(<><Navbar/><Navbar/>
         <Container style={{textAlign:'center'}}><h1>Deleted!</h1></Container>
         <Container><MDBCard>

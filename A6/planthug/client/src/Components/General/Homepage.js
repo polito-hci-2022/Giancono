@@ -14,7 +14,6 @@ function Homepage(props){
 
     return(
         <Container>
-            <br></br>
 
             <div style={{textAlign:'center'}}>
                 <TitleBar name="Plant Hug" arrow={false} icon={<SettingsPopup/>}/>

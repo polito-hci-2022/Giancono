@@ -97,7 +97,7 @@ function Recognize(){
                         </span>
                     </Row>
                  <Row>
-                        <PlantNavbar i2={<Home/>} i3={<FromGallery handleChange={handleChange}/>}/>
+                        <PlantNavbar i1={<Home/>} i3={<FromGallery handleChange={handleChange}/>}/>
                     </Row>
                 </Container>
             </div>
