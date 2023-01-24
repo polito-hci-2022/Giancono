@@ -13,6 +13,8 @@ import {
   } from 'mdb-react-ui-kit';
 import TitleBar from "../General/Titlebar";
 import AddToPlants from "../Buttons/addToPlants";
+import MyPlantsButton from "../Buttons/myPlantsButton";
+import UndoButton from "../Buttons/undoButton";
 
 let pinfo, p;
 
@@ -31,6 +33,7 @@ function PlantCard(props){
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
 
+    if (props.add) return (<Added name={pinfo.name}/>);
     if (!props.pi)
      return(<>
         <Card className="flex-shrink-0 mx-2 px-0" style={{width: '10rem', height: '10rem', borderBlockColor: '#386641', backgroundColor: '#386641', color: 'white'}}>
@@ -100,23 +103,20 @@ function PlantInfo(props){
                 </MDBCardText>}
               </MDBCardBody>
             </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
-            {props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1} id={props.id} photo={props.photo} addP={props.addP}/>}/>}
-            {props.upid && props.upid.length !== 0 && <PlantNavbar i1={<Home/>} i3={<Delete deletePID={props.deletePID} plant={pinfo}/>} />}
+            props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={2} id={props.id} photo={props.photo} addP={props.addP}/>}/>
             </>);
   }
-
-  function Delete(props) {
-    const navigate = useNavigate();
-    return(
-    <div style={{textAlign:'center'}}>
-            <h6 onClick={()=>{p=props.plant; props.deletePID(props.plant.id); navigate('/undone1')}}>
-            <i style={{color:'black', fontSize:28}} className='bi bi-dash-circle'/>
-            <br></br>Delete plant
-            </h6>
-        </div>
-    );
-  }
   
+function Added(props) {
+    return(<><Navbar/><Navbar/>
+    <Container style={{textAlign:'center'}}><h1>Added!</h1></Container>
+    <Container><MDBCard>
+    <MDBCardImage src={pinfo.photo} position='top' alt='...' />
+    <MDBCardText>{props.name} was added to My Plants :)</MDBCardText>
+    </MDBCard></Container>          
+    <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton/>}/>
+    </>);
+  }
   
 
 export default PlantCard;

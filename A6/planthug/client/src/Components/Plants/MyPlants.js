@@ -27,17 +27,16 @@ let pi;
 
 function MyPlants(props) {
         const [count,setCount] = useState();
-        
-        useEffect(() => {
-                if (props.getUP) props.getUP();
-        }, []);
 
+        useEffect(() => {
+                props.getUP();
+              }, []);
 
         if (props.del) return (<Deleted name={pi.name}/>)
         if (!props.pi)
         return (<>
         <Container><TitleBar arrow={true} name='My Plants'></TitleBar></Container>
-        {props.userPlants.map((plant) =><PlantCard pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
+        {props.userPlants.map((plant) =><PlantCard getUP={props.getUP} pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
         <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <PlantNavbar i1={<Home/>} i3={<AddPlant new={1}/>}/></>
         );
@@ -50,6 +49,7 @@ const [count,setCount] = useState();
 
 useEffect(() => {
         props.getPID(props.plant.idPlant);
+        props.getUP();
         setTimeout(() => {
           setCount((count) => count + 1);
         }, 20000);

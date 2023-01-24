@@ -6,7 +6,7 @@ function AddToPlants(props){
     return(
 
             <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>{props.addP(props.id, props.photo); navigate('/added')}}>
+                <h6 onClick={()=>{props.addP(props.id, props.photo); if (props.add === 1) navigate('/added'); else navigate('/added1')}}>
                 <PlusCircle size={28} color='black'/>
                 <br></br>Add plant
                 </h6>

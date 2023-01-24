@@ -2,7 +2,7 @@ import { Container, Row, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import React from 'react';
 import PlantNavbar from './PlantNavbar';
-import {Lightbulb} from 'react-bootstrap-icons';
+import {Lightbulb, Upc} from 'react-bootstrap-icons';
 import PlantCard from '../Plants/PlantCard';
 import TitleBar from './Titlebar';
 import Home from '../Buttons/home';
@@ -49,6 +49,7 @@ function Suggestions(props){
 
     useEffect(() => {
         getPlants();
+        props.getUP();
     }, []);
 
     useEffect(() => {
@@ -56,18 +57,32 @@ function Suggestions(props){
         rand = d.getSeconds()%2;
     }, [prioritize]);
 
+
     switch(prioritize){
         case 'Overall':
-            plants = p.filter((p, idx) => overall.includes(idx - rand));
+            plants = p.filter(p => { 
+                let tmp = props.up.filter(u => (u.idPlant === p.id)); 
+                if (tmp.length === 0) return true; else return false;
+            }).
+            filter((p, idx) => overall.includes(idx - rand));
             break;
         case 'Water needs':
-            plants = p.filter((p, idx) => water.includes(idx - rand));
+            plants = p.filter(p => { 
+                let tmp = props.up.filter(u => (u.idPlant === p.id)); 
+                if (tmp.length === 0) return true; else return false;
+            }).filter((p, idx) => water.includes(idx - rand));
             break;
         case 'Costs':
-            plants = p.filter((p, idx) => cost.includes(idx - rand));
+            plants = p.filter(p => { 
+                let tmp = props.up.filter(u => (u.idPlant === p.id)); 
+                if (tmp.length === 0) return true; else return false;
+            }).filter((p, idx) => cost.includes(idx - rand));
             break;
         case 'Light needs':
-            plants = p.filter((p, idx) => light.includes(idx - rand));
+            plants = p.filter(p => { 
+                let tmp = props.up.filter(u => (u.idPlant === p.id)); 
+                if (tmp.length === 0) return true; else return false;
+            }).filter((p, idx) => light.includes(idx - rand));
             break;
     }
 

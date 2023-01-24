@@ -27,6 +27,7 @@ function AP(props) {
   const navigate = useNavigate();
 
   if (props.add) return (<Added name={pinfo.name}/>);
+  if (props.del) return (<Deleted name={p.name}/>);
   if (props.cat) {
     return <PlantCategory cat={cat} addP={props.addP} upid={props.upid} getUPID={props.getUPID} p={p}/>
   }
@@ -91,7 +92,6 @@ function PlantCard(props) {
   <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'><MDBCardImage src={props.plant.photo}/>
     <MDBCardBody><MDBCardTitle>{props.plant.name}</MDBCardTitle><Row>
     <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{pinfo=props.plant; props.getUPID(pinfo.id); navigate('/plantinfo1')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button></Col>
-    <Col><Button onClick={() => {pinfo=props.plant; props.addP(props.plant.id, props.plant.photo); navigate('/added')}} className="border-0 text-black" style={{backgroundColor:'#A7C957' }}><i style={{color:'black'}} className='bi bi-plus-circle-fill'/>  Add plant</Button></Col>
     </Row></MDBCardBody>
   </MDBCard><Navbar/></Container>
   </>);
@@ -136,6 +136,18 @@ function Added(props) {
   <MDBCardText>{props.name} was added to My Plants :)</MDBCardText>
   </MDBCard></Container>          
   <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton/>}/>
+  </>);
+}
+
+function Deleted(props) {
+
+  return(<><Navbar/><Navbar/>
+  <Container style={{textAlign:'center'}}><h1>Deleted!</h1></Container>
+  <Container><MDBCard>
+  <MDBCardImage src={p.photo} position='top' alt='...' />
+  <MDBCardText>{p.name} is no longer in My Plants :(</MDBCardText>
+  </MDBCard></Container>          
+  <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/>
   </>);
 }
 

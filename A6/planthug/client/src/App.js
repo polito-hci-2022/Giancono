@@ -194,17 +194,19 @@ function App() {
       <Routes>
         <Route path='/' element={<Homepage up={up}/>}/>
         <Route path='/test' element={<Test/>}/>
-        <Route path='/suggestions' element={<Suggestions getUPID={getUPID} setPID={setPID}/>}/>
+        <Route path='/suggestions' element={<Suggestions getUP={getUPlants} up={up} getUPID={getUPID} setPID={setPID}/>}/>
         <Route path='/forum' element={<Forum/>}/>
         <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
         <Route path='/myplants' element={<MyPlants getUP={getUPlants} userPlants={up} pid={pid} getPID={getPID}/>}></Route>
-        <Route path='/plantinfo' element={<MyPlants pi={true} pid={pid} deletePID={deletePID}/>}/> 
+        <Route path='/plantinfo' element={<MyPlants getUP={getUPlants} pi={true} pid={pid} deletePID={deletePID}/>}/> 
         <Route path='/plantinfo1' element={<AP pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
         <Route path='/plantinfo2' element={<PlantCard pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
         <Route path='/addplant' element={<AP plants={p} getUPID={getUPID} upid={upid}/>}/>
         <Route path='/added' element={<AP add={true}/>}/>
+        <Route path='/added1' element={<PlantCard add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
+        <Route path='/undone1' element={<AP del={true}/>}/>
         <Route path='/recognize' element={<Recognize/>}/>
         <Route path='/recognize/plant' element={<RecognizedPlant getUPID={getUPID} upid={upid} setPID={setPID}/>}/>
         <Route path='/feedback' element={<Feedback/>}/>
