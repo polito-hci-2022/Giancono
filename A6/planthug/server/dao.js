@@ -101,6 +101,74 @@ deleteUserPlant = (id) => {
   });
 }
 
+updateUP(id, w, r, f){
+  if (w === 1) return new Promise((resolve, reject)=>{
+    const sql = 'UPDATE userPlant SET watered = 1 WHERE idPlant = ?';
+    this.db.run(sql, [id], function (err) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  })
+  if (r === 1) return new Promise((resolve, reject)=>{
+    const sql = 'UPDATE userPlant SET repotted = 1 WHERE idPlant = ?';
+    this.db.run(sql, [id], function (err) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  })
+  if (f === 1) return new Promise((resolve, reject)=>{
+    const sql = 'UPDATE userPlant SET fertilized = 1 WHERE idPlant = ?';
+    this.db.run(sql, [id], function (err) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  })
+  if (w === -1) return new Promise((resolve, reject)=>{
+    const sql = 'UPDATE userPlant SET watered = 0 WHERE idPlant = ?';
+    this.db.run(sql, [id], function (err) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  })
+  if (r === -1) return new Promise((resolve, reject)=>{
+    const sql = 'UPDATE userPlant SET repotted = 0 WHERE idPlant = ?';
+    this.db.run(sql, [id], function (err) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  })
+  if (f === -1) return new Promise((resolve, reject)=>{
+    const sql = 'UPDATE userPlant SET fertilized = 0 WHERE idPlant = ?';
+    this.db.run(sql, [id], function (err) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  })
+}
 
 getThreads = () => {
   return new Promise((resolve, reject) => {

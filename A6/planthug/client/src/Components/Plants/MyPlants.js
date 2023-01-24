@@ -36,7 +36,7 @@ function MyPlants(props) {
         if (!props.pi)
         return (<>
         <Container><TitleBar arrow={true} name='My Plants'></TitleBar></Container>
-        {props.userPlants.map((plant) =><PlantCard getUP={props.getUP} pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
+        {props.userPlants.map((plant) =><PlantCard UPL={props.UPL} getUP={props.getUP} pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
         <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <PlantNavbar i1={<Home/>} i3={<AddPlant new={1}/>}/></>
         );
@@ -50,6 +50,9 @@ const [count,setCount] = useState();
 useEffect(() => {
         props.getPID(props.plant.idPlant);
         props.getUP();
+        if (count%2 === 0) props.userPlants.map(p => props.UPL(p.idPlant,-1,0,0));
+        if (count%3 === 0) props.userPlants.map(p => props.UPL(p.idPlant, 0,0,-1));
+        if (count%4 === 0) props.userPlants.map(p => props.UPL(p.idPlant, 0,-1,0));
         setTimeout(() => {
           setCount((count) => count + 1);
         }, 20000);
@@ -63,18 +66,19 @@ useEffect(() => {
                 <MDBCardTitle>{props.plant.name}</MDBCardTitle>
                 <MDBCardText>Tap to perform an action:<div></div></MDBCardText>
                 <Row>
-        {props.plant.watered === 1 && <Col><Button className="border-0" style={{backgroundColor:'#A7C957' }}><i className='bi bi-droplet'></i>  Water</Button></Col>}
-        {props.plant.repotted === 1 && <Col><Button className="border-0" style={{backgroundColor:'#A7C957'}}><i className='bi bi-trash2'></i>  Repot</Button></Col>}
-        {props.plant.fertilized === 1 && <Col><Button className="border-0" style={{backgroundColor:'#A7C957'}}><i className='bi bi-stars'>  Fertilize</i></Button></Col>}
+        {props.plant.watered === 1 && <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }}><i className='bi bi-droplet'></i>  Water</Button></Col>}
+        {props.plant.repotted === 1 && <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957'}}><i className='bi bi-trash2'></i>  Repot</Button></Col>}
+        {props.plant.fertilized === 1 && <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957'}}><i className='bi bi-stars'>  Fertilize</i></Button></Col>}
 
-        {props.plant.watered === 0 && <Col><Button className="border-0" style={{backgroundColor:'#bc4749'}}><i className='bi bi-droplet'></i>  Water</Button></Col>}
-        {props.plant.repotted === 0 && <Col><Button className="border-0" style={{backgroundColor:'#bc4749'}}><i className='bi bi-trash2'></i>  Repot</Button></Col>}
-        {props.plant.fertilized === 0 && <Col><Button className="border-0" style={{backgroundColor:'#bc4749'}}><i className='bi bi-stars'></i>  Fertilize</Button></Col>}</Row>
-        
+        {props.plant.watered === 0 && <Col><Button onClick={()=>props.UPL(props.plant.idPlant,1,0,0)} className="border-0" style={{backgroundColor:'#bc4749'}}><i className='bi bi-droplet'></i>  Water</Button></Col>}
+        {props.plant.repotted === 0 && <Col><Button onClick={()=>props.UPL(props.plant.idPlant,0,1,0)} className="border-0" style={{backgroundColor:'#bc4749'}}><i className='bi bi-trash2'></i>  Repot</Button></Col>}
+        {props.plant.fertilized === 0 && <Col><Button onClick={()=>props.UPL(props.plant.idPlant,0,0,1)} className="border-0" style={{backgroundColor:'#bc4749'}}><i className='bi bi-stars'></i>  Fertilize</Button></Col>}</Row>
+        <br/>
         {props.plant.watered === 0 && <MDBCardText>Water this plant!</MDBCardText>}
         {props.plant.repotted === 0 && <MDBCardText>Time to repot!</MDBCardText>}
         {props.plant.fertilized === 0 && <MDBCardText>Use some fertilizer!</MDBCardText>}
-        <MDBCardText>
+        {props.plant.fertilized === 1 && props.plant.watered === 1 && props.plant.repotted === 1 && <MDBCardText>Your plant is probably okay ;-)</MDBCardText>}
+        <MDBCardText><br/>
         <Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{props.getPID(props.plant.idPlant); navigate('/plantinfo')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button>
         </MDBCardText>
                 </MDBCardBody>

@@ -99,6 +99,17 @@ app.delete('/api/deletePN/:id', async (req, res) => {
     return res.status(200).json({ message: 'Plant deleted successfully' });
 });
 
+app.put(`/api/updatePlant`, async(req, res) => {
+    console.log("INDEX: "+req.body.id+' '+req.body.w+' '+req.body.r+' '+req.body.f);
+    let x;
+    try{
+        x = await daoDB.updateUP(req.body.id, req.body.w, req.body.r, req.body.f)
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(201).json({});
+});
+
 app.get('/api/getThreads', async(req, res) => {
     let x;
     

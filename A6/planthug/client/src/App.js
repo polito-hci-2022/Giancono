@@ -137,6 +137,32 @@ function App() {
       }
   }
 
+  const updateUPlant = async (id, w, r, f) => {
+    const url = APIURL + `/updatePlant`;
+    try{
+        const res = await fetch(url,{
+          method: "PUT", 
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({id: id, w: w, r: r, f: f})
+        },
+          );
+        if(res.ok){
+            const upl = await res.json();
+            getUPlants();
+            return upl;
+        } else {
+            const text = await res.text();
+
+            throw new TypeError(text);
+        }
+      }catch(ex){
+        throw ex;
+      }
+      
+  }
+
   const getPosts = async () => {
     const url = APIURL + `/getthreads`;
     try{
@@ -198,7 +224,7 @@ function App() {
         <Route path='/forum' element={<Forum/>}/>
         <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
-        <Route path='/myplants' element={<MyPlants getUP={getUPlants} userPlants={up} pid={pid} getPID={getPID}/>}></Route>
+        <Route path='/myplants' element={<MyPlants UPL={updateUPlant} getUP={getUPlants} userPlants={up} pid={pid} getPID={getPID}/>}></Route>
         <Route path='/plantinfo' element={<MyPlants getUP={getUPlants} pi={true} pid={pid} deletePID={deletePID}/>}/> 
         <Route path='/plantinfo1' element={<AP pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
         <Route path='/plantinfo2' element={<PlantCard pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
