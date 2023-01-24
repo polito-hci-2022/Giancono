@@ -34,6 +34,7 @@ function PlantCard(props){
     const navigate = useNavigate();
 
     if (props.add) return (<Added name={pinfo.name}/>);
+    if (props.del) return (<Deleted name={p.name}/>);
     if (!props.pi)
      return(<>
         <Card className="flex-shrink-0 mx-2 px-0" style={{width: '10rem', height: '10rem', borderBlockColor: '#386641', backgroundColor: '#386641', color: 'white'}}>
@@ -79,7 +80,7 @@ function PlantCard(props){
 
 function PlantInfo(props){
         
-    const[dsc,setDsc] = useState(false); console.log(props.upid);
+    const[dsc,setDsc] = useState(false);
     
     return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
                       <Navbar/>
@@ -103,7 +104,8 @@ function PlantInfo(props){
                 </MDBCardText>}
               </MDBCardBody>
             </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
-            props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={2} id={props.id} photo={props.photo} addP={props.addP}/>}/>
+            {props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={2} id={props.id} photo={props.photo} addP={props.addP}/>}/>}
+            {props.upid && props.upid.length !== 0 && <PlantNavbar i1={<Home/>} i3={<Delete deletePID={props.deletePID} plant={pinfo}/>} />}
             </>);
   }
   
@@ -117,6 +119,31 @@ function Added(props) {
     <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton/>}/>
     </>);
   }
+
+function Deleted(props) {
+
+    return(<><Navbar/><Navbar/>
+    <Container style={{textAlign:'center'}}><h1>Deleted!</h1></Container>
+    <Container><MDBCard>
+    <MDBCardImage src={p.photo} position='top' alt='...' />
+    <MDBCardText>{p.name} is no longer in My Plants :(</MDBCardText>
+    </MDBCard></Container>          
+    <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/>
+    </>);
+  }
+  
+  function Delete(props) {
+    const navigate = useNavigate();
+    return(
+    <div style={{textAlign:'center'}}>
+            <h6 onClick={()=>{p=props.plant; props.deletePID(props.plant.id); navigate('/undone2')}}>
+            <i style={{color:'black', fontSize:28}} className='bi bi-dash-circle'/>
+            <br></br>Delete plant
+            </h6>
+        </div>
+    );
+  }
+  
   
 
 export default PlantCard;

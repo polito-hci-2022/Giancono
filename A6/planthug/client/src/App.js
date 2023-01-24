@@ -233,6 +233,7 @@ function App() {
         <Route path='/added1' element={<PlantCard add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
         <Route path='/undone1' element={<AP del={true}/>}/>
+        <Route path='/undone2' element={<PlantCard del={true}/>}/>
         <Route path='/recognize' element={<Recognize/>}/>
         <Route path='/recognize/plant' element={<RecognizedPlant getUPID={getUPID} upid={upid} setPID={setPID}/>}/>
         <Route path='/feedback' element={<Feedback/>}/>
