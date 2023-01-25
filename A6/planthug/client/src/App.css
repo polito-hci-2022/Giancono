@@ -22,3 +22,9 @@
 body, #root {
   height: 100vh;
 }
+
+.modal-bottom-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

@@ -67,11 +67,12 @@ useEffect(() => {
                 <MDBCardText>Tap to perform an action:<div></div></MDBCardText>
                 <Row>
         {props.plant.watered === 1 && <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }}><i className='bi bi-droplet'></i>  Water</Button></Col>}
-        {props.plant.repotted === 1 && <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957'}}><i className='bi bi-trash2'></i>  Repot</Button></Col>}
-        {props.plant.fertilized === 1 && <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957'}}><i className='bi bi-stars'>  Fertilize</i></Button></Col>}
-
         {props.plant.watered === 0 && <Col><Button onClick={()=>props.UPL(props.plant.idPlant,1,0,0)} className="border-0" style={{backgroundColor:'#bc4749'}}><i className='bi bi-droplet'></i>  Water</Button></Col>}
+        
+        {props.plant.repotted === 1 && <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957'}}><i className='bi bi-trash2'></i>  Repot</Button></Col>}
         {props.plant.repotted === 0 && <Col><Button onClick={()=>props.UPL(props.plant.idPlant,0,1,0)} className="border-0" style={{backgroundColor:'#bc4749'}}><i className='bi bi-trash2'></i>  Repot</Button></Col>}
+        
+        {props.plant.fertilized === 1 && <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957'}}><i className='bi bi-stars'>  Fertilize</i></Button></Col>}
         {props.plant.fertilized === 0 && <Col><Button onClick={()=>props.UPL(props.plant.idPlant,0,0,1)} className="border-0" style={{backgroundColor:'#bc4749'}}><i className='bi bi-stars'></i>  Fertilize</Button></Col>}</Row>
         <br/>
         {props.plant.watered === 0 && <MDBCardText>Water this plant!</MDBCardText>}

@@ -15,6 +15,7 @@ import TitleBar from "../General/Titlebar";
 import AddToPlants from "../Buttons/addToPlants";
 import MyPlantsButton from "../Buttons/myPlantsButton";
 import UndoButton from "../Buttons/undoButton";
+import Form from 'react-bootstrap/Form';
 
 let pinfo, p;
 
@@ -50,7 +51,7 @@ function PlantCard(props){
             </Card.Body>
             </div>
         </Card>
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} css={{ background: "transparent"}} onHide={handleClose}>
             <Modal.Header closeButton style={{backgroundColor: '#A7C957'}}>
                 <Modal.Title>Rate our {props.typeOfRating}</Modal.Title>
             </Modal.Header>
@@ -65,7 +66,15 @@ function PlantCard(props){
                 <a onClick={() => setRate(5)}>{rate >= 5 ? <StarFill color="yellow" className="mx-1" /> : <Star color="yellow" className="mx-1" />}</a>
             </Modal.Body>}
             {! rated && <Modal.Footer style={{backgroundColor: '#A7C957'}}>
-                <Button style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}} onClick={handleClose}>
+                <Form>
+      <Form.Group className="mb-3">
+        <Form.Label>Additional feedback (optional)</Form.Label>
+        <Form.Control placeholder="Describe your impressions" />
+        <Form.Text className="text-muted">
+          Your feedback is precious for us. We will use it to improve!
+        </Form.Text>
+      </Form.Group></Form>
+      <Button style={{backgroundColor: '#6A994E', borderWidth: 0, boxShadow: 'none', outline: 'none'}} onClick={handleClose}>
                     Cancel
                 </Button>
                 <Button style={{backgroundColor: '#386641', borderWidth: 0, boxShadow: 'none', outline: 'none'}} onClick={handleConfirm}>
