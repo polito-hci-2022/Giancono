@@ -115,7 +115,7 @@ function App() {
     }
   }  
 
-  const addP = async (id,photo) => {
+  const addP = async (name,id,photo) => {
     const url = APIURL + '/addPlant';
     try{
         const res = await fetch(url, {
@@ -123,7 +123,7 @@ function App() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({id: id, photo: photo})}
+          body: JSON.stringify({name:name, id: id, photo: photo})}
           );
         if(res.ok){
             const plant = await res.json();

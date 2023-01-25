@@ -4,10 +4,10 @@ constructor(db) {
       }
 
       
-addPlantUser(id,photo){
+addPlantUser(name, id,photo){
     return new Promise((resolve, reject)=>{
-      const sql = 'INSERT INTO userPlant(idPlant, photo, watered, repotted, fertilized, idUser) VALUES(?, ?, 0, 0, 0, 1)';;
-      this.db.run(sql, [id, photo], function (err) {
+      const sql = 'INSERT INTO userPlant(idPlant, photo, watered, repotted, fertilized, idUser, customName) VALUES(?, ?, 0, 0, 0, 1, ?)';;
+      this.db.run(sql, [id, photo, name], function (err) {
         if (err) {
           console.log(err);
           reject(err);
@@ -29,7 +29,7 @@ getUserPlants = (user) => {
         reject(err);
       }
       else {
-        const answer = rows.map(row => {return {'idPlant': row.idPlant, 'photo': row.photo, 'watered': row.watered, 'repotted': row.repotted, 'fertilized': row.fertilized}});
+        const answer = rows.map(row => {return {'idPlant': row.idPlant, 'photo': row.photo, 'watered': row.watered, 'repotted': row.repotted, 'fertilized': row.fertilized, 'name': row.customName}});
         resolve(answer);
       }
     });

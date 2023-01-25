@@ -39,7 +39,7 @@ app.use(cors(corsOptions));
 app.post('/api/addPlant', async(req, res) => {
     let x;
     try{
-        x = await daoDB.addPlantUser(req.body.id, req.body.photo);
+        x = await daoDB.addPlantUser(req.body.name, req.body.id, req.body.photo);
     }catch(err){
         return res.status(500).json({err:'generic error'})
     }
@@ -100,7 +100,7 @@ app.delete('/api/deletePN/:id', async (req, res) => {
 });
 
 app.put(`/api/updatePlant`, async(req, res) => {
-    console.log("INDEX: "+req.body.id+' '+req.body.w+' '+req.body.r+' '+req.body.f);
+    
     let x;
     try{
         x = await daoDB.updateUP(req.body.id, req.body.w, req.body.r, req.body.f)

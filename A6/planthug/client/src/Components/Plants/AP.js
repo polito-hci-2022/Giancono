@@ -106,7 +106,7 @@ function PlantCard(props) {
 
 function PlantInfo(props){
         
-  const[dsc,setDsc] = useState(false); console.log(props.upid);
+  const[dsc,setDsc] = useState(false); 
   
   return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
                     <Navbar/>
@@ -130,7 +130,7 @@ function PlantInfo(props){
               </MDBCardText>}
             </MDBCardBody>
           </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
-          {props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1} id={props.id} photo={props.photo} addP={props.addP}/>}/>}
+          {props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={1} id={props.id} name={pinfo.name} photo={props.photo} addP={props.addP}/>}/>}
           {props.upid && props.upid.length !== 0 && <PlantNavbar i1={<Home/>} i3={<Delete deletePID={props.deletePID} plant={pinfo}/>} />}
           </>);
 }
