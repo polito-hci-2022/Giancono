@@ -29,8 +29,8 @@ function AP(props) {
     props.getP();
   },[]);
 
-  if (props.add) return (<Added name={pinfo.name}/>);
-  if (props.del) return (<Deleted name={p.name}/>);
+  if (props.add) return (<Added add={props.add} name={pinfo.name}/>);
+  if (props.del) return (<Deleted name={pinfo.name}/>);
   if (props.cat) {
     return <PlantCategory getP={props.getP} cat={cat} addP={props.addP} upid={props.upid} getUPID={props.getUPID} p={p}/>
   }
@@ -142,7 +142,7 @@ function Added(props) {
   <MDBCardImage src={pinfo.photo} position='top' alt='...' />
   <MDBCardText>{props.name} was added to My Plants :)</MDBCardText>
   </MDBCard></Container>          
-  <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton/>}/>
+  <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton add={props.add} />}/>
   </>);
 }
 
@@ -151,8 +151,8 @@ function Deleted(props) {
   return(<><Navbar/><Navbar/>
   <Container style={{textAlign:'center'}}><h1>Deleted!</h1></Container>
   <Container><MDBCard>
-  <MDBCardImage src={p.photo} position='top' alt='...' />
-  <MDBCardText>{p.name} is no longer in My Plants :(</MDBCardText>
+  <MDBCardImage src={pinfo.photo} position='top' alt='...' />
+  <MDBCardText>{pinfo.name} is no longer in My Plants :(</MDBCardText>
   </MDBCard></Container>          
   <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/>
   </>);

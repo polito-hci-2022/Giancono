@@ -117,7 +117,7 @@ function Post(props) {
           <br></br>
           <br></br>
           <br></br>
-          <h4 style={{textAlign:'center'}}>No replies to this post :(</h4></Container> 
+          <h4 style={{textAlign:'center', color:'gray'}}>No replies to this post :(</h4></Container> 
           :
           replies.map((reply)=>{
             return (

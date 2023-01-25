@@ -34,8 +34,8 @@ function PlantCard(props){
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
 
-    if (props.add) return (<Added name={pinfo.name}/>);
-    if (props.del) return (<Deleted name={p.name}/>);
+    if (props.add) return (<Added add={props.add} name={pinfo.name}/>);
+    if (props.del) return (<Deleted/>);
     if (!props.pi)
      return(<>
         <Card className="flex-shrink-0 mx-2 px-0" style={{width: '10rem', height: '10rem', borderBlockColor: '#386641', backgroundColor: '#386641', color: 'white'}}>
@@ -113,7 +113,7 @@ function PlantInfo(props){
                 </MDBCardText>}
               </MDBCardBody>
             </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
-            {props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={2} id={props.id} photo={props.photo} addP={props.addP}/>}/>}
+            {props.upid && props.upid.length === 0 && <PlantNavbar i1={<Home/>} i3={<AddToPlants add={2} id={props.id} name={pinfo.name} photo={props.photo} addP={props.addP}/>}/>}
             {props.upid && props.upid.length !== 0 && <PlantNavbar i1={<Home/>} i3={<Delete deletePID={props.deletePID} plant={pinfo}/>} />}
             </>);
   }
@@ -125,7 +125,7 @@ function Added(props) {
     <MDBCardImage src={pinfo.photo} position='top' alt='...' />
     <MDBCardText>{props.name} was added to My Plants :)</MDBCardText>
     </MDBCard></Container>          
-    <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton/>}/>
+    <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton add={props.add}/>}/>
     </>);
   }
 
@@ -134,8 +134,8 @@ function Deleted(props) {
     return(<><Navbar/><Navbar/>
     <Container style={{textAlign:'center'}}><h1>Deleted!</h1></Container>
     <Container><MDBCard>
-    <MDBCardImage src={p.photo} position='top' alt='...' />
-    <MDBCardText>{p.name} is no longer in My Plants :(</MDBCardText>
+    <MDBCardImage src={pinfo.photo} position='top' alt='...' />
+    <MDBCardText>{pinfo.name} is no longer in My Plants :(</MDBCardText>
     </MDBCard></Container>          
     <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/>
     </>);

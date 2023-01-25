@@ -17,11 +17,7 @@ import Home from '../Buttons/home';
 import AddPlant from '../Buttons/addNew';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import AddToPlants from '../Buttons/addToPlants';
-import RateButton from '../Buttons/rateButton';
 import MyPlantsButton from '../Buttons/myPlantsButton';
-import UndoButton from '../Buttons/undoButton';
-import { AlignStart, Justify } from 'react-bootstrap-icons';
 
 let pi;
 
@@ -42,7 +38,8 @@ function MyPlants(props) {
         if (!props.pi)
         return (<>
         <Container><TitleBar arrow={true} name='My Plants'></TitleBar></Container>
-        {props.userPlants && props.userPlants.map((plant) =><PlantCard setP={setP} UPL={props.UPL} getUP={props.getUP} pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
+        {props.userPlants.length === 0 && <><Navbar/><Navbar/><h4 style={{textAlign:'center', color:'gray'}}>No plants added yet. Add some :)</h4></>}
+        {props.userPlants && props.userPlants.map((plant) =><PlantCard deletePID={props.deletePID} setP={setP} UPL={props.UPL} getUP={props.getUP} pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
         <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <PlantNavbar i1={<Home/>} i3={<AddPlant new={1}/>}/></>
         );
@@ -82,9 +79,10 @@ useEffect(() => {
         {props.plant.repotted === 0 && <MDBCardText>Time to repot!</MDBCardText>}
         {props.plant.fertilized === 0 && <MDBCardText>Use some fertilizer!</MDBCardText>}
         {props.plant.fertilized === 1 && props.plant.watered === 1 && props.plant.repotted === 1 && <MDBCardText>Your plant is probably okay ;-)</MDBCardText>}
-        <MDBCardText><br/>
-        <Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{props.setP(props.plant); props.getPID(props.plant.idPlant); navigate('/plantinfo')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button>
-        </MDBCardText>
+        <MDBCardText><br/><Row>
+        <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{props.setP(props.plant); props.getPID(props.plant.idPlant); navigate('/plantinfo')}}><i style={{color:'black'}} className='bi bi-info-circle'/>  See more</Button>
+        </Col><Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{pi=props.plant; props.deletePID(props.plant.idPlant); navigate('/undone')}}><i style={{color:'black'}} className='bi bi-dash-circle'/>  Delete plant</Button>
+        </Col></Row></MDBCardText>
                 </MDBCardBody>
                 </MDBCard>      
         </Container>
