@@ -26,7 +26,7 @@ function Suggestions(props){
     const cost = [0, 3, 8, 4];
     const light = [6, 8, 2, 5];
     let d = new Date();
-    let rand = d.getSeconds()%2;
+    let rand = d.getSeconds()%10;
     let plants;
 
     const getPlants = async () => {
