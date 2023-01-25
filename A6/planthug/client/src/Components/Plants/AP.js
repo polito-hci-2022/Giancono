@@ -29,7 +29,7 @@ function AP(props) {
     props.getP();
   },[]);
 
-  if (props.add) return (<Added deletePID={props.deletePID} add={props.add} name={pinfo.name}/>);
+  if (props.add) return (<Added add={props.add} deletePID={props.deletePID} name={pinfo.name}/>);
   if (props.del) return (<Deleted deletePID={props.deletePID} name={pinfo.name}/>);
   if (props.cat) {
     return <PlantCategory getP={props.getP} cat={cat} addP={props.addP} upid={props.upid} getUPID={props.getUPID} p={p}/>
@@ -140,9 +140,9 @@ function Added(props) {
   <Container style={{textAlign:'center'}}><h1>Added!</h1></Container>
   <Container><MDBCard>
   <MDBCardImage src={pinfo.photo} position='top' alt='...' />
-  <MDBCardText>{props.name} was added to My Plants :)</MDBCardText>
+  <MDBCardText>{pinfo.name} was added to My Plants :)</MDBCardText>
   </MDBCard></Container>          
-  <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton deletePID={props.deletePID} id={p.id} add={props.add} />}/>
+  <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton deletePID={props.deletePID} id={pinfo.id} add={props.add} />}/>
   </>);
 }
 

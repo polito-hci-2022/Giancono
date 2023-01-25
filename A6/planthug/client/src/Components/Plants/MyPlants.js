@@ -1,5 +1,5 @@
 import '../../App.css';
-import { Container, Navbar, Button, Col, Row} from 'react-bootstrap';
+import { Container, Navbar, Button, Col, Row, Modal} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react';
@@ -81,7 +81,6 @@ useEffect(() => {
         {props.plant.fertilized === 1 && props.plant.watered === 1 && props.plant.repotted === 1 && <MDBCardText>Your plant is probably okay ;-)</MDBCardText>}
         <MDBCardText><br/><Row>
         <Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{props.setP(props.plant); props.getPID(props.plant.idPlant); navigate('/plantinfo')}}><i style={{color:'black'}} className='bi bi-info-circle'/>  See more</Button>
-        </Col><Col><Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{pi=props.plant; props.deletePID(props.plant.idPlant); navigate('/undone')}}><i style={{color:'black'}} className='bi bi-dash-circle'/>  Delete plant</Button>
         </Col></Row></MDBCardText>
                 </MDBCardBody>
                 </MDBCard>      
@@ -121,10 +120,31 @@ function PlantInfo(props){
 
 function Delete(props) {
         const navigate = useNavigate();
+        const [submit, setSubmit] = useState();
+        const [show, setShow] = useState();
+    
+        console.log(props.id);
+    
+        useEffect(() => {
+            setShow(false);
+          }, [submit]);
+    
+          const handleClose = () => {
+            setShow(false);
+        };
         return(
-        <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>{pi=props.plant; props.deletePID(props.plant.id); navigate('/undone')}}>
-                <i style={{color:'black', fontSize:28}} className='bi bi-dash-circle'/>
+        
+                <div style={{textAlign:'center'}}>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton style={{backgroundColor: '#bc4749'}}>
+                    <Modal.Title style={{color:'white'}}>Are you sure? The plant will no longer be in My Plants</Modal.Title>
+                    </Modal.Header><Modal.Footer style={{backgroundColor: '#bc4749', justifyContent:'space-between'}}>
+            <h6 className="text-light">
+              The action is irreversible
+            </h6><Button style={{backgroundColor: 'white', color: '#bc4749'}} className='border-0' onClick={ev => {pi=props.plant; props.deletePID(props.plant.id);setSubmit(true);navigate('/undone');}}>Delete it</Button></Modal.Footer>
+                    </Modal>
+                <h6 onClick={()=>{setShow(true)}}>
+                <i className='bi bi-dash-circle' style={{color:'black', fontSize:28}} color='black'/>
                 <br></br>Delete plant
                 </h6>
             </div>

@@ -17,6 +17,7 @@ function AddToPlants(props){
         setShow(false);
     };
 
+    console.log(props.addP);
     return(
 
             <div style={{textAlign:'center'}}>
@@ -24,7 +25,7 @@ function AddToPlants(props){
                 <PlusCircle size={28} color='black'/>
                 <br></br>Add plant
                 </h6>
-                <Modal show={show} css={{ background: "transparent"}} onHide={handleClose}>
+                <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton style={{backgroundColor: '#A7C957'}}>
                 <Modal.Title >Add you personalized name! (optional)</Modal.Title>
                 </Modal.Header><Modal.Footer style={{backgroundColor: '#A7C957'}}><Form.Group className="mb-3">
@@ -32,7 +33,7 @@ function AddToPlants(props){
         <Form.Text className="text-muted">
           This way, you will distinguish it better in your forest
         </Form.Text><br/><Button style={{backgroundColor: '#386641'}} className='border-0' onClick={ev => {setSubmit(true); if (tmp) props.addP(tmp, props.id, props.photo);
-        else props.addP(props.name, props.id, props.photo); if (props.add === 1) navigate('/added'); else navigate('/added1')}}>Sumbit</Button></Form.Group></Modal.Footer>
+        else props.addP(props.name, props.id, props.photo); if (props.add === 1) navigate('/added'); if (props.add === 2) navigate('/added1'); else navigate('/added')}}>Sumbit</Button></Form.Group></Modal.Footer>
                 </Modal>
             </div>
     );

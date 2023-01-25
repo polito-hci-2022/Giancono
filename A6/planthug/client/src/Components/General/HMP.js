@@ -8,7 +8,8 @@ function HMP(props){
       <Container style={{justifyContent:'center'}}>
         <br></br>
         <h6 style={{textAlign:'center'}}>Visit your plants page!</h6>
-        <Container onClick={() => navigate('/myplants')} style={{width:'260px', height:'100px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
+        {props.up && props.up.length > 0 &&
+        <Container onClick={() => navigate('/myplants')} style={{width:'260px', height:'95px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
           <Row>
             <Col><p></p>
               {props.up && props.up.length > 0 && <Image src={props.up[0].photo} style={{width:'40px', height:'40px'}} className="rounded-circle" alt="Circular Image" onClick={() => navigate('/myplants')}/>}
@@ -31,7 +32,15 @@ function HMP(props){
             <br></br>
             </Col>
           </Row>
-        </Container>
+        </Container>}
+        {props.up && props.up.length === 0 &&
+        <Container onClick={() => navigate('/myplants')} style={{width:'260px', height:'70px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
+          <Row>
+          <Col><p/><Flower3 onClick={() => navigate('/myplants')} size={40}/><br/></Col>
+          <Col><p/><Flower3 onClick={() => navigate('/myplants')} size={40}/><br/></Col>
+          <Col><p/><Flower3 onClick={() => navigate('/myplants')} size={40}/><br/></Col>
+          </Row>
+        </Container>}
       </Container>
 
     );
