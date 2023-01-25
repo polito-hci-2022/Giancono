@@ -27,20 +27,26 @@ let pi;
 
 function MyPlants(props) {
         const [count,setCount] = useState();
+        const [p, setP] = useState();
+        let d = new Date();
+        let rand = d.getSeconds();
 
         useEffect(() => {
                 props.getUP();
+                if (rand%2 === 0 && props.userPlants) props.userPlants.map(p => props.UPL(p.idPlant,-1,0,0));
+                if (rand%3 === 0 && props.userPlants) props.userPlants.map(p => props.UPL(p.idPlant, 0,0,-1));
+                if (rand%7 === 0 && props.userPlants) props.userPlants.map(p => props.UPL(p.idPlant, 0,-1,0));
               }, []);
 
-        if (props.del) return (<Deleted name={pi.name}/>)
+        if (props.del) return (<Deleted name={p.name}/>)
         if (!props.pi)
         return (<>
         <Container><TitleBar arrow={true} name='My Plants'></TitleBar></Container>
-        {props.userPlants.map((plant) =><PlantCard UPL={props.UPL} getUP={props.getUP} pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
+        {props.userPlants && props.userPlants.map((plant) =><PlantCard setP={setP} UPL={props.UPL} getUP={props.getUP} pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
         <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <PlantNavbar i1={<Home/>} i3={<AddPlant new={1}/>}/></>
         );
-        else return (<PlantInfo pid={props.pid} deletePID={props.deletePID}/>);
+        else return (<PlantInfo pid={props.pid} getPID={props.getPID} p={p} deletePID={props.deletePID}/>);
 }
 
 function PlantCard(props) {
@@ -48,11 +54,8 @@ const navigate = useNavigate();
 const [count,setCount] = useState();
 
 useEffect(() => {
-        props.getPID(props.plant.idPlant);
+        props.setP(props.getPID(props.plant.idPlant));
         props.getUP();
-        if (count%2 === 0) props.userPlants.map(p => props.UPL(p.idPlant,-1,0,0));
-        if (count%3 === 0) props.userPlants.map(p => props.UPL(p.idPlant, 0,0,-1));
-        if (count%4 === 0) props.userPlants.map(p => props.UPL(p.idPlant, 0,-1,0));
         setTimeout(() => {
           setCount((count) => count + 1);
         }, 20000);
@@ -80,7 +83,7 @@ useEffect(() => {
         {props.plant.fertilized === 0 && <MDBCardText>Use some fertilizer!</MDBCardText>}
         {props.plant.fertilized === 1 && props.plant.watered === 1 && props.plant.repotted === 1 && <MDBCardText>Your plant is probably okay ;-)</MDBCardText>}
         <MDBCardText><br/>
-        <Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{props.getPID(props.plant.idPlant); navigate('/plantinfo')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button>
+        <Button className="border-0 text-black" style={{backgroundColor:'#A7C957' }} onClick={()=>{props.setP(props.plant); props.getPID(props.plant.idPlant); navigate('/plantinfo')}}><i style={{color:'black'}} className='bi bi-info-circle-fill'/>  See more</Button>
         </MDBCardText>
                 </MDBCardBody>
                 </MDBCard>      
@@ -90,31 +93,31 @@ useEffect(() => {
 }
 
 function PlantInfo(props){
-        
+
         const[dsc,setDsc] = useState(false); 
       
         return (<><Container><TitleBar name='Plant Info' arrow={true}></TitleBar></Container><Container>
                 <MDBCard style={{backgroundColor:'#386641'}}>
-                  <MDBCardImage src={props.pid[0].photo} position='top' alt='...' />
+                  <MDBCardImage src={props.pid && props.pid[0].photo} position='top' alt='...' />
                   <MDBCardBody>
-                    <MDBCardTitle className='text-light'>{props.pid[0].name}</MDBCardTitle>
+                    <MDBCardTitle className='text-light'>{props.pid && props.pid[0].name}</MDBCardTitle>
                     <MDBCardText style={{color:'#A7C957'}}>BASIC NEEDS:</MDBCardText>
                     <Row>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-droplet'></i> {props.pid[0].waterNeed}</Button>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-sun'></i> {props.pid[0].sunNeed}</Button>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> {props.pid[0].fertilizerNeed}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-droplet'></i> {props.pid && props.pid[0].waterNeed}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-sun'></i> {props.pid && props.pid[0].sunNeed}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-stars'></i> {props.pid && props.pid[0].fertilizerNeed}</Button>
                     <MDBCardText style={{color:'#A7C957'}}>BE WARY OF:</MDBCardText>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-bug'></i> {props.pid[0].pests}</Button>
-                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-activity'></i> {props.pid[0].diseases}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-bug'></i> {props.pid && props.pid[0].pests}</Button>
+                    <Button className="border-0" style={{backgroundColor:'#386641'}}><i className='bi bi-activity'></i> {props.pid && props.pid[0].diseases}</Button>
                     </Row>
                     {!dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(true)}>Show description</Button></Row>}
                     {dsc && <Row><Button className="border-0" style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>setDsc(false)}>Hide description</Button></Row>}
                     {dsc && <MDBCardText className='text-light'>
-                      {props.pid[0].description}
+                      {props.pid && props.pid[0].description}
                     </MDBCardText>}
                   </MDBCardBody>
                 </MDBCard></Container><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
-                <PlantNavbar i1={<Home/>} i3={<Delete deletePID={props.deletePID} plant={props.pid[0]}/>}/>
+                <PlantNavbar i1={<Home/>} i3={<Delete deletePID={props.deletePID} plant={props.pid && props.pid[0]}/>}/>
                 </>);
 }
 

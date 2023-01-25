@@ -4,7 +4,7 @@
 https://www.figma.com/file/3p6n5U5kvP0JfmPEQMOmxF/Plant-Hug?node-id=0%3A1&t=iQjFDSL3u5oWM4ZP-1    
 
 ###Tasks:
-* recognizing a plant: getting useful information about the maintenance of the plant, including watering frequencies, problems that can accur, repotting period etc.
+* recognizing a plant: getting useful information about the maintenance of the plant, including watering frequencies, problems that can occur, repotting period etc.
 * receiving suggestions about which plant to buy: suggesting a plant that meets the user needs in terms of money, effort and aesthetic.
 * interaction with peers: getting information in a natural language, explained by peers, on specific needs, or just interact with other enthusiasts.
 

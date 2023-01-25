@@ -225,10 +225,10 @@ function App() {
         <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
         <Route path='/myplants' element={<MyPlants UPL={updateUPlant} getUP={getUPlants} userPlants={up} pid={pid} getPID={getPID}/>}></Route>
-        <Route path='/plantinfo' element={<MyPlants getUP={getUPlants} pi={true} pid={pid} deletePID={deletePID}/>}/> 
+        <Route path='/plantinfo' element={<MyPlants getUP={getUPlants} getPID={getPID} pi={true} pid={pid} deletePID={deletePID}/>}/> 
         <Route path='/plantinfo1' element={<AP pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
         <Route path='/plantinfo2' element={<PlantCard pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
-        <Route path='/addplant' element={<AP plants={p} getUPID={getUPID} upid={upid}/>}/>
+        <Route path='/addplant' element={<AP getP={getPlants} plants={p} getUPID={getUPID} upid={upid}/>}/>
         <Route path='/added' element={<AP add={true}/>}/>
         <Route path='/added1' element={<PlantCard add={true}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
@@ -240,7 +240,7 @@ function App() {
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>
         <Route path='/forum/posted' element={<ForumPosted/>}/>
         <Route path='/forum/post/:id' element={<Post post={posts}/>}/>
-        <Route path='/cat' element={<AP getUPID={getUPID} upid={upid} addP={addP} plants={p} cat={1}/>}/>
+        <Route path='/cat' element={<AP getP={getPlants} getUPID={getUPID} upid={upid} addP={addP} plants={p} cat={1}/>}/>
       </Routes>
     </BrowserRouter>
   );

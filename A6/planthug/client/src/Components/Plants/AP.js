@@ -25,11 +25,14 @@ let p, cat, pinfo;
 
 function AP(props) {
   const navigate = useNavigate();
+  useEffect(() => {
+    props.getP();
+  },[]);
 
   if (props.add) return (<Added name={pinfo.name}/>);
   if (props.del) return (<Deleted name={p.name}/>);
   if (props.cat) {
-    return <PlantCategory cat={cat} addP={props.addP} upid={props.upid} getUPID={props.getUPID} p={p}/>
+    return <PlantCategory getP={props.getP} cat={cat} addP={props.addP} upid={props.upid} getUPID={props.getUPID} p={p}/>
   }
   if (props.pi) {
     return <PlantInfo upid={props.upid} getUPID={props.getUPID} deletePID={props.deletePID} id={pinfo.id} photo={pinfo.photo} addP={props.addP}/>}
@@ -76,6 +79,10 @@ function AP(props) {
 }
 
 function PlantCategory(props) {
+  useEffect(() => {
+    props.getP();
+  },[]);
+  
   return (<>
     <Container><TitleBar name={props.cat} arrow={true}/></Container>
     {props.p.filter(plant => plant.category === cat).map((plant) =><PlantCard addP={props.addP} upid={props.upid} getUPID={props.getUPID} plant={plant}/>)}
