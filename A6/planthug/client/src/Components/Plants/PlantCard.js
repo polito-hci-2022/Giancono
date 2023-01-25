@@ -34,7 +34,7 @@ function PlantCard(props){
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
 
-    if (props.add) return (<Added add={props.add} name={pinfo.name}/>);
+    if (props.add) return (<Added deletePID={props.deletePID} add={props.add} name={pinfo.name}/>);
     if (props.del) return (<Deleted/>);
     if (!props.pi)
      return(<>
@@ -125,7 +125,7 @@ function Added(props) {
     <MDBCardImage src={pinfo.photo} position='top' alt='...' />
     <MDBCardText>{props.name} was added to My Plants :)</MDBCardText>
     </MDBCard></Container>          
-    <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton add={props.add}/>}/>
+    <PlantNavbar i1={<Home/>} i2={<MyPlantsButton/>} i3={<UndoButton deletePID={props.deletePID} id={pinfo.id} add={props.add}/>}/>
     </>);
   }
 

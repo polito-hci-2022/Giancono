@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 function UndoButton(props){
     const navigate = useNavigate();
+    console.log(props.id);
+    props.deletePID(props.id);
     if (props.add===1) return(
 
         <div style={{textAlign:'center'}}>

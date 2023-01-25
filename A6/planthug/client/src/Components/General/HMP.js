@@ -8,7 +8,7 @@ function HMP(props){
       <Container style={{justifyContent:'center'}}>
         <br></br>
         <h6 style={{textAlign:'center'}}>Visit your plants page!</h6>
-        <Container onClick={() => navigate('/myplants')} style={{width:'260px', height:'80px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
+        <Container onClick={() => navigate('/myplants')} style={{width:'260px', height:'100px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
           <Row>
             <Col><p></p>
               {props.up && props.up.length > 0 && <Image src={props.up[0].photo} style={{width:'40px', height:'40px'}} className="rounded-circle" alt="Circular Image" onClick={() => navigate('/myplants')}/>}
