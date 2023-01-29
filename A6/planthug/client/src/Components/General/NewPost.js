@@ -18,6 +18,7 @@ import {
   Navbar,
   InputGroup,
   Alert,
+  Modal
 } from "react-bootstrap";
 import ForumButton from "../Buttons/forumButton";
 import TitleBar from '../General/Titlebar';
@@ -35,9 +36,11 @@ import { Navigate, useNavigate } from "react-router-dom";
 function NewPost(props) {
   const [preview, setPreview] = useState(0);
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Help my plant");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("Franchino");
+  const [sure, setSure] = useState(0)
+  const [alert, setAlert] = useState(0)
 
   const navigate = useNavigate();
 
@@ -48,13 +51,26 @@ function NewPost(props) {
     navigate('/forum/posted')
   };
 
+  const handleModal = () =>{
+    setSure(0)
+    setPreview(!preview)
+    
+  }
+
+  const handleGoToPreview = () =>{
+    if(title !== '' && body !== ''){
+      setPreview(!preview)
+    } else {
+      setAlert(1)
+    }
+  }
 
   if (!preview) {
     return (
       <Container>
         <br></br>
         <TitleBar name='New post' arrow={true}></TitleBar>
-        {preview ===1 && title==="" ? <Row><Alert dismissible>{"Fill in all the required inputs"}</Alert></Row> : <></>} 
+        {alert===1 && <Alert variant='warning' onClose={()=>setAlert(0)}dismissible>Fill in all the required inputs</Alert>} 
         <br></br>
         <br></br>
         <h4>Post title:</h4>
@@ -92,7 +108,7 @@ function NewPost(props) {
               <Col xs>
                 <div style={{ textAlign: "center" }}>
                   <h6>
-                    <FileEarmarkBreak size={28} color="black" onClick={() => setPreview(!preview)}/>
+                    <FileEarmarkBreak size={28} color="black" onClick={() => handleGoToPreview()}/>
                     <br></br>Go to Preview
                   </h6>
                 </div>
@@ -130,9 +146,16 @@ function NewPost(props) {
           <Container style={{ justifyContent: "center" }}>
             <Row>
               <Col xs>
-                <IoArrowBack size={28} onClick={() => setPreview(!preview)}>
-                  {" "}
-                </IoArrowBack>
+                <Modal size="sm" show = {sure} onHide={() => setSure(0)} aria-labelledby="example-modal-sizes-title-sm">
+                  <Modal.Body>Are you sure? Your post will be deleted</Modal.Body> 
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={()=>setSure(0)}>No, remain here</Button>
+                    <Button variant="primary" onClick={()=>handleModal()}>Confirm</Button>
+                  </Modal.Footer>
+                </Modal>
+                <IoArrowBack size={28} onClick={() => setSure(1)}/>
+                <p>back</p>  
+                
               </Col>
               <Col xs>
                 <HomeButton />

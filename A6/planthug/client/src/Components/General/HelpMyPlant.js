@@ -1,41 +1,37 @@
-import PlantNavbar from "./ForumNavbar";
+
 import { useEffect, useState } from "react";
 import React from "react";
-import { GearFill, Search, ReplyFill } from "react-bootstrap-icons";
+import {Search } from "react-bootstrap-icons";
 import NewPostButton from '../Buttons/newPost';
 import HomeButton from '../Buttons/home';
 import {
   Container,
-  Offcanvas,
   Row,
   Col,
   Button,
   Form,
-  Card,
-  Navbar,
+  Navbar
 } from "react-bootstrap";
 import {
   MDBCard,
   MDBCardBody,
   MDBCardTitle,
-  MDBCardText,
-  MDBCardImage,
-  MDBCardSubTitle,
+  MDBCardText
 } from 'mdb-react-ui-kit';
 import TitleBar from '../General/Titlebar';
 
-import ForumButton from "../Buttons/forumButton";
+
 import { useNavigate } from "react-router-dom";
 
 function HelpMyPlant(props) {
-
+// eslint-disable-next-line
   const [posts, setPosts] = useState()
 
   const navigate = useNavigate();
 
   useEffect(()=>{
     handleGetPosts()
-
+// eslint-disable-next-line
   }, [])
 
   const handleGetPosts = async () => {

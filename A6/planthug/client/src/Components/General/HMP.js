@@ -7,7 +7,7 @@ function HMP(props){
     return(
       <Container style={{justifyContent:'center'}}>
         <br></br>
-        <h6 style={{textAlign:'center'}}>Visit your plants page!</h6>
+        <h6 style={{textAlign:'center'}}>Click a plant to visit your plants page!</h6>
         {props.up && props.up.length > 0 &&
         <Container onClick={() => navigate('/myplants')} style={{width:'260px', height:'95px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
           <Row>

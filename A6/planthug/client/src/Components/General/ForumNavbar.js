@@ -5,7 +5,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import NewPostButton from '../Buttons/newPost';
 import HomeButton from '../Buttons/home';
-import RecognizeButton from '../Buttons/recognizeButton';
 
 function PlantNavbar(props) {
         return (

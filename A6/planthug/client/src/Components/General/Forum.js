@@ -1,9 +1,7 @@
 import PlantNavbar from './ForumNavbar';
-import { useState } from 'react';
 import React from 'react';
-import InfoBox from './info';
-import { GearFill, StarFill, QuestionCircleFill, Search, ReplyFill, CartPlusFill} from 'react-bootstrap-icons';
-import { Container, Offcanvas, Row, Col, Button, Form } from 'react-bootstrap'
+import { GearFill, StarFill, QuestionCircleFill, CartPlusFill} from 'react-bootstrap-icons';
+import { Container, Row, Button } from 'react-bootstrap'
 import TitleBar from './Titlebar';
 import { useNavigate } from 'react-router-dom';
 
