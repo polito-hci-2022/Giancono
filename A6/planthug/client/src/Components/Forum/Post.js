@@ -34,11 +34,12 @@ function Post(props) {
   const [alert, setAlert] = useState(0)
 
   
-  const handleGetPosts = async () => {
+  const handleGetPosts = async (val) => {
+    console.log(parseInt(val));
     try{
-      let posts = await getPosts();
-      const _post = posts.filter((e)=> e.id===id)
-      setPost(_post[0])
+      let posts = await getPosts(); 
+      const _post = posts.filter((e)=> {console.log(e.id); return e.id===parseInt(val)});
+      setPost(_post[0]);
     }catch(err){
       console.log(err)
     }
@@ -99,10 +100,10 @@ function Post(props) {
   }
 
     useEffect(()=>{
-      handleGetPosts();
+      handleGetPosts(id);
       handlegetReplies();
       // eslint-disable-next-line
-    }, [props])
+    }, [])
     return (
       <Container>
         <Container>
@@ -116,13 +117,13 @@ function Post(props) {
             <Modal.Body>Reply deleted correctly! Click anywhere to continue</Modal.Body> 
           </Modal>} 
 
-        <TitleBar name={`${post.title}`} arrow={true}/></Container>
+        <TitleBar name={post && post.title} arrow={true}/></Container>
         <div>
           <Container>
             <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
               <MDBCardBody>
-              <MDBCardText><b>{post.author}:</b></MDBCardText>
-              <MDBCardText><div>{post.body}</div></MDBCardText>
+              <MDBCardText><b>{post && post.author}:</b></MDBCardText>
+              <MDBCardText><div>{post && post.body}</div></MDBCardText>
               <MDBCardText><Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setAuthorReply(post.author)}} className="border-0">Reply</Button> </MDBCardText>
               </MDBCardBody>
             </MDBCard>      
@@ -147,13 +148,13 @@ function Post(props) {
               <Container key={reply} overflow-y="scroll">
                 <MDBCard style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>
                   <MDBCardBody>
-                  <MDBCardText><b>{reply.author}:</b><div >{reply.body}</div></MDBCardText>
+                  <MDBCardText><b>{reply.author}:</b><div >{reply && reply.body}</div></MDBCardText>
                   <Row>
                     <Col>
                     <Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setAuthorReply(reply.author); setBody(reply.author)}} className="border-0">Reply</Button>
                     </Col>
                     <Col>
-                    <Button style={{color:'black'}} onClick={()=>handleDeleteReply(reply)} variant='danger'>Delete</Button>
+                    <Button style={{color:'white'}} onClick={()=>handleDeleteReply(reply)} variant='danger'>Delete</Button>
                     </Col>
                 
 
