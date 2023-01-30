@@ -88,7 +88,8 @@ function Suggestions(props){
 
     return(<>
         <Container>
-            <TitleBar arrow={true} name='Suggestions' icon={<Lightbulb />} />
+            {props.mod !== 'AP' && <TitleBar arrow={false} name='Suggestions' icon={<Lightbulb />} />}
+            {props.mod === 'AP' && <TitleBar arrow={false} mod={props.mod} name='Suggestions' icon={<Lightbulb />} />}
         </Container>
         <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
             <Row>

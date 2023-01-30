@@ -221,6 +221,7 @@ function App() {
         <Route path='/' element={<Homepage up={up}/>}/>
         <Route path='/test' element={<Test/>}/>
         <Route path='/suggestions' element={<Suggestions getUP={getUPlants} up={up} getUPID={getUPID} setPID={setPID}/>}/>
+        <Route path='/suggestions1' element={<Suggestions mod={'AP'} getUP={getUPlants} up={up} getUPID={getUPID} setPID={setPID}/>}/>
         <Route path='/forum' element={<Forum/>}/>
         <Route path='/helpmyplant' element={<HelpMyPlant posts={posts} getPosts={getPosts}/>} />
         <Route path='/newpost' element={<NewPost handleAddPost={handleAddPost}/>} />
@@ -228,13 +229,14 @@ function App() {
         <Route path='/plantinfo' element={<MyPlants getUP={getUPlants} getPID={getPID} pi={true} pid={pid} deletePID={deletePID}/>}/> 
         <Route path='/plantinfo1' element={<AP pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
         <Route path='/plantinfo2' element={<PlantCard pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
-        <Route path='/addplant' element={<AP getP={getPlants} plants={p} getUPID={getUPID} upid={upid}/>}/>
+        <Route path='/addplant' element={<AP mod={'AP'} getP={getPlants} plants={p} getUPID={getUPID} upid={upid}/>}/>
         <Route path='/added' element={<AP add={1} deletePID={deletePID}/>}/>
         <Route path='/added1' element={<PlantCard addP={addP} deletePID={deletePID} add={2}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>
         <Route path='/undone1' element={<AP del={true}/>}/>
         <Route path='/undone2' element={<PlantCard del={true}/>}/>
         <Route path='/recognize' element={<Recognize/>}/>
+        <Route path='/recognize1' element={<Recognize mod={'AP'}/>}/>
         <Route path='/recognize/plant' element={<RecognizedPlant getUPID={getUPID} upid={upid} setPID={setPID}/>}/>
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>

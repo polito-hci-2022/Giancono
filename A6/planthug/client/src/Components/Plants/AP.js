@@ -25,6 +25,7 @@ let p, cat, pinfo;
 
 function AP(props) {
   const navigate = useNavigate();
+  console.log(props.mod);
   useEffect(() => {
     props.getP();
   },[]);
@@ -72,7 +73,7 @@ function AP(props) {
 </MDBCardTitle></MDBCardBody></MDBCard>
 </Container>
 <Navbar/><Navbar/><Navbar/>
-        <PlantNavbar i1={<Home/>} i2={<RecognizeButton/>} i3={<SuggestionsButton/>}/>
+        <PlantNavbar i1={<Home/>} i2={<RecognizeButton mod={props.mod}/>} i3={<SuggestionsButton mod={props.mod}/>}/>
         </>);
 }
 

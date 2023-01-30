@@ -9,7 +9,7 @@ import GoAhead from '../Buttons/goahead';
 import ChooseAnother from "../Buttons/chooseAnother";
 import { useRef, useEffect, useState } from "react";
 
-function Recognize(){
+function Recognize(props){
     const [taken, setTaken] = useState(0); //-1 gallery, 1 photo
     const [file, setFile] = useState();
 
@@ -76,7 +76,8 @@ function Recognize(){
         <>
             <div className={'h-100 ' + (taken === 0 ? 'd-block' : 'd-none')}>
                 <Container>
-                    <TitleBar arrow={true} name='Recognize' icon={<CameraFill />} />
+                    {props.mod !== 'AP' && <TitleBar arrow={false} name='Recognize' icon={<CameraFill />} />}
+                    {props.mod === 'AP' && <TitleBar arrow={false} mod={props.mod} name='Recognize' icon={<CameraFill />} />}
                 </Container>
                 <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
                     <Row className="w-85" style={{height: 0}}>
