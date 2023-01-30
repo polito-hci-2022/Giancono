@@ -53,7 +53,7 @@ function RecognizedPlant(props){
         <>
             {recognized ? <>
                 <Container>
-                    <TitleBar name='Recognize' icon={<CameraFill />} arrow={false} />
+                    <TitleBar name='Recognize' icon={<CameraFill />} arrow={true} />
                 </Container>
                 <Container fluid className='h-100 d-flex flex-column align-items-center justify-content-around'>
                 <Row className="w-75">
