@@ -169,6 +169,16 @@ app.get(`/api/getReplies/:id`, async(req, res) => {
     return res.status(200).json(x);
 });
 
+app.delete(`/api/deletePost/:id`, async(req, res) => {
+    let x;
+    
+    try{
+        x = await daoDB.deletePost(req.params.id);
+    }catch(err){
+        return res.status(500).json({err:'generic error'})
+    }
+    return res.status(204).json(x);
+});
 
 
 // activate the server

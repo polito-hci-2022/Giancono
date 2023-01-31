@@ -67,5 +67,17 @@ const getReplies = async (id) => {
       
   }
 
+  
+const deletePost = async(id) => {
+  try{
+    const response = await fetch(APIURL+ `/deletePost/${id}`, {
+      method: 'DELETE'
+    });
+    if (response.ok)
+      return true;
+  } catch(ex){
+    throw ex;
+  }
+}
 
-export  {getReplies, addReplies, getPosts}
+export  {getReplies, addReplies, getPosts, deletePost}

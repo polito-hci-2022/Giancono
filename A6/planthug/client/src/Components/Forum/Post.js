@@ -22,6 +22,7 @@ import { ReplyFill, XCircleFill } from "react-bootstrap-icons";
 
 import {getReplies, getPosts, addReplies} from '../../API'
 
+
 function Post(props) {
 
   const {id} = useParams();
@@ -32,8 +33,11 @@ function Post(props) {
   const [authorReply, setAuthorReply] = useState("");
   const [replies, setReplies] = useState([])
   const [alert, setAlert] = useState(0)
-
+  const [show, setShow] = useState(0)
+  const [deleteReply, setDeleteReply] = useState([]);
   
+
+
   const handleGetPosts = async (val) => {
     console.log(parseInt(val));
     try{
@@ -55,6 +59,7 @@ function Post(props) {
       // eslint-disable-next-line
       if(r[0].replies != '[]'){
         setReplies(JSON.parse(x))
+        
       } else { 
         setReplies([])
   
@@ -86,17 +91,27 @@ function Post(props) {
   }
 
   const handleDeleteReply = async (reply) => {
-
+    console.log(reply)
     let newReplies = [...replies]
     newReplies = newReplies.filter((e)=> e.author!==reply.author || e.body!==reply.body)
     try{
+    
     await addReplies(newReplies, id)
     await handlegetReplies()
+    
     setAlert(3)
+    setShow(0)
     } catch(err){
       console.log(err)
       setAlert(2)
     }
+  }
+
+
+
+  const handleOpenModal = (reply) => {
+    setDeleteReply(reply)
+    setShow(1)
   }
 
     useEffect(()=>{
@@ -104,20 +119,31 @@ function Post(props) {
       handlegetReplies();
       // eslint-disable-next-line
     }, [])
+
+
     return (
       <Container>
         <Container>
-          {alert===1 && <Modal size="sm" show = {alert} onHide={() => setAlert(0)} aria-labelledby="example-modal-sizes-title-sm">
-            <Modal.Body>Reply sent correctly! Click anywhere to continue</Modal.Body> 
+                
+          <Modal  size="sm" style={{color:'#BC4749'}} show = {show} onHide={() => setShow(0)} aria-labelledby="example-modal-sizes-title-sm">
+            <Modal.Body><b>Are you sure? </b></Modal.Body> 
+            <Modal.Footer  >
+              <Button variant="secondary" onClick={()=>setShow(0)}>No, go back</Button>
+              <Button variant="danger" onClick={()=> {handleDeleteReply(deleteReply)}}>Delete</Button>
+            </Modal.Footer>
+          </Modal>
+
+          {alert===1 && <Modal size="sm" style={{color:'black'}} show = {alert} onHide={() => setAlert(0)} aria-labelledby="example-modal-sizes-title-sm">
+            <Modal.Body><b>Reply sent correctly! Click anywhere to continue</b></Modal.Body> 
           </Modal>}
-          {alert===2 && <Modal size="sm" show = {alert} onHide={() => setAlert(0)} aria-labelledby="example-modal-sizes-title-sm">
-            <Modal.Body>There was a problem, refresh the page</Modal.Body> 
+          {alert===2 && <Modal size="sm"  show = {alert} onHide={() => setAlert(0)} aria-labelledby="example-modal-sizes-title-sm">
+            <Modal.Body><b>There was a problem, refresh the page</b></Modal.Body> 
           </Modal>} 
-          {alert===3 && <Modal size="sm" show = {alert} onHide={() => setAlert(0)} aria-labelledby="example-modal-sizes-title-sm">
-            <Modal.Body>Reply deleted correctly! Click anywhere to continue</Modal.Body> 
+          {alert===3 && <Modal size="sm"  show = {alert} onHide={() => setAlert(0)} aria-labelledby="example-modal-sizes-title-sm">
+            <Modal.Body><b>Reply deleted correctly! Click anywhere to continue</b></Modal.Body> 
           </Modal>} 
 
-        <TitleBar name={post && post.title} arrow={true}/></Container>
+        <TitleBar name={post && post.title} arrow={false}/></Container>
         <div>
           <Container>
             <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
@@ -126,7 +152,7 @@ function Post(props) {
               <MDBCardText><div>{post && post.body}</div></MDBCardText>
               <MDBCardText><Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setAuthorReply(post.author)}} className="border-0">Reply</Button> </MDBCardText>
               </MDBCardBody>
-            </MDBCard>      
+            </MDBCard> 
           </Container>
         </div>
          
@@ -142,19 +168,19 @@ function Post(props) {
           <br></br>
           <h4 style={{textAlign:'center', color:'gray'}}>No replies to this post</h4></Container> 
           :
-          replies.map((reply)=>{
+          
+          replies.map((reply, counter)=>{
             return (
-
-              <Container key={reply} overflow-y="scroll">
-                <MDBCard style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>
-                  <MDBCardBody>
+              <Container key={counter}  overflow-y="scroll">
+                <MDBCard   style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>
+                  <MDBCardBody >
                   <MDBCardText><b>{reply.author}:</b><div >{reply && reply.body}</div></MDBCardText>
-                  <Row>
+                  <Row >
                     <Col>
                     <Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setAuthorReply(reply.author); setBody(reply.author)}} className="border-0">Reply</Button>
                     </Col>
-                    <Col>
-                    <Button style={{color:'white'}} onClick={()=>handleDeleteReply(reply)} variant='danger'>Delete</Button>
+                    <Col  >
+                      <Button style={{color:'white'}} onClick={()=>{handleOpenModal(reply)}}variant='danger'>Delete</Button>
                     </Col>
                 
 
@@ -176,7 +202,7 @@ function Post(props) {
             <Navbar/>
             <Button onClick={()=>{handleAddReply("aloelover")}}variant="danger">Send reply</Button>
           </Container> : <></>
-        }<Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
+        }<Navbar/>
         <Navbar position='absolute' fixed="bottom" style={{backgroundColor:'#F2E8CF'}}>
           <Container style={{justifyContent:'center'}}>
             <Row >

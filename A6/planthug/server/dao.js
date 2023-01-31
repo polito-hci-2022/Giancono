@@ -251,6 +251,19 @@ getReplies = (id) => {
   });
 }
 
+deletePost(id){
+  return new Promise((resolve, reject)=>{
+    const sql = 'DELETE FROM forum WHERE id = ?';;
+    this.db.run(sql, [id], function (err) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } 
+        resolve(true);
+    });
+  })
+}
+
 }
 
 module.exports = dao;

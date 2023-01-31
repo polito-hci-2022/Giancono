@@ -10,7 +10,8 @@ import {
   Col,
   Button,
   Form,
-  Navbar
+  Navbar,
+  Modal
 } from "react-bootstrap";
 import {
   MDBCard,
@@ -22,11 +23,14 @@ import TitleBar from '../General/Titlebar';
 
 
 import { useNavigate } from "react-router-dom";
+import { deletePost } from "../../API";
 
 function HelpMyPlant(props) {
 // eslint-disable-next-line
   const [posts, setPosts] = useState()
-
+  const [show, setShow] = useState()
+  const [deletedPost, setDeletedPost] = useState()
+  
   const navigate = useNavigate();
 
   useEffect(()=>{
@@ -42,11 +46,35 @@ function HelpMyPlant(props) {
       console.log(err)
     }
   }
+  
+  const handleDeletePost = async(id)=>{
+    try{
+      await deletePost(id)
+      await handleGetPosts()
+      setShow(0)
+    }catch(err){
+      console.log(err)
+    }
+
+  }
+
+  const handleOpenModal = (id) => {
+    setDeletedPost(id)
+    setShow(1)
+  }
 
   return (
     <Container>
+      <Modal size="sm" style={{color:'#BC4749'}} show = {show} onHide={() => setShow(0)} aria-labelledby="example-modal-sizes-title-sm">
+                      <Modal.Body><b>Are you sure? </b></Modal.Body> 
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={()=>setShow(0)}>No, go back</Button>
+                        <Button variant="danger" onClick={()=>handleDeletePost(deletedPost)}>Delete</Button>
+                      </Modal.Footer>
+      </Modal>
       <TitleBar name='Forum > Help my plant' arrow={true}></TitleBar>
       <Container>
+        <br></br>
         <Form className="d-flex">
           <Form.Control
               type="search"
@@ -60,11 +88,9 @@ function HelpMyPlant(props) {
       
       
       <br></br>
-      <br></br>
       </Container>
         <div style={{ textAlign: "center" }}> 
-
-       
+        
       {props.posts.map((element)=>{
         return (
           <Container key={element.id}>
@@ -74,6 +100,8 @@ function HelpMyPlant(props) {
                     <MDBCardText><div>Posted by {element.author}</div></MDBCardText>
                     <Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{navigate(`/forum/post/${element.id}`)}} className="border-0">
                       See post</Button>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Button variant='danger' onClick={()=>handleOpenModal(element.id)}>Delete Post</Button>
                     </MDBCardBody>
                   </MDBCard>      
           </Container>  
@@ -87,7 +115,9 @@ function HelpMyPlant(props) {
        
       </div>
       <br></br>
-      
+      <br></br>
+      <br></br>
+      <br></br>
       <Navbar position='absolute' fixed="bottom" style={{backgroundColor:'#F2E8CF'}}>
               <Container style={{justifyContent:'center'}}>
                 <Row >

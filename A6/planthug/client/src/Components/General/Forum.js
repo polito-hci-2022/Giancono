@@ -1,6 +1,6 @@
 import PlantNavbar from './ForumNavbar';
 import React from 'react';
-import { GearFill, StarFill, QuestionCircleFill, CartPlusFill} from 'react-bootstrap-icons';
+import { GearFill, StarFill, QuestionCircleFill, CartPlusFill, ChatLeftDots} from 'react-bootstrap-icons';
 import { Container, Row, Button } from 'react-bootstrap'
 import TitleBar from './Titlebar';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ function Forum() {
 
     return (
         <Container>
-            <TitleBar name='Forum' arrow={false} ></TitleBar>
+            <TitleBar name='Forum' arrow={true} icon={<ChatLeftDots />}></TitleBar>
             <br></br>
             <br></br>
             <br></br>
@@ -20,30 +20,48 @@ function Forum() {
                 <Container>
                     
                     <br></br>
-                    <h4>Topics:</h4>
+                    <h2>Topics:</h2>
                     <br></br>
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#386641' }} className="rounded-pill border-0" onClick={()=>{navigate("/helpmyplant")}}>
-                            <GearFill/>⠀Help my plant</Button>
+                        <Container style={{ backgroundColor: '#386641', color: 'white', height:'80px', textAlign:'center', paddingTop:'22px'}} className="rounded-pill border-0" onClick={()=>{navigate("/helpmyplant")}}>
+                            <h4>
+                                <GearFill/>⠀Help my plant
+                            </h4>
+                            
+                        </Container>
                     </Row>
                     <br></br>
-
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#386641' }} className="rounded-pill border-0" ><StarFill></StarFill>
-                        ⠀Plant's reviews</Button>
+                        <Container style={{ backgroundColor: '#386641', color: 'white', height:'80px', textAlign:'center', paddingTop:'22px'}} className="rounded-pill border-0" onClick={()=>{navigate("/helpmyplant")}}>
+                            <h4>
+                            <StarFill></StarFill>
+                        ⠀Plant's reviews
+                            </h4>
+                            
+                        </Container>
                     </Row>
                     <br></br>
-
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#386641' }} className="rounded-pill border-0" >                        <CartPlusFill></CartPlusFill>
-                        ⠀Accessories for your plant</Button>
+                        <Container style={{ backgroundColor: '#386641', color: 'white', height:'80px', textAlign:'center', paddingTop:'22px'}} className="rounded-pill border-0" onClick={()=>{navigate("/helpmyplant")}}>
+                            <h4>
+                            <CartPlusFill></CartPlusFill>
+                        ⠀Accessories for your plant
+                            </h4>
+                            
+                        </Container>
                     </Row>
                     <br></br>
-
                     <Row>
-                        <Button size="lg" style={{ backgroundColor: '#386641' }} className="rounded-pill border-0" ><QuestionCircleFill></QuestionCircleFill>
-                        ⠀Others</Button>
+                        <Container style={{ backgroundColor: '#386641', color: 'white', height:'80px', textAlign:'center', paddingTop:'22px'}} className="rounded-pill border-0" onClick={()=>{navigate("/helpmyplant")}}>
+                            <h4>
+                            <QuestionCircleFill></QuestionCircleFill>
+                        ⠀Others
+                            </h4>
+                            
+                        </Container>
                     </Row>
+                    <br></br>
+                    
 
 
 

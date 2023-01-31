@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import { Search, ReplyFill, FileEarmarkBreak } from "react-bootstrap-icons";
+import { Search, ReplyFill, FileEarmarkBreak, House } from "react-bootstrap-icons";
 import NewPostButton from "../Buttons/newPost";
 import { IoArrowBack } from "react-icons/io5";
 
@@ -53,7 +53,7 @@ function NewPost(props) {
 
   const handleModal = () =>{
     setSure(0)
-    setPreview(!preview)
+    navigate('/')
     
   }
 
@@ -69,6 +69,7 @@ function NewPost(props) {
     return (
       <Container>
         <TitleBar name='New post' arrow={true}></TitleBar>
+        
         {alert===1 && <Alert variant='warning' onClose={()=>setAlert(0)}dismissible>Fill in all the required inputs</Alert>} 
         <br></br>
         <br></br>
@@ -124,7 +125,6 @@ function NewPost(props) {
         {preview}
         <TitleBar name='Preview' ></TitleBar>
         <br></br>
-        <br></br>
         <h4>Do you want to post this?</h4>
         <br></br>
 
@@ -133,11 +133,14 @@ function NewPost(props) {
               <MDBCardTitle>{title}</MDBCardTitle>
               <MDBCardText><div>Category: {category}</div></MDBCardText>
 
-                <MDBCardText style={{backgroundColor:'white'}} className='text-black mb-3 rounded'><div>{body}</div></MDBCardText>
+                <MDBCardText style={{backgroundColor:'white', paddingLeft: '0.8rem', paddingRight: '0.8rem'}} className='text-black mb-3 rounded'><div>{body}</div></MDBCardText>
             </MDBCardBody>
           </MDBCard> 
 
-
+          <Button  onClick={()=>{handleSubmit(); }} variant={"danger"} >
+            <PlusCircle size={20} /> Post it!
+          </Button>
+          
         <Navbar
           position="absolute"
           fixed="bottom"
@@ -145,28 +148,28 @@ function NewPost(props) {
           <Container style={{ justifyContent: "center" }}>
             <Row>
               <Col xs>
-                <Modal size="sm" show = {sure} onHide={() => setSure(0)} aria-labelledby="example-modal-sizes-title-sm">
-                  <Modal.Body>Are you sure? Your post will be deleted</Modal.Body> 
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={()=>setSure(0)}>No, remain here</Button>
-                    <Button variant="primary" onClick={()=>handleModal()}>Confirm</Button>
-                  </Modal.Footer>
-                </Modal>
-                <IoArrowBack size={28} onClick={() => setSure(1)}/>
+                <IoArrowBack size={28} onClick={()=>{setPreview(0)}}/>
                 <p>back</p>  
                 
               </Col>
               <Col xs>
-                <HomeButton />
+                <Modal size="sm" show = {sure} onHide={() => setSure(0)} aria-labelledby="example-modal-sizes-title-sm">
+                  <Modal.Body><b>Are you sure? Your post will be deleted</b></Modal.Body> 
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={()=>setSure(0)}>No, remain here</Button>
+                    <Button variant="danger" onClick={()=>handleModal()}>Confirm</Button>
+                  </Modal.Footer>
+                </Modal>
+                <div style={{textAlign:'center'}}>
+                  <h6>
+                  <House size={28} onClick={() => setSure(1)}/>
+                  <br></br>Home
+                  </h6>
+                </div>
               </Col>
               <Col xs>
                 
-              <div style={{textAlign:'center'}}>
-                <h6 onClick={()=>{handleSubmit(); }}>
-                <PlusCircle size={28} color='black'/>
-                <br></br>Post it
-                </h6>
-            </div>
+              
               </Col>
             </Row>
           </Container>
