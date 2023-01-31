@@ -11,7 +11,7 @@ function Forum() {
 
     return (
         <Container>
-            <TitleBar name='Forum' arrow={true} ></TitleBar>
+            <TitleBar name='Forum' arrow={false} ></TitleBar>
             <br></br>
             <br></br>
             <br></br>
