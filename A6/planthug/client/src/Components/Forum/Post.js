@@ -35,6 +35,7 @@ function Post(props) {
   const [alert, setAlert] = useState(0)
   const [show, setShow] = useState(0)
   const [deleteReply, setDeleteReply] = useState([]);
+  const [arr, setArr] = useState(true);
   
 
 
@@ -125,13 +126,14 @@ function Post(props) {
       <Container>
         <Container>
                 
-          <Modal  size="sm" style={{color:'#BC4749'}} show = {show} onHide={() => setShow(0)} aria-labelledby="example-modal-sizes-title-sm">
-            <Modal.Body><b>Are you sure? </b></Modal.Body> 
-            <Modal.Footer  >
-              <Button variant="secondary" onClick={()=>setShow(0)}>No, go back</Button>
-              <Button variant="danger" onClick={()=> {handleDeleteReply(deleteReply)}}>Delete</Button>
-            </Modal.Footer>
-          </Modal>
+        <Modal show={show}>
+                    <Modal.Header closeButton style={{backgroundColor: '#bc4749'}}>
+                    <Modal.Title style={{color:'white'}}>Are you sure? Your reply will be deleted</Modal.Title>
+                    </Modal.Header><Modal.Footer style={{backgroundColor: '#bc4749', justifyContent:'space-between'}}>
+            <h6 className="text-light">
+              The action is irreversible
+            </h6><Button style={{backgroundColor: 'white', color: '#bc4749'}} className='border-0' onClick={ev => {handleDeleteReply(deleteReply); setShow(false);}}>Delete it</Button></Modal.Footer>
+                    </Modal>
 
           {alert===1 && <Modal size="sm" style={{color:'black'}} show = {alert} onHide={() => setAlert(0)} aria-labelledby="example-modal-sizes-title-sm">
             <Modal.Body><b>Reply sent correctly! Click anywhere to continue</b></Modal.Body> 
@@ -143,14 +145,14 @@ function Post(props) {
             <Modal.Body><b>Reply deleted correctly! Click anywhere to continue</b></Modal.Body> 
           </Modal>} 
 
-        <TitleBar name={post && post.title} arrow={false}/></Container>
+        <TitleBar name={post && post.title} arrow={arr}/></Container>
         <div>
           <Container>
             <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
               <MDBCardBody>
               <MDBCardText><b>{post && post.author}:</b></MDBCardText>
               <MDBCardText><div>{post && post.body}</div></MDBCardText>
-              <MDBCardText><Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setAuthorReply(post.author)}} className="border-0">Reply</Button> </MDBCardText>
+              <MDBCardText><Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setArr(false); setAuthorReply(post.author)}} className="border-0">Reply</Button> </MDBCardText>
               </MDBCardBody>
             </MDBCard> 
           </Container>
@@ -177,7 +179,7 @@ function Post(props) {
                   <MDBCardText><b>{reply.author}:</b><div >{reply && reply.body}</div></MDBCardText>
                   <Row >
                     <Col>
-                    <Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setAuthorReply(reply.author); setBody(reply.author)}} className="border-0">Reply</Button>
+                    <Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setArr(false); setAuthorReply(reply.author); setBody(reply.author)}} className="border-0">Reply</Button>
                     </Col>
                     <Col  >
                       <Button style={{color:'white'}} onClick={()=>{handleOpenModal(reply)}}variant='danger'>Delete</Button>
@@ -200,7 +202,7 @@ function Post(props) {
               {authorReply !== '' ? <Form.Control as="textarea" aria-label="With textarea" defaultValue={`@${authorReply}`}/> : <Form.Control as="textarea" aria-label="With textarea"/>}
             </InputGroup>
             <Navbar/>
-            <Button onClick={()=>{handleAddReply("aloelover")}}variant="danger">Send reply</Button>
+            <Button onClick={()=>{handleAddReply("aloelover"); setArr(true);}}variant="danger">Send reply</Button>
           </Container> : <></>
         }<Navbar/>
         <Navbar position='absolute' fixed="bottom" style={{backgroundColor:'#F2E8CF'}}>
@@ -218,7 +220,7 @@ function Post(props) {
                   </h6>
                 </div>
               </Col> : <Col xs>
-                <div style={{textAlign:'center'}} onClick={()=>{setReply(0); setAuthorReply("")}} >
+                <div style={{textAlign:'center'}} onClick={()=>{setReply(0); setArr(true); setAuthorReply("")}} >
                   <h6 >
                   <XCircleFill size={28} color='black'/>
                   <br></br>Cancel reply
