@@ -68,7 +68,6 @@ function NewPost(props) {
   if (!preview) {
     return (
       <Container>
-        <br></br>
         <TitleBar name='New post' arrow={true}></TitleBar>
         {alert===1 && <Alert variant='warning' onClose={()=>setAlert(0)}dismissible>Fill in all the required inputs</Alert>} 
         <br></br>
