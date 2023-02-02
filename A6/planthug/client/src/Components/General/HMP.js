@@ -13,7 +13,7 @@ function HMP(props){
           <Row>
             <Col><p></p>
               {props.up && props.up.length > 0 && <Image src={props.up[0].photo} style={{width:'50px', height:'50px'}} className="rounded-circle" alt="Circular Image" onClick={() => navigate('/myplants')}/>}
-              <p style={{fontSize:'15px'}}>{props.up && props.up.length > 0 && props.up[0].name}</p>
+              <p style={{fontSize:'15px'}} >{props.up && props.up.length > 0 && props.up[0].name}</p>
               {props.up && props.up.length === 0 && <Col><p/><Flower3 size={40}/><br/></Col>}
             <br></br>
             </Col>

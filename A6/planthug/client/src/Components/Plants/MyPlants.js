@@ -136,12 +136,12 @@ function Delete(props) {
         
                 <div style={{textAlign:'center'}}>
                 <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton style={{backgroundColor: '#bc4749'}}>
-                    <Modal.Title style={{color:'white'}}>Are you sure? The plant will no longer be in My Plants</Modal.Title>
-                    </Modal.Header><Modal.Footer style={{backgroundColor: '#bc4749', justifyContent:'space-between'}}>
-            <h6 className="text-light">
-              The action is irreversible
-            </h6><Button style={{backgroundColor: 'white', color: '#bc4749'}} className='border-0' onClick={ev => {pi=props.plant; props.deletePID(props.plant.id);setSubmit(true);navigate('/undone');}}>Delete it</Button></Modal.Footer>
+                    <Modal.Header>
+                    <Modal.Title style={{color:'black'}}>Are you sure?</Modal.Title>
+                    </Modal.Header><Modal.Footer style={{justifyContent:'space-between'}}>
+                    <Button style={{backgroundColor: 'gray', color: 'white'}} className='border-0' onClick={ev => {setShow(false)}}>No, go back</Button>
+            <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-white' onClick={ev => {pi=props.plant; props.deletePID(props.plant.id);setSubmit(true);navigate('/undone');}}>Yes, delete it</Button>
+            </Modal.Footer>
                     </Modal>
                 <h6 onClick={()=>{setShow(true)}}>
                 <i className='bi bi-dash-circle' style={{color:'black', fontSize:28}} color='black'/>

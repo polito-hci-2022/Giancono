@@ -66,10 +66,12 @@ function HelpMyPlant(props) {
   return (
     <Container>
       <Modal size="sm" style={{color:'#BC4749'}} show = {show} onHide={() => setShow(0)} aria-labelledby="example-modal-sizes-title-sm">
-                      <Modal.Body><b>Are you sure? </b></Modal.Body> 
-                      <Modal.Footer>
-                        <Button variant="secondary" onClick={()=>setShow(0)}>No, go back</Button>
-                        <Button variant="danger" onClick={()=>handleDeletePost(deletedPost)}>Delete</Button>
+      <Modal.Header>
+                    <Modal.Title style={{color:'black'}}>Are you sure?</Modal.Title>
+                    </Modal.Header>
+                      <Modal.Footer style={{justifyContent:'space-between'}}>
+                      <Button style={{backgroundColor: 'gray', color: 'white'}} className='border-0' onClick={() => {setShow(false)}}>No, go back</Button>
+            <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-white' onClick={() => handleDeletePost(deletedPost)}>Yes, delete it</Button>
                       </Modal.Footer>
       </Modal>
       <TitleBar name='Forum > Help my plant' arrow={true}></TitleBar>
@@ -101,7 +103,7 @@ function HelpMyPlant(props) {
                     <Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{navigate(`/forum/post/${element.id}`)}} className="border-0">
                       See post</Button>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Button variant='danger' onClick={()=>handleOpenModal(element.id)}>Delete Post</Button>
+                    <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={()=>handleOpenModal(element.id)}>Delete Post</Button>
                     </MDBCardBody>
                   </MDBCard>      
           </Container>  

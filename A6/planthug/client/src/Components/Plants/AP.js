@@ -1,5 +1,5 @@
 import '../../App.css';
-import { Container, Navbar, Button, Row, Col} from 'react-bootstrap';
+import { Container, Navbar, Button, Row, Col, Modal} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react';
@@ -161,13 +161,33 @@ function Deleted(props) {
 
 function Delete(props) {
   const navigate = useNavigate();
+        const [submit, setSubmit] = useState();
+        const [show, setShow] = useState();
+    
+        console.log(props.id);
+    
+        useEffect(() => {
+            setShow(false);
+          }, [submit]);
+    
+          const handleClose = () => {
+            setShow(false);
+        };
   return(
-  <div style={{textAlign:'center'}}>
-          <h6 onClick={()=>{p=props.plant; props.deletePID(props.plant.id); navigate('/undone1')}}>
-          <i style={{color:'black', fontSize:28}} className='bi bi-dash-circle'/>
-          <br></br>Delete plant
-          </h6>
-      </div>
+<div style={{textAlign:'center'}}>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header>
+                    <Modal.Title style={{color:'black'}}>Are you sure?</Modal.Title>
+                    </Modal.Header><Modal.Footer style={{justifyContent:'space-between'}}>
+                    <Button style={{backgroundColor: 'gray', color: 'white'}} className='border-0' onClick={ev => {setShow(false)}}>No, go back</Button>
+            <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-white' onClick={ev => {p=props.plant; props.deletePID(props.plant.id);setSubmit(true);navigate('/undone1');}}>Yes, delete it</Button>
+            </Modal.Footer>
+                    </Modal>
+                <h6 onClick={()=>{setShow(true)}}>
+                <i className='bi bi-dash-circle' style={{color:'black', fontSize:28}} color='black'/>
+                <br></br>Delete plant
+                </h6>
+            </div>
   );
 }
 

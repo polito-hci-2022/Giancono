@@ -127,12 +127,12 @@ function Post(props) {
         <Container>
                 
         <Modal show={show}>
-                    <Modal.Header closeButton style={{backgroundColor: '#bc4749'}}>
-                    <Modal.Title style={{color:'white'}}>Are you sure? Your reply will be deleted</Modal.Title>
-                    </Modal.Header><Modal.Footer style={{backgroundColor: '#bc4749', justifyContent:'space-between'}}>
-            <h6 className="text-light">
-              The action is irreversible
-            </h6><Button style={{backgroundColor: 'white', color: '#bc4749'}} className='border-0' onClick={ev => {handleDeleteReply(deleteReply); setShow(false);}}>Delete it</Button></Modal.Footer>
+                    <Modal.Header closeButton onClick={()=>setShow(false)}>
+                    <Modal.Title style={{color:'black'}}>Are you sure?</Modal.Title>
+                    </Modal.Header><Modal.Footer style={{justifyContent:'space-between'}}>
+            <Button style={{backgroundColor: 'gray', color: 'white'}} className='border-0' onClick={ev => {setShow(false)}}>No, go back</Button>
+            <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={ev => {handleDeleteReply(deleteReply); setReply(0); setShow(false);}}>Delete it</Button>
+            </Modal.Footer>
                     </Modal>
 
           {alert===1 && <Modal size="sm" style={{color:'black'}} show = {alert} onHide={() => setAlert(0)} aria-labelledby="example-modal-sizes-title-sm">
@@ -220,9 +220,9 @@ function Post(props) {
                   </h6>
                 </div>
               </Col> : <Col xs>
-                <div style={{textAlign:'center'}} onClick={()=>{setReply(0); setArr(true); setAuthorReply("")}} >
+                <div style={{textAlign:'center'}} onClick={()=>{setArr(true); setAuthorReply("")}} >
                   <h6 >
-                  <XCircleFill size={28} color='black'/>
+                  <XCircleFill onClick={()=>setShow(true)} size={28} color='black'/>
                   <br></br>Cancel reply
                   </h6>
                 </div>

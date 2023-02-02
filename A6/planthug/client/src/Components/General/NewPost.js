@@ -137,7 +137,7 @@ function NewPost(props) {
             </MDBCardBody>
           </MDBCard> 
 
-          <Button  onClick={()=>{handleSubmit(); }} variant={"danger"} >
+          <Button  onClick={()=>{handleSubmit(); }} style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' >
             <PlusCircle size={20} /> Post it!
           </Button>
           
@@ -148,22 +148,25 @@ function NewPost(props) {
           <Container style={{ justifyContent: "center" }}>
             <Row>
               <Col xs>
-                <IoArrowBack size={28} onClick={()=>{setPreview(0)}}/>
-                <p>back</p>  
+              <div style={{textAlign:'center'}}>
+                <h6>
+                  <IoArrowBack size={28} onClick={()=>{setPreview(0)}}/>
+                <br/>Back
+                </h6> </div>
                 
               </Col>
               <Col xs>
                 <Modal size="sm" show = {sure} onHide={() => setSure(0)} aria-labelledby="example-modal-sizes-title-sm">
-                  <Modal.Body><b>Are you sure? Your post will be deleted</b></Modal.Body> 
-                  <Modal.Footer>
+                  <Modal.Header><Modal.Title>Are you sure?</Modal.Title></Modal.Header>
+                  <Modal.Footer style={{justifyContent: 'space-between'}}>
                     <Button variant="secondary" onClick={()=>setSure(0)}>No, remain here</Button>
-                    <Button variant="danger" onClick={()=>handleModal()}>Confirm</Button>
+                    <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={()=>handleModal()}>Yes, delete it</Button>
                   </Modal.Footer>
                 </Modal>
                 <div style={{textAlign:'center'}}>
                   <h6>
                   <House size={28} onClick={() => setSure(1)}/>
-                  <br></br>Home
+                  <br/>Home
                   </h6>
                 </div>
               </Col>
