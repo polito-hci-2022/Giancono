@@ -27,7 +27,7 @@ const SettingsPopup = () => {
         <Offcanvas.Body>
             <br></br>
             <br></br>
-            <Container style={{width:'260px', height:'60px', borderRadius:'50px', backgroundColor:'#e6e6e6', textAlign:'center'}}>
+            <Container style={{width:'260px', height:'60px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
                 <Row style={{justifyContent:'center', paddingTop:'5%'}}>
                     <Col xs={2}>
                         <Moon size={30}/>
@@ -39,7 +39,7 @@ const SettingsPopup = () => {
             </Container>
             <br></br>
             <br></br>
-            <Container style={{width:'260px', height:'60px', borderRadius:'50px', backgroundColor:'#e6e6e6', textAlign:'center'}}>
+            <Container style={{width:'260px', height:'60px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
                 <Row style={{justifyContent:'center', paddingTop:'5%'}}>
                     <Col xs={2}>
                         <Person size={30}/>
@@ -51,7 +51,7 @@ const SettingsPopup = () => {
             </Container>
             <br></br>
             <br></br>
-            <Container style={{width:'260px', height:'60px', borderRadius:'50px', backgroundColor:'#e6e6e6', textAlign:'center'}}>
+            <Container style={{width:'260px', height:'60px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
                 <Row style={{justifyContent:'center', paddingTop:'5%'}}>
                     <Col xs={2}>
                         <Headset size={30}/>
@@ -63,7 +63,7 @@ const SettingsPopup = () => {
             </Container>
             <br></br>
             <br></br>
-            <Container style={{width:'260px', height:'60px', borderRadius:'50px', backgroundColor:'#e6e6e6', textAlign:'center'}}>
+            <Container style={{width:'260px', height:'60px', borderRadius:'50px', backgroundColor:'#A7C957', textAlign:'center'}}>
             <Row style={{justifyContent:'center', paddingTop:'5%'}}>
                     <Col xs={2}>
                         <QuestionCircle size={30}/>

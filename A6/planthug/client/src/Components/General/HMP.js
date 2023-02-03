@@ -13,19 +13,19 @@ function HMP(props){
           <Row>
             <Col><p></p>
               {props.up && props.up.length > 0 && <Image src={props.up[0].photo} style={{width:'50px', height:'50px'}} className="rounded-circle" alt="Circular Image" onClick={() => navigate('/myplants')}/>}
-              <p style={{fontSize:'15px'}} >{props.up && props.up.length > 0 && props.up[0].name}</p>
+              <p style={{fontSize:'13px'}} >{props.up && props.up.length > 0 && props.up[0].name.substring(0,8)}{(props.up && props.up.length > 0 && props.up[0].name.length > 7) && <>...</>}</p>
               {props.up && props.up.length === 0 && <Col><p/><Flower3 size={40}/><br/></Col>}
             <br></br>
             </Col>
             <Col><p></p>{props.up && props.up.length === 1 && <Col><p/><Flower3 size={40}/><br/></Col>}            
             {props.up && props.up.length === 0 && <Col><p/><Flower3 size={40}/><br/></Col>}
             {props.up && props.up.length > 1 && <Image src={props.up[1].photo} style={{width:'50px', height:'50px'}} className="rounded-circle" alt="Circular Image" onClick={() => navigate('/myplants')}/>}
-            <p style={{fontSize:'15px'}}>{props.up && props.up.length > 1 && props.up[1].name}</p>
+            <p style={{fontSize:'13px'}} >{props.up && props.up.length > 1 && props.up[1].name.substring(0,8)}{(props.up && props.up.length > 1 && props.up[1].name.length > 7) && <>...</>}</p>
             <br></br>
             </Col>
             <Col><p></p>
             {props.up && props.up.length > 2 && <Image src={props.up[2].photo} style={{width:'50px', height:'50px'}} className="rounded-circle" alt="Circular Image" onClick={() => navigate('/myplants')}/>}
-            <p style={{fontSize:'15px'}}>{props.up && props.up.length > 2 && props.up[2].name}</p>
+            <p style={{fontSize:'13px'}} >{props.up && props.up.length > 2 && props.up[2].name.substring(0,8)}{(props.up && props.up.length > 2 && props.up[2].name.length > 7) && <>...</>}</p>
             {props.up && props.up.length === 0 && <Col><p/><Flower3 onClick={() => navigate('/myplants')} size={40}/><br/></Col>}
             {props.up && props.up.length === 2 && <Col><p/><Flower3 onClick={() => navigate('/myplants')} size={40}/><br/></Col>}
             {props.up && props.up.length === 1 && <Col><p/><Flower3 onClick={() => navigate('/myplants')} size={40}/><br/></Col>}
