@@ -148,7 +148,7 @@ function Post(props) {
             <Modal.Body><b>Reply deleted correctly! Click anywhere to continue</b></Modal.Body> 
           </Modal>} 
 
-        <TitleBar name={post && post.title} arrow={arr}/></Container>
+        <TitleBar name={post && post.title} little={true} arrow={arr}/></Container>
         <div>
           <Container>
             <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>

@@ -74,7 +74,7 @@ function HelpMyPlant(props) {
             <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-white' onClick={() => handleDeletePost(deletedPost)}>Yes, delete it</Button>
                       </Modal.Footer>
       </Modal>
-      <TitleBar name='Forum > Help my plant' arrow={true}></TitleBar>
+      <TitleBar name='Forum > Help my plant' little={true} arrow={true}></TitleBar>
       <Container>
         <br></br>
         <Form className="d-flex">

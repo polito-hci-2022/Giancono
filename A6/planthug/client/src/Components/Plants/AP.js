@@ -39,7 +39,7 @@ function AP(props) {
     return <PlantInfo upid={props.upid} getUPID={props.getUPID} deletePID={props.deletePID} id={pinfo.id} photo={pinfo.photo} addP={props.addP}/>}
   else {
         return (<><Container>
-        <TitleBar name='New Plant' arrow={true}/>
+        <TitleBar name='New Plant' arrow={true}/><Navbar/>
         </Container>
 <Container><MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'><MDBCardImage src='https://wallpaperaccess.com/full/215040.jpg' position='top' alt='...' />
 <MDBCardBody><MDBCardTitle style={{backgroundColor:'A7C957', display: 'flex', justifyContent: 'space-between'}}>Cacti
@@ -85,7 +85,7 @@ function PlantCategory(props) {
   },[]);
   
   return (<>
-    <Container><TitleBar name={props.cat} arrow={true}/></Container>
+    <Container><TitleBar name={props.cat} arrow={true}/><Navbar/></Container>
     {props.p.filter(plant => plant.category === cat).map((plant) =><PlantCard addP={props.addP} upid={props.upid} getUPID={props.getUPID} plant={plant}/>)}
     <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
     <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/></>

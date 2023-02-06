@@ -37,7 +37,7 @@ function MyPlants(props) {
         if (props.del) return (<Deleted name={p.name}/>)
         if (!props.pi)
         return (<>
-        <Container><TitleBar arrow={false} name='My Plants'></TitleBar></Container>
+        <Container><TitleBar arrow={false} name='My Plants'></TitleBar><Navbar/></Container>
         {props.userPlants.length === 0 && <><Navbar/><Navbar/><h4 style={{textAlign:'center', color:'gray'}}>No plants added yet. Add some :)</h4></>}
         {props.userPlants && props.userPlants.map((plant) =><PlantCard deletePID={props.deletePID} setP={setP} UPL={props.UPL} getUP={props.getUP} pid={props.pid} plant={plant} getPID={props.getPID}></PlantCard>)}
         <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>

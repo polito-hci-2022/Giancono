@@ -14,12 +14,18 @@ function TitleBar(props){
                 {(!props.mod && props.name === 'Plant Hug') && <Navbar.Brand>{props.icon}</Navbar.Brand>}
                 {(!props.mod && props.name !== 'Plant Hug' && props.arrow===false) && <Navbar.Brand><IoArrowBack size={28} style={{color: 'white'}}></IoArrowBack></Navbar.Brand>}
             </Col>
-            <Col xs={10} style={{textAlign:'center'}}>
+            {!props.little && <Col xs={10} style={{textAlign:'center'}}>
                 <h1 className='d-flex flex-row align-items-center justify-content-center'>
-                &nbsp;&nbsp;{props.name}&nbsp; &nbsp; &nbsp; &nbsp; 
+                &nbsp;&nbsp;{props.name}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
                     {(props.icon !== undefined) && props.name !== "Plant Hug" && <Navbar.Brand>{props.icon}</Navbar.Brand>}
                 </h1>
-            </Col>
+            </Col>}
+            {props.little && <Col xs={10} style={{textAlign:'center'}}>
+                <h4 className='d-flex flex-row align-items-center justify-content-center'>
+                &nbsp;&nbsp;Forum {'>'} Help my plant&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                    {(props.icon !== undefined) && props.name !== "Plant Hug" && <Navbar.Brand>{props.icon}</Navbar.Brand>}
+                </h4>
+            </Col>}
             <Col xs={1}>
                 <Navbar.Brand><IoArrowBack size={28} style={{color: 'white'}}></IoArrowBack></Navbar.Brand>
             </Col>
