@@ -26,7 +26,6 @@ const daoDB = new dao(db.db);
 
 // CORS
 const corsOptions = {
-  origin: 'http://192.168.227.65:19000',
   credentials : true,
 };
 app.use(cors(corsOptions));

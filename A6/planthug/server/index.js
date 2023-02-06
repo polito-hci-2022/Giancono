@@ -26,7 +26,6 @@ const daoDB = new dao(db.db);
 
 // CORS
 const corsOptions = {
-  origin: 'http://localhost:3000',
   credentials : true,
 };
 app.use(cors(corsOptions));

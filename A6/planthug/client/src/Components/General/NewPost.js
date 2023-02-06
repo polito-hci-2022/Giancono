@@ -102,9 +102,20 @@ function NewPost(props) {
         >
           <Container style={{ justifyContent: "center" }}>
             <Row>
-              <Col xs>
-                <HomeButton />
-              </Col>
+              <Col xs><Modal size="sm" show = {sure} onHide={() => setSure(0)} aria-labelledby="example-modal-sizes-title-sm">
+                  <Modal.Header><Modal.Title>Are you sure? Your draft won't be saved</Modal.Title></Modal.Header>
+                  <Modal.Footer style={{justifyContent: 'space-between'}}>
+                    <Button variant="secondary" onClick={()=>setSure(0)}>No, remain here</Button>
+                    <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={()=>handleModal()}>Yes, delete it</Button>
+                  </Modal.Footer>
+                </Modal>
+              <div style={{ textAlign: "center" }}>
+                  <h6>
+                    <House size={28} color="black" onClick={() => setSure(1)}/>
+                    <br></br>Home
+                  </h6>
+                </div>
+              </Col><Col xs/>
               <Col xs>
                 <div style={{ textAlign: "center" }}>
                   <h6>
@@ -146,7 +157,7 @@ function NewPost(props) {
           fixed="bottom"
           style={{ backgroundColor: "#F2E8CF" }}>
           <Container style={{ justifyContent: "center" }}>
-            <Row>
+            <Row><Col xs/>
               <Col xs>
               <div style={{textAlign:'center'}}>
                 <h6>
@@ -154,10 +165,10 @@ function NewPost(props) {
                 <br/>Back
                 </h6> </div>
                 
-              </Col>
+              </Col><Col xs/><Col xs/><Col xs/>
               <Col xs>
                 <Modal size="sm" show = {sure} onHide={() => setSure(0)} aria-labelledby="example-modal-sizes-title-sm">
-                  <Modal.Header><Modal.Title>Are you sure?</Modal.Title></Modal.Header>
+                  <Modal.Header><Modal.Title>Are you sure? Your draft will be deleted</Modal.Title></Modal.Header>
                   <Modal.Footer style={{justifyContent: 'space-between'}}>
                     <Button variant="secondary" onClick={()=>setSure(0)}>No, remain here</Button>
                     <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={()=>handleModal()}>Yes, delete it</Button>

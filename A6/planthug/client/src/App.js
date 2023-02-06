@@ -27,6 +27,7 @@ function App() {
   const[posts, setPosts] = useState();
   const[pid, setPID] = useState();
   const[upid, setUPID] = useState(); // per capire se una pianta è già in My Plants
+  const[count,setCount]=useState(0);
 
 
   const getUPlants = async () =>{
@@ -212,8 +213,7 @@ function App() {
   useEffect(() => {
     getUPlants();
     getPlants();
-    getPosts();
-  }, []);
+    getPosts();  }, []);
 
   return (
     <BrowserRouter>
@@ -229,7 +229,7 @@ function App() {
         <Route path='/plantinfo' element={<MyPlants getUP={getUPlants} getPID={getPID} pi={true} pid={pid} deletePID={deletePID}/>}/> 
         <Route path='/plantinfo1' element={<AP pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
         <Route path='/plantinfo2' element={<PlantCard pi={true} getUPID={getUPID} upid={upid} addP={addP} deletePID={deletePID}/>}/>
-        <Route path='/addplant' element={<AP mod={'AP'} getP={getPlants} plants={p} getUPID={getUPID} upid={upid}/>}/>
+        <Route path='/addplant' element={<AP  mod={'AP'} getP={getPlants} plants={p} getUPID={getUPID} upid={upid}/>}/>
         <Route path='/added' element={<AP add={1} deletePID={deletePID}/>}/>
         <Route path='/added1' element={<PlantCard addP={addP} deletePID={deletePID} add={2}/>}/>
         <Route path='/undone' element={<MyPlants del={true}/>}/>

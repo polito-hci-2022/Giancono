@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import React from "react";
 import HomeButton from '../Buttons/home';
+import {House} from 'react-bootstrap-icons';
+import { Navigate, useNavigate } from "react-router-dom";
 import {
   Container,
   Row,
@@ -31,13 +33,14 @@ function Post(props) {
   const [body, setBody] = useState("");
   const [post, setPost] = useState({});
   const [authorReply, setAuthorReply] = useState("");
-  const [replies, setReplies] = useState([])
-  const [alert, setAlert] = useState(0)
-  const [show, setShow] = useState(0)
+  const [replies, setReplies] = useState([]);
+  const [alert, setAlert] = useState(0);
+  const [show, setShow] = useState(0);
+  const [sure, setSure] = useState(0);
   const [deleteReply, setDeleteReply] = useState([]);
   const [arr, setArr] = useState(true);
   
-
+  const navigate = useNavigate();
 
   const handleGetPosts = async (val) => {
     console.log(parseInt(val));
@@ -128,7 +131,7 @@ function Post(props) {
                 
         <Modal show={show}>
                     <Modal.Header closeButton onClick={()=>setShow(false)}>
-                    <Modal.Title style={{color:'black'}}>Are you sure?</Modal.Title>
+                    <Modal.Title style={{color:'black'}}>Are you sure? Your draft won't be saved</Modal.Title>
                     </Modal.Header><Modal.Footer style={{justifyContent:'space-between'}}>
             <Button style={{backgroundColor: 'gray', color: 'white'}} className='border-0' onClick={ev => {setShow(false)}}>No, go back</Button>
             <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={ev => {handleDeleteReply(deleteReply); setReply(0); setShow(false);}}>Delete it</Button>
@@ -152,7 +155,7 @@ function Post(props) {
               <MDBCardBody>
               <MDBCardText><b>{post && post.author}:</b></MDBCardText>
               <MDBCardText><div>{post && post.body}</div></MDBCardText>
-              <MDBCardText><Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setArr(false); setAuthorReply(post.author)}} className="border-0">Reply</Button> </MDBCardText>
+              <MDBCardText><Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setArr(false); setSure(0); setShow(0); setAuthorReply(post.author)}} className="border-0">Reply</Button> </MDBCardText>
               </MDBCardBody>
             </MDBCard> 
           </Container>
@@ -181,16 +184,22 @@ function Post(props) {
                     <Col>
                     <Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{setReply(1); setArr(false); setAuthorReply(reply.author); setBody(reply.author)}} className="border-0">Reply</Button>
                     </Col>
-                    <Col  >
-                      <Button style={{color:'white'}} onClick={()=>{handleOpenModal(reply)}}variant='danger'>Delete</Button>
+                    <Col  ><Modal size="sm" show = {sure} onHide={() => {setSure(0);}} aria-labelledby="example-modal-sizes-title-sm">
+                  <Modal.Header><Modal.Title>Are you sure? Your reply will be deleted</Modal.Title></Modal.Header>
+                  <Modal.Footer style={{justifyContent: 'space-between'}}>
+                    <Button variant="secondary" onClick={()=>{setSure(0);setArr(false);}}>No, remain here</Button>
+                    <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={()=>{handleDeleteReply(reply);setSure(0);setShow(0);setArr(true);}}>Yes, delete it</Button>
+                  </Modal.Footer>
+                </Modal>
+                      <Button style={{color:'white', backgroundColor:'#bc4749'}} onClick={()=>{setSure(1);}} className='border-0'>Delete</Button>
                     </Col>
                 
 
                   </Row>
                   </MDBCardBody>
-                </MDBCard>      
+                </MDBCard>     
               </Container>
-            )
+            )  
           })          
         }
         {
@@ -202,35 +211,54 @@ function Post(props) {
               {authorReply !== '' ? <Form.Control as="textarea" aria-label="With textarea" defaultValue={`@${authorReply}`}/> : <Form.Control as="textarea" aria-label="With textarea"/>}
             </InputGroup>
             <Navbar/>
-            <Button onClick={()=>{handleAddReply("aloelover"); setArr(true);}}variant="danger">Send reply</Button>
+            <Button style={{backgroundColor:'#bc4749'}} className='border-0' onClick={()=>{handleAddReply("aloelover"); setArr(true);}}>Send reply</Button>
           </Container> : <></>
         }<Navbar/>
         <Navbar position='absolute' fixed="bottom" style={{backgroundColor:'#F2E8CF'}}>
           <Container style={{justifyContent:'center'}}>
             <Row >
               <Col xs>
-                <HomeButton/>
+              <Modal size="sm" show = {show} onHide={() => setShow(1)} aria-labelledby="example-modal-sizes-title-sm">
+                  <Modal.Header><Modal.Title>Are you sure? Your draft will be deleted</Modal.Title></Modal.Header>
+                  <Modal.Footer style={{justifyContent: 'space-between'}}>
+                    <Button variant="secondary" onClick={()=>{setShow(0);setArr(false);}}>No, remain here</Button>
+                    <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={()=>navigate('/')}>Yes, delete it</Button>
+                  </Modal.Footer>
+                </Modal>
+                <div style={{textAlign:'center'}}>
+                  <h6>
+                  <House size={28} onClick={() => {if (reply) setShow(1); else navigate('/')}}/>
+                  <br/>Home
+                  </h6>
+                </div>
+              
               </Col> 
-              <Col/> 
-              {reply===0 ? <Col xs>
-                <div style={{textAlign:'center'}} onClick={()=>{setReply(1)}} >
+              <Col xs/>
+              {reply===0 ? <><Col xs/><Col xs>
+                <div style={{textAlign:'center'}} onClick={()=>{setReply(1);setArr(false);setSure(0)}} >
                   <h6 >
                   <ReplyFill size={28} color='black'/>
                   <br></br>Reply
                   </h6>
                 </div>
-              </Col> : <Col xs>
-                <div style={{textAlign:'center'}} onClick={()=>{setArr(true); setAuthorReply("")}} >
+              </Col></> : <><Modal size="sm" show = {sure} onHide={() => setSure(0)} aria-labelledby="example-modal-sizes-title-sm">
+                  <Modal.Header><Modal.Title>Are you sure? Your draft will be deleted</Modal.Title></Modal.Header>
+                  <Modal.Footer style={{justifyContent: 'space-between'}}>
+                    <Button variant="secondary" onClick={()=>{setSure(0);setArr(false);}}>No, remain here</Button>
+                    <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={()=>{setSure(0);setReply(0);setArr(true);}}>Yes, delete it</Button>
+                  </Modal.Footer>
+                </Modal><Col xs>
+                <div style={{textAlign:'center'}} onClick={()=>{setArr(false); setAuthorReply("")}} >
                   <h6 >
-                  <XCircleFill onClick={()=>setShow(true)} size={28} color='black'/>
+                  <XCircleFill onClick={()=>setSure(true)} size={28} color='black'/>
                   <br></br>Cancel reply
                   </h6>
                 </div>
-              </Col> }
+              </Col></> }
               
             </Row>
           </Container>
-        </Navbar>
+        </Navbar><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
        
 
       </Container>

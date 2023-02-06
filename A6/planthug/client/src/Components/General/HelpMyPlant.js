@@ -125,7 +125,7 @@ function HelpMyPlant(props) {
                 <Row >
                   <Col xs>
                   <HomeButton/>
-                  </Col>
+                  </Col><Col xs/>
                   <Col xs>
                   <NewPostButton/>
                   </Col>
