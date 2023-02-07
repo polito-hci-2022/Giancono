@@ -79,7 +79,7 @@ function NewPost(props) {
         </Form>
         <br></br>
         <h4>Category:</h4>
-        <Form.Select size="md" style={{alignContent:'center', maxWidth:'70%'}} onChange={event => setCategory(event.target.value)}>
+        <Form.Select size="md" onChange={event => setCategory(event.target.value)}>
           <option>Help my plant</option>
           <option>Plant's reviews</option>
           <option>Accessories for your plant</option>
