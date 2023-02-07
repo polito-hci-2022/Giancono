@@ -28,7 +28,7 @@ function App() {
   const[pid, setPID] = useState();
   const[upid, setUPID] = useState(); // per capire se una pianta è già in My Plants
   const[count,setCount]=useState(0);
-
+  const [loading, setLoading] = useState(0);
 
   const getUPlants = async () =>{
     const url = APIURL + `/getUP/1`;
@@ -235,9 +235,9 @@ function App() {
         <Route path='/undone' element={<MyPlants del={true}/>}/>
         <Route path='/undone1' element={<AP del={true}/>}/>
         <Route path='/undone2' element={<PlantCard del={true}/>}/>
-        <Route path='/recognize' element={<Recognize/>}/>
-        <Route path='/recognize1' element={<Recognize mod={'AP'}/>}/>
-        <Route path='/recognize/plant' element={<RecognizedPlant getUPID={getUPID} upid={upid} setPID={setPID}/>}/>
+        <Route path='/recognize' element={<Recognize setLoading={setLoading} />}/>
+        <Route path='/recognize1' element={<Recognize mod={'AP'} setLoading={setLoading} />}/>
+        <Route path='/recognize/plant' element={<RecognizedPlant getUPID={getUPID} upid={upid} setPID={setPID} loading={loading} setLoading={setLoading} />}/>
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback/sent' element={<FeedbackSent/>}/>
         <Route path='/forum/posted' element={<ForumPosted/>}/>

@@ -114,7 +114,7 @@ function Recognize(props){
                         <span className="text-center">This is your photo. Do you want to keep it?</span>
                     </Row>
                     <Row>
-                        <PlantNavbar i1={<TakeAgain setTaken={setTaken}/>} i3={<GoAhead/>}/>
+                        <PlantNavbar i1={<TakeAgain setTaken={setTaken}/>} i3={<GoAhead setLoading={props.setLoading} />}/>
                     </Row>
                 </Container>
             </div>
@@ -130,7 +130,7 @@ function Recognize(props){
                         <span className="text-center">You chose this photo. Do you want to keep it?</span>
                     </Row>
                     <Row>
-                        <PlantNavbar i1={<ChooseAnother handleChange={handleChange}/>} i3={<GoAhead/>}/>
+                        <PlantNavbar i1={<ChooseAnother handleChange={handleChange}/>} i3={<GoAhead setLoading={props.setLoading} />}/>
                     </Row>
                 </Container>
             </div>

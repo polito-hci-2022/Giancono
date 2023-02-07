@@ -10,7 +10,6 @@ import Home from '../Buttons/home';
 const APIURL = 'http://localhost:3001/api';
 
 function RecognizedPlant(props){
-    const [recognized, setRecognized] = useState(false);
     const[p, setP] = useState([]);
     
     const right = 5;
@@ -38,20 +37,20 @@ function RecognizedPlant(props){
       }
 
     useEffect(() => {
-        setTimeout(() => setRecognized(true), 2000);
+        if(props.loading === 1)
+            setTimeout(() => props.setLoading(0), 2000);
     }, [])
 
     useEffect(() => {
         getPlants();
     }, []);
-
-
+    
     const rightPlant = p[right + rand];
     const possiblePlants = p.filter((p, idx) => possible.includes(idx - rand));
 
     return(
         <>
-            {recognized ? <>
+            {props.loading === 0 ? <>
                 <Container>
                     <TitleBar name='Recognize' icon={<CameraFill />} arrow={true} />
                 </Container>
@@ -62,7 +61,7 @@ function RecognizedPlant(props){
                     </span>
                 </Row>
                 <Row>
-                    <PlantCard getUPID={props.getUPID} plant={rightPlant} name={rightPlant.name} path={rightPlant.photo} typeOfRating='recognition' setPID={props.setPID} />
+                    {rightPlant !== undefined && <PlantCard getUPID={props.getUPID} plant={rightPlant} name={rightPlant.name} path={rightPlant.photo} typeOfRating='recognition' setPID={props.setPID} />}
                 </Row>
                 <Row className="w-75">
                     <span className='text-center'>
