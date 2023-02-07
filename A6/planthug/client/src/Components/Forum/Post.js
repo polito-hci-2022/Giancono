@@ -148,7 +148,7 @@ function Post(props) {
             <Modal.Body><b>Reply deleted correctly! Click anywhere to continue</b></Modal.Body> 
           </Modal>} 
 
-        <TitleBar name={post && post.title} little={true} arrow={arr}/></Container>
+        <TitleBar name={post && post.title} little={true} arrow={arr}/></Container><br></br>
         <div>
           <Container>
             <MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
@@ -162,7 +162,7 @@ function Post(props) {
         </div>
          
         {
-        (replies.length===0 && reply===0)
+        (replies && replies.length===0 && reply===0)
           ? 
           <Container>
           <br></br>
@@ -174,7 +174,7 @@ function Post(props) {
           <h4 style={{textAlign:'center', color:'gray'}}>No replies to this post</h4></Container> 
           :
           
-          replies.map((reply, counter)=>{
+          replies && replies.map((reply, counter)=>{
             return (
               <Container key={counter}  overflow-y="scroll">
                 <MDBCard   style={{backgroundColor:'#6A994E'}} className='text-white mb-3'>

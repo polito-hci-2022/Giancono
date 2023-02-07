@@ -1,7 +1,8 @@
 import '../../App.css';
-import { Container, Navbar, Button, Row, Col, Modal} from 'react-bootstrap';
+import { Container, Navbar, Button, Row, Col, Modal, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import {Search } from "react-bootstrap-icons";
 import React from 'react';
 import {
   MDBCard,
@@ -41,6 +42,18 @@ function AP(props) {
         return (<><Container>
         <TitleBar name='New Plant' arrow={true}/><Navbar/>
         </Container>
+        <Container>
+        <br></br>
+        <Form className="d-flex">
+          <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"/>
+          <Button variant="outline-success">
+            <Search />
+          </Button>
+        </Form></Container><br/>
 <Container><MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'><MDBCardImage src='https://wallpaperaccess.com/full/215040.jpg' position='top' alt='...' />
 <MDBCardBody><MDBCardTitle style={{backgroundColor:'A7C957', display: 'flex', justifyContent: 'space-between'}}>Cacti
 <Button style={{backgroundColor:'#A7C957'}} className='border-0' onClick={() => {cat='Cacti'; p=props.plants; navigate('/cat');}}><i className='bi bi-arrow-right' style={{color:'black'}}/></Button>
@@ -66,13 +79,7 @@ function AP(props) {
 <Button style={{backgroundColor:'#A7C957'}} className='border-0' onClick={() => {cat='Shrubs'; p=props.plants; navigate('/cat');}}><i className='bi bi-arrow-right' style={{color:'black'}}/></Button>
 </MDBCardTitle></MDBCardBody></MDBCard>
 </Container>
-<Container><MDBCard style={{backgroundColor:'#386641'}} className='text-white mb-3'>
-  <MDBCardImage src='https://getwallpapers.com/wallpaper/full/1/c/a/1036023-free-succulent-wallpapers-2560x1440-hd.jpg' position='top' alt='...' />
-<MDBCardBody><MDBCardTitle style={{backgroundColor:'A7C957', display: 'flex', justifyContent: 'space-between'}}>Succulents
-<Button style={{backgroundColor:'#A7C957'}} className='border-0' onClick={() => {cat='Succulents'; p=props.plants; navigate('/cat');}}><i className='bi bi-arrow-right' style={{color:'black'}}/></Button>
-</MDBCardTitle></MDBCardBody></MDBCard>
-</Container>
-<Navbar/><Navbar/><Navbar/>
+<Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
         <PlantNavbar i1={<Home/>} i2={<RecognizeButton mod={props.mod}/>} i3={<SuggestionsButton mod={props.mod}/>}/>
         </>);
 }
@@ -86,6 +93,18 @@ function PlantCategory(props) {
   
   return (<>
     <Container><TitleBar name={props.cat} arrow={true}/><Navbar/></Container>
+    <Container>
+        <br></br>
+        <Form className="d-flex">
+          <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"/>
+          <Button variant="outline-success">
+            <Search />
+          </Button>
+        </Form></Container><br/>
     {props.p.filter(plant => plant.category === cat).map((plant) =><PlantCard addP={props.addP} upid={props.upid} getUPID={props.getUPID} plant={plant}/>)}
     <Navbar/><Navbar/><Navbar/><Navbar/><Navbar/><Navbar/>
     <PlantNavbar i1={<Home/>} i3={<MyPlantsButton/>}/></>
