@@ -18,7 +18,7 @@ import Post from './Components/Forum/Post';
 import { useState, useEffect } from 'react';
 import PlantCard from './Components/Plants/PlantCard';
 
-const APIURL = 'http://localhost:3001/api';
+const APIURL = '/api';
 
 function App() {
 

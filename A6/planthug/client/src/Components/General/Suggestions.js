@@ -7,7 +7,7 @@ import PlantCard from '../Plants/PlantCard';
 import TitleBar from './Titlebar';
 import Home from '../Buttons/home';
 
-const APIURL = 'http://localhost:3001/api';
+const APIURL = '/api';
 
 function MyButton(props){
     return(

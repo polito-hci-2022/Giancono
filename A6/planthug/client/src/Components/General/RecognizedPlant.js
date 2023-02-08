@@ -7,7 +7,7 @@ import PlantCard from "../Plants/PlantCard";
 import PlantNavbar from './PlantNavbar';
 import Home from '../Buttons/home';
 
-const APIURL = 'http://localhost:3001/api';
+const APIURL = '/api';
 
 function RecognizedPlant(props){
     const[p, setP] = useState([]);

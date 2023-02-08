@@ -1,6 +1,6 @@
 
 
-const APIURL = 'http://localhost:3001/api'
+const APIURL = '/api'
 const getReplies = async (id) => {
     const url = APIURL + `/getReplies/${id}`;
     try{
