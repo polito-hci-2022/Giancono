@@ -22,14 +22,18 @@ const db = require('./DB');
 const dao = require('./dao');
 const daoDB = new dao(db.db);
 
+app.use(cors());
 
 
-// CORS
-const corsOptions = {
-  credentials : true,
-};
-app.use(cors(corsOptions));
-
+/*
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH');
+    next();
+  });
+*/
 
 
 
@@ -64,6 +68,7 @@ app.get('/api/getP', async(req, res) => {
     }catch(err){
         return res.status(500).json({err:'generic error'})
     }
+    //res_object.header("Access-Control-Allow-Origin", "*");
     return res.status(200).json(x);
 });
 
@@ -112,6 +117,7 @@ app.put(`/api/updatePlant`, async(req, res) => {
 app.get('/api/getThreads', async(req, res) => {
     let x;
     
+    console.log(req.headers)
     try{
         x = await daoDB.getThreads();
     }catch(err){
