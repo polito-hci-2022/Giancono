@@ -103,7 +103,7 @@ function HelpMyPlant(props) {
                     <Button style={{backgroundColor:'#A7C957', color:'black'}} onClick={()=>{navigate(`/forum/post/${element.id}`)}} className="border-0">
                       See post</Button>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={()=>handleOpenModal(element.id)}>Delete Post</Button>
+                    {element.author === 'Franchino' && <Button style={{backgroundColor: '#bc4749', color: 'white'}} className='border-0' onClick={()=>handleOpenModal(element.id)}>Delete Post</Button>}
                     </MDBCardBody>
                   </MDBCard>      
           </Container>  
